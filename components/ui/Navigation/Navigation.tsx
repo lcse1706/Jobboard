@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Button } from '../Button';
 
 interface NavProps {
   nav: Array<{ label: string; link: string }>;
@@ -13,6 +14,7 @@ export const Navigation = (props: NavProps) => {
             <Link href={item.link}>{item.label}</Link>
           </li>
         ))}
+        <Button label="Log In"></Button>
       </ul>
     </nav>
   );

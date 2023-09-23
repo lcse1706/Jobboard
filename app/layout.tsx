@@ -1,8 +1,8 @@
-import { Header } from '@/components/ui/Header/Header';
+import { Header } from '@/components/ui/';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { Navigation } from '@/components/ui/Navigation/Navigation';
+import { Navigation } from '@/components/ui/';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,7 +28,7 @@ export default function RootLayout({
         <Header titel="Jobboard">
           <Navigation nav={nav} />
         </Header>
-        <div className="container">{children}</div>
+        {children}
       </body>
     </html>
   );

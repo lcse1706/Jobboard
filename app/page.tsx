@@ -3,7 +3,7 @@ import { JobOfferMap } from './JobOfferMap';
 
 const Home = () => {
   return (
-    <section>
+    <section className="flex flex-row w-full ">
       <JobOfferList />
       <JobOfferMap />
     </section>
