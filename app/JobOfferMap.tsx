@@ -1,5 +1,5 @@
-import { GoogleMap } from '@/components/GoogleMap';
+import { GoogleMaps } from '@/components/GoogleMaps';
 
 export const JobOfferMap = () => {
-  return <GoogleMap />;
+  return <GoogleMaps />;
 };
