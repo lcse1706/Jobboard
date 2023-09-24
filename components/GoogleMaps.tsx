@@ -26,9 +26,7 @@ export const GoogleMaps: NextPage = () => {
   );
 
   const { isLoaded } = useLoadScript({
-    // googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string,
-    googleMapsApiKey: 'AIzaSyBmPkQe0zoiHaklj9BmJK_RROdqt46o5iM' as string,
-
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOGGLE_API as string,
     libraries: libraries as any,
   });
 
