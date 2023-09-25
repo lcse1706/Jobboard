@@ -5,8 +5,8 @@ import type { NextPage } from 'next';
 import { useMemo } from 'react';
 
 const mapStyles = {
-  width: '400px',
-  height: '400px',
+  width: '100%',
+  height: '50%',
 };
 
 export const GoogleMaps: NextPage = () => {
