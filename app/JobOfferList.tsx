@@ -52,7 +52,15 @@ export const JobOfferList = () => {
 
   useEffect(() => {
     const filteredData = JobOffers.filter(data => {
-      return data.title.toLowerCase().includes(searchField.toLowerCase());
+      return (
+        data.title.toLowerCase().includes(searchField.toLowerCase()) ||
+        data.salary.toLowerCase().includes(searchField.toLowerCase()) ||
+        data.technologies.some(tech =>
+          tech.toLowerCase().includes(searchField.toLowerCase())
+        ) ||
+        data.localization.toLowerCase().includes(searchField.toLowerCase()) ||
+        data.description.toLowerCase().includes(searchField.toLowerCase())
+      );
     });
     setFilteredData(filteredData);
   }, [searchField]);
