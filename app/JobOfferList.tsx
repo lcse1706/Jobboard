@@ -1,6 +1,18 @@
-import { OfferListForm } from '@/components/OfferList.Form';
+'use client';
 
-const JobOffers: any = [
+import { OfferListForm } from '@/components/OfferList.Form';
+import { useEffect, useState } from 'react';
+
+interface OffersT {
+  imgSrc: string;
+  title: string;
+  salary: string;
+  technologies: string[];
+  localization: string;
+  description: string;
+}
+
+const JobOffers: OffersT[] = [
   {
     imgSrc: '/favicon.ico',
     title: 'JS Developer',
@@ -31,9 +43,30 @@ const JobOffers: any = [
 ];
 
 export const JobOfferList = () => {
+  const [searchField, setSearchField] = useState('');
+  const [filteredData, setFilteredData] = useState(JobOffers);
+
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchField(e.target.value);
+  };
+
+  useEffect(() => {
+    const filteredData = JobOffers.filter(data => {
+      return data.title.toLowerCase().includes(searchField.toLowerCase());
+    });
+    setFilteredData(filteredData);
+  }, [searchField]);
   return (
     <section className="w-2/3">
-      <OfferListForm offers={JobOffers} />
+      <div className="px-5">
+        <input
+          type="search"
+          placeholder="Search Job"
+          onChange={changeHandler}
+          className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 "
+        />
+      </div>
+      <OfferListForm offers={filteredData} />
     </section>
   );
 };

@@ -12,6 +12,7 @@ interface OffersProps {
 }
 
 export const OfferListForm = (props: OffersProps) => {
+  // console.log('New render:' + props.offers[0].title);
   return (
     <ul className="m-5">
       {props.offers.map((offer, index) => (
