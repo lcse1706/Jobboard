@@ -1,12 +1,15 @@
 import { JobOfferList } from './JobOfferList';
 import { JobOfferMap } from './JobOfferMap';
+import { Providers } from './providers';
 
 const Home = () => {
   return (
-    <section className="flex flex-row w-full min-h-screen p-2">
-      <JobOfferList />
-      <JobOfferMap />
-    </section>
+    <Providers>
+      <section className="flex flex-row w-full min-h-1/2 p-5">
+        <JobOfferList />
+        <JobOfferMap />
+      </section>
+    </Providers>
   );
 };
 
