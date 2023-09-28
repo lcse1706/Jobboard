@@ -27,7 +27,6 @@ const JobOffers: OffersType[] = [
     coordinates: { lat: 54.3611593, lng: 18.607628 },
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dolore ad iste expedita eaque natus excepturi beatae aut, maxime dolor!',
-    isFiltered: false,
   },
 
   {
@@ -39,7 +38,6 @@ const JobOffers: OffersType[] = [
     coordinates: { lat: 52.2330144, lng: 20.978795 },
     description:
       'Poszukujemy doświadczonego programisty Python, który będzie odpowiedzialny za rozwijanie aplikacji webowych w oparciu o Django oraz tworzenie i zarządzanie bazami danych SQL.',
-    isFiltered: false,
   },
   {
     imgSrc: '/favicon.ico',
@@ -50,7 +48,6 @@ const JobOffers: OffersType[] = [
     coordinates: { lat: 50.0468467, lng: 19.9224739 },
     description:
       'Jesteśmy zespołem Frontend Developerów poszukującym kreatywnego i ambitnego programisty, który będzie odpowiedzialny za tworzenie atrakcyjnych i responsywnych interfejsów użytkownika.',
-    isFiltered: false,
   },
 ];
 
