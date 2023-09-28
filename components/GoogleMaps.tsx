@@ -13,7 +13,7 @@ const mapStyles = {
 export const GoogleMaps: NextPage = () => {
   // const libraries = useMemo(() => ['places'], []);
   const mapCenter = useMemo(() => ({ lat: 51.8689731, lng: 19.2029511 }), []);
-  const { records } = useDataContext();
+  const { filteredData } = useDataContext();
 
   const mapOptions = useMemo<google.maps.MapOptions>(
     () => ({
@@ -42,7 +42,7 @@ export const GoogleMaps: NextPage = () => {
       mapContainerStyle={mapStyles}
       onLoad={() => console.log('Map Component Loaded...')}
     >
-      {records.map((pos, index) => (
+      {filteredData.map((pos, index) => (
         <MarkerF
           key={index}
           position={pos.coordinates}

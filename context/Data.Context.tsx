@@ -27,7 +27,9 @@ const JobOffers: OffersType[] = [
     coordinates: { lat: 54.3611593, lng: 18.607628 },
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dolore ad iste expedita eaque natus excepturi beatae aut, maxime dolor!',
+    isFiltered: false,
   },
+
   {
     imgSrc: '/favicon.ico',
     title: 'Python Developer',
@@ -37,6 +39,7 @@ const JobOffers: OffersType[] = [
     coordinates: { lat: 52.2330144, lng: 20.978795 },
     description:
       'Poszukujemy doświadczonego programisty Python, który będzie odpowiedzialny za rozwijanie aplikacji webowych w oparciu o Django oraz tworzenie i zarządzanie bazami danych SQL.',
+    isFiltered: false,
   },
   {
     imgSrc: '/favicon.ico',
@@ -47,12 +50,15 @@ const JobOffers: OffersType[] = [
     coordinates: { lat: 50.0468467, lng: 19.9224739 },
     description:
       'Jesteśmy zespołem Frontend Developerów poszukującym kreatywnego i ambitnego programisty, który będzie odpowiedzialny za tworzenie atrakcyjnych i responsywnych interfejsów użytkownika.',
+    isFiltered: false,
   },
 ];
 
 interface DataContextType {
   records: OffersType[];
   setRecords: React.Dispatch<React.SetStateAction<OffersType[]>>;
+  filteredData: OffersType[];
+  setFilteredData: React.Dispatch<React.SetStateAction<OffersType[]>>;
 }
 
 const DataContext = createContext<DataContextType | null>(null);
@@ -67,8 +73,12 @@ export const useDataContext = () => {
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [records, setRecords] = useState<OffersType[]>(JobOffers);
+  const [filteredData, setFilteredData] = useState(records);
+
   return (
-    <DataContext.Provider value={{ records, setRecords }}>
+    <DataContext.Provider
+      value={{ records, setRecords, filteredData, setFilteredData }}
+    >
       {children}
     </DataContext.Provider>
   );

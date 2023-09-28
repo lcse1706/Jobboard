@@ -14,9 +14,10 @@ interface OffersT {
 }
 
 export const JobOfferList = () => {
-  const { records, setRecords } = useDataContext();
+  const { records, setRecords, filteredData, setFilteredData } =
+    useDataContext();
   const [searchField, setSearchField] = useState('');
-  const [filteredData, setFilteredData] = useState(records);
+  // const [filteredData, setFilteredData] = useState(records);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchField(e.target.value);
