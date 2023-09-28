@@ -1,6 +1,6 @@
 'use client';
 
-import { useDataContext } from '@/context/Data.Context';
+import { useDataContext } from '@/context/DataContext';
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api';
 import type { NextPage } from 'next';
 import { useMemo } from 'react';
