@@ -3,6 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Navigation } from '@/components/ui/';
+import { Providers } from './providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const nav = [
-    { label: 'Offers', link: '/offers' },
+    { label: 'Offers', link: '/' },
     { label: 'Add Offer', link: '/add' },
     { label: 'About', link: '/about' },
   ];
@@ -25,10 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header titel="Jobboard">
-          <Navigation nav={nav} />
-        </Header>
-        {children}
+        <Providers>
+          <Header titel="Jobboard">
+            <Navigation nav={nav} />
+          </Header>
+          {children}
+        </Providers>
       </body>
     </html>
   );
