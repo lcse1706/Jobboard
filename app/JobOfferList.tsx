@@ -1,7 +1,7 @@
 'use client';
 
 import { OfferListForm } from '@/components/OfferList.Form';
-import { useDataContext } from '@/context/Data.Context';
+import { useDataContext } from '@/context/DataContext';
 import { useEffect, useState } from 'react';
 
 interface OffersT {
@@ -28,9 +28,11 @@ export const JobOfferList = () => {
       return (
         data.title.toLowerCase().includes(searchField.toLowerCase()) ||
         data.salary.toLowerCase().includes(searchField.toLowerCase()) ||
-        data.technologies.some(tech =>
-          tech.toLowerCase().includes(searchField.toLowerCase())
-        ) ||
+        data.technologies
+          .toLowerCase()
+          .includes(searchField.toLocaleLowerCase()) ||
+        // data.technologies.some(tech =>
+        //   tech.toLowerCase().includes(searchField.toLowerCase())
         data.localization.toLowerCase().includes(searchField.toLowerCase()) ||
         data.description.toLowerCase().includes(searchField.toLowerCase())
       );

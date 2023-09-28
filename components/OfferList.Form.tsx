@@ -5,7 +5,7 @@ interface OffersProps {
     imgSrc: string;
     title: string;
     salary: string;
-    technologies: string[];
+    technologies: string;
     localization: string;
     description: string;
   }>;
@@ -28,7 +28,8 @@ export const OfferListForm = (props: OffersProps) => {
             <p className="text-xl font-semibold">{offer.title}</p>
           </div>
           <p className="text-gray-600">{offer.salary}</p>
-          <p className="text-blue-500">{offer.technologies.join(', ')}</p>
+          {/* <p className="text-blue-500">{offer.technologies.join(', ')}</p> */}
+          <p className="text-blue-500">{offer.technologies}</p>
           <p className="text-gray-600">{offer.localization}</p>
           <p className="mt-2">{offer.description}</p>
         </li>
