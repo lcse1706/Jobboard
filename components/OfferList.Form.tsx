@@ -16,7 +16,10 @@ export const OfferListForm = (props: OffersProps) => {
   return (
     <ul className="m-5">
       {props.offers.map((offer, index) => (
-        <li key={index} className="p-4 mb-4 border rounded-lg shadow-lg">
+        <li
+          key={index}
+          className="p-4 mb-4 border rounded-lg shadow-lg hover:scale-105"
+        >
           <div className="flex items-center mb-2">
             <Image
               src={offer.imgSrc}
