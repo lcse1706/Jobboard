@@ -1,5 +1,3 @@
-import { ComponentProps } from 'react';
-
 interface HeaderProps {
   titel: string;
   children: React.ReactNode;
