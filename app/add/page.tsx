@@ -4,6 +4,8 @@ import { FormEvent, useRef } from 'react';
 import { Button } from '@/components/ui/Button';
 import { useDataContext } from '@/context/DataContext';
 
+//TODO Reacthookform + Zod
+
 const AddOffer = () => {
   const titleRef = useRef<HTMLInputElement>(null);
   const salaryRef = useRef<HTMLInputElement>(null);

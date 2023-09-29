@@ -12,6 +12,7 @@ interface OffersT {
   localization: string;
   description: string;
 }
+//TODO Seperate Search function
 
 export const JobOfferList = () => {
   const { records, setRecords, filteredData, setFilteredData } =
@@ -49,6 +50,7 @@ export const JobOfferList = () => {
           className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 "
         />
       </div>
+
       <OfferListForm offers={filteredData} />
     </section>
   );
