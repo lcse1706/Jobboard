@@ -22,5 +22,6 @@ export const Primary: Story = {
       { label: 'Add Offer', link: '/add' },
       { label: 'About', link: '/about' },
     ],
+    style: { width: '600px' },
   },
 };

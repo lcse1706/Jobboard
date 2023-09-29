@@ -19,6 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     titel: 'Header',
+    style: { width: '80vw' },
     children: (
       <Navigation
         nav={[
