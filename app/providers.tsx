@@ -1,5 +1,10 @@
 import { DataProvider } from '@/context/DataContext';
+import { HoverProvider } from '@/context/HoverContext';
 
 export const Providers = ({ children }: any) => {
-  return <DataProvider>{children}</DataProvider>;
+  return (
+    <DataProvider>
+      <HoverProvider>{children}</HoverProvider>
+    </DataProvider>
+  );
 };

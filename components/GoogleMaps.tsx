@@ -1,6 +1,7 @@
 'use client';
 
 import { useDataContext } from '@/context/DataContext';
+import { useHoverContext } from '@/context/HoverContext';
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api';
 import type { NextPage } from 'next';
 import { useMemo } from 'react';
@@ -14,6 +15,7 @@ export const GoogleMaps: NextPage = () => {
   // const libraries = useMemo(() => ['places'], []);
   const mapCenter = useMemo(() => ({ lat: 51.8689731, lng: 19.2029511 }), []);
   const { filteredData } = useDataContext();
+  const { setHoveredMarkerId } = useHoverContext();
 
   const mapOptions = useMemo<google.maps.MapOptions>(
     () => ({
@@ -33,6 +35,7 @@ export const GoogleMaps: NextPage = () => {
     return <p>Loading...</p>;
   }
 
+  //TODO change pos.title to pos.id after connecting to database
   return (
     <GoogleMap
       options={mapOptions}
@@ -47,6 +50,10 @@ export const GoogleMaps: NextPage = () => {
           key={index}
           position={pos.coordinates}
           onClick={() => console.log('Marker Added')}
+          onMouseOver={() => {
+            setHoveredMarkerId(pos.title);
+          }}
+          onMouseOut={() => setHoveredMarkerId('')}
         />
       ))}
     </GoogleMap>

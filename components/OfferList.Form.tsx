@@ -1,3 +1,4 @@
+import { useHoverContext } from '@/context/HoverContext';
 import Image from 'next/image';
 
 interface OffersProps {
@@ -10,15 +11,18 @@ interface OffersProps {
     description: string;
   }>;
 }
-
+//TODO change offer.title
 export const OfferListForm = (props: OffersProps) => {
-  // console.log('New render:' + props.offers[0].title);
+  const { hoveredMarkerId } = useHoverContext();
+
   return (
     <ul className="m-5">
       {props.offers.map((offer, index) => (
         <li
           key={index}
-          className="p-4 mb-4 border rounded-lg shadow-lg hover:scale-105"
+          className={`p-4 mb-4 border rounded-lg shadow-lg hover:scale-105 ${
+            hoveredMarkerId === offer.title ? 'scale-105' : ''
+          }`}
         >
           <div className="flex items-center mb-2">
             <Image
