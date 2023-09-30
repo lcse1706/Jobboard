@@ -2,7 +2,9 @@
 
 import { Button } from '@/components/ui/Button';
 import { useDataContext } from '@/context/DataContext';
-import { FieldValues, useForm } from 'react-hook-form';
+import { TOfferDTO, offerDTO } from '@/lib/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
 //TODO Reacthookform + Zod
 
@@ -12,12 +14,14 @@ export const AddOfferForm = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm<TOfferDTO>({
+    resolver: zodResolver(offerDTO),
+  });
 
   const { records, setRecords } = useDataContext();
 
   // const submitHandler = (e: FormEvent<HTMLFormElement>) => {
-  const submitHandler = async (data: FieldValues) => {
+  const submitHandler = async (data: TOfferDTO) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     setRecords([
       ...records,
