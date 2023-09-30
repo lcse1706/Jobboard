@@ -1,11 +1,16 @@
-import { JobOfferList } from './JobOfferList';
-import { JobOfferMap } from './JobOfferMap';
+import { GoogleMaps } from '@/components/GoogleMaps';
+import { JobOfferList } from '@/components/JobOfferList';
 
 const Home = () => {
   return (
     <section className="flex flex-row w-full  p-5">
       <JobOfferList />
-      <JobOfferMap />
+      <section
+        className="w-1/3 rounded-md border border-gray-300 ml-5"
+        style={{ height: '50vh' }}
+      >
+        <GoogleMaps />
+      </section>
     </section>
   );
 };
