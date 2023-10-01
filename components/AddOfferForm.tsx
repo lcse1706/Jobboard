@@ -23,6 +23,7 @@ export const AddOfferForm = () => {
   // const submitHandler = (e: FormEvent<HTMLFormElement>) => {
   const submitHandler = async (data: TOfferDTO) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log(data);
     setRecords([
       ...records,
       {
@@ -46,9 +47,7 @@ export const AddOfferForm = () => {
     <div className="flex justify-center items-center mt-48 w-screen">
       <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
         <input
-          {...register('title', {
-            required: 'Enter job title',
-          })}
+          {...register('title')}
           type="text"
           placeholder="Title"
           className={inputStyles}
@@ -57,9 +56,7 @@ export const AddOfferForm = () => {
           <p className={errorStyles}>{`${errors.title.message}`}</p>
         )}
         <input
-          {...register('salary', {
-            required: 'Enter salary range',
-          })}
+          {...register('salary')}
           type="text"
           placeholder="Salary"
           className={inputStyles}
@@ -68,9 +65,7 @@ export const AddOfferForm = () => {
           <p className={errorStyles}>{`${errors.salary.message}`}</p>
         )}
         <input
-          {...register('technologies', {
-            required: 'Enter required technologies',
-          })}
+          {...register('technologies')}
           type="text"
           placeholder="Technologies"
           className={inputStyles}
@@ -79,9 +74,7 @@ export const AddOfferForm = () => {
           <p className={errorStyles}>{`${errors.technologies.message}`}</p>
         )}
         <input
-          {...register('localization', {
-            required: 'Enter job localization',
-          })}
+          {...register('localization')}
           type="text"
           placeholder="Localization"
           className={inputStyles}
@@ -91,9 +84,7 @@ export const AddOfferForm = () => {
         )}
 
         <input
-          {...register('description', {
-            required: 'Describe job position',
-          })}
+          {...register('description')}
           type="text"
           placeholder="Description"
           // className="w-full h-32 p-2 border rounded"
