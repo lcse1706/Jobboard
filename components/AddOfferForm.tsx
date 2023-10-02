@@ -30,8 +30,8 @@ export const AddOfferForm: NextPage = () => {
 
   const { records, setRecords } = useDataContext();
 
-  const [lat, setLat] = useState(27.672932021393862);
-  const [lng, setLng] = useState(85.31184012689732);
+  const [lat, setLat] = useState<number>(27.672932021393862);
+  const [lng, setLng] = useState<number>(85.31184012689732);
   const [placeName, setPlaceName] = useState<string>('');
   const libraries = useMemo(() => ['places'], []);
 

@@ -40,7 +40,7 @@ export const JobOfferList = () => {
     setFilteredData(filteredData);
   }, [searchField]);
   return (
-    <section className="w-2/3">
+    <section>
       <div className="px-5">
         <input
           type="search"
