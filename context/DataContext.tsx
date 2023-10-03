@@ -8,7 +8,7 @@ type Coordinates = {
 };
 
 interface OffersType {
-  imgSrc: string;
+  imgSrc: any;
   title: string;
   salary: string;
   technologies: string;

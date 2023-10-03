@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 interface OffersProps {
   offers: Array<{
-    imgSrc: string;
+    imgSrc: any;
     title: string;
     salary: string;
     technologies: string;

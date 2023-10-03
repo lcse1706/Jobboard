@@ -5,7 +5,7 @@ import { useDataContext } from '@/context/DataContext';
 import { useEffect, useState } from 'react';
 
 interface OffersT {
-  imgSrc: string;
+  imgSrc: any;
   title: string;
   salary: string;
   technologies: string[];

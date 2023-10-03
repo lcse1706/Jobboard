@@ -24,6 +24,7 @@ export const AddOfferForm: NextPage = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
+    // } = useForm();
   } = useForm<TOfferDTO>({
     resolver: zodResolver(offerDTO),
   });
@@ -51,7 +52,7 @@ export const AddOfferForm: NextPage = () => {
     setRecords([
       ...records,
       {
-        imgSrc: '/favicon.ico',
+        imgSrc: data.avatar,
         title: data.title,
         salary: data.salary,
         technologies: data.technologies,
@@ -62,11 +63,32 @@ export const AddOfferForm: NextPage = () => {
     ]);
 
     reset();
+
+    console.log({
+      imgSrc: data.avatar,
+      title: data.title,
+      salary: data.salary,
+      technologies: data.technologies,
+      localization: placeName,
+      coordinates: { lat: lat, lng: lng },
+      description: data.description,
+    });
   };
 
   return (
     <div className="flex flex-col justify-center items-center mt-48 w-screen">
       <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
+        <label htmlFor="avatar" className="text-gray-500 m-2">
+          Choose logo:
+        </label>
+        <input
+          type="file"
+          id="avatar"
+          {...register('avatar')}
+          accept=".ico"
+          className="mb-2 p-2 "
+        />
+
         <input
           {...register('title')}
           type="text"
