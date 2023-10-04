@@ -12,6 +12,7 @@ import type { NextPage } from 'next';
 
 import { getGeocode, getLatLng } from 'use-places-autocomplete';
 import { PlacesAutocomplete } from './PlacesAutocomplete';
+import UploadLogo from './UploadLogo';
 
 //TODO Reacthookform + Zod
 
@@ -52,7 +53,7 @@ export const AddOfferForm: NextPage = () => {
     setRecords([
       ...records,
       {
-        imgSrc: data.avatar,
+        imgSrc: '/favicon.ico',
         title: data.title,
         salary: data.salary,
         technologies: data.technologies,
@@ -63,32 +64,12 @@ export const AddOfferForm: NextPage = () => {
     ]);
 
     reset();
-
-    console.log({
-      imgSrc: data.avatar,
-      title: data.title,
-      salary: data.salary,
-      technologies: data.technologies,
-      localization: placeName,
-      coordinates: { lat: lat, lng: lng },
-      description: data.description,
-    });
   };
 
   return (
-    <div className="flex flex-col justify-center items-center mt-48 w-screen">
+    <div className="flex flex-row justify-center items-start mt-48 w-screen">
+      <UploadLogo />
       <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
-        <label htmlFor="avatar" className="text-gray-500 m-2">
-          Choose logo:
-        </label>
-        <input
-          type="file"
-          id="avatar"
-          {...register('avatar')}
-          accept=".ico"
-          className="mb-2 p-2 "
-        />
-
         <input
           {...register('title')}
           type="text"
