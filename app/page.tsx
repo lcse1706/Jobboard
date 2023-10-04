@@ -1,6 +1,8 @@
 import { GoogleMaps } from '@/components/GoogleMaps';
 import { JobOfferList } from '@/components/JobOfferList';
 
+import PreviewTS from '../components/UploadLogo';
+
 const Home = () => {
   return (
     <section className="flex flex-row w-full  p-5">
