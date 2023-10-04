@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const offerDTO = z.object({
-  avatar: z.instanceof(FileList),
+  // avatar: z.instanceof(FileList),
   title: z.string(),
   salary: z.string(),
   technologies: z.string(),
