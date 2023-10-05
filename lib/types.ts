@@ -5,8 +5,11 @@ export const offerDTO = z.object({
   title: z.string(),
   salary: z.string(),
   technologies: z.string(),
-  location: z.any(),
-  coordnates: z.any(),
+  location: z.string(),
+  coordnates: z.object({
+    lat: z.number(),
+    lng: z.number(),
+  }),
   description: z.string(),
 });
 
