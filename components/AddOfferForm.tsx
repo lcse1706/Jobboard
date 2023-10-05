@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/Button';
 import { useDataContext } from '@/context/DataContext';
-import { TOfferDTO, offerDTO } from '@/lib/types';
+import { TOfferDTO, offerDTO, PlaceInfo } from '@/lib/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -13,6 +13,7 @@ import type { NextPage } from 'next';
 import { getGeocode, getLatLng } from 'use-places-autocomplete';
 import { PlacesAutocomplete } from './PlacesAutocomplete';
 import UploadLogo from './UploadLogo';
+import { sendOffer } from '@/services/offers';
 
 //TODO Reacthookform + Zod
 
@@ -32,9 +33,14 @@ export const AddOfferForm: NextPage = () => {
 
   const { records, setRecords } = useDataContext();
 
-  const [lat, setLat] = useState<number>(27.672932021393862);
-  const [lng, setLng] = useState<number>(85.31184012689732);
-  const [placeName, setPlaceName] = useState<string>('');
+  const [placeInfo, setPlaceInfo] = useState<PlaceInfo>({
+    placeName: '',
+    lat: 0,
+    lng: 0,
+  });
+  // const [lng, setLng] = useState<number>(85.31184012689732);
+  // const [placeName, setPlaceName] = useState<string>('');
+
   const libraries = useMemo(() => ['places'], []);
 
   const { isLoaded } = useLoadScript({
@@ -53,15 +59,17 @@ export const AddOfferForm: NextPage = () => {
     setRecords([
       ...records,
       {
-        imgSrc: '/favicon.ico',
+        // imgSrc: '/favicon.ico',
         title: data.title,
         salary: data.salary,
         technologies: data.technologies,
-        localization: placeName,
-        coordinates: { lat: lat, lng: lng },
+        location: placeInfo.placeName,
+        coordinates: { lat: placeInfo.lat, lng: placeInfo.lng },
         description: data.description,
       },
     ]);
+
+    sendOffer(data, placeInfo);
 
     reset();
   };
@@ -103,9 +111,8 @@ export const AddOfferForm: NextPage = () => {
             getGeocode({ address: address }).then(results => {
               const { lat, lng } = getLatLng(results[0]);
 
-              setLat(lat);
-              setLng(lng);
-              setPlaceName(address);
+              setPlaceInfo({ placeName: address, lat: lat, lng: lng });
+              // setPlaceName(address);
             });
           }}
         />
