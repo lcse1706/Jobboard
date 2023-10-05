@@ -9,7 +9,7 @@ interface OffersT {
   title: string;
   salary: string;
   technologies: string[];
-  localization: string;
+  location: string;
   description: string;
 }
 //TODO Seperate Search function
@@ -33,7 +33,7 @@ export const JobOfferList = () => {
           .includes(searchField.toLocaleLowerCase()) ||
         // data.technologies.some(tech =>
         //   tech.toLowerCase().includes(searchField.toLowerCase())
-        data.localization.toLowerCase().includes(searchField.toLowerCase()) ||
+        data.location.toLowerCase().includes(searchField.toLowerCase()) ||
         data.description.toLowerCase().includes(searchField.toLowerCase())
       );
     });
