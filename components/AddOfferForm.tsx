@@ -26,7 +26,6 @@ export const AddOfferForm: NextPage = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-    // } = useForm();
   } = useForm<TOfferDTO>({
     resolver: zodResolver(offerDTO),
   });
@@ -38,8 +37,6 @@ export const AddOfferForm: NextPage = () => {
     lat: 0,
     lng: 0,
   });
-  // const [lng, setLng] = useState<number>(85.31184012689732);
-  // const [placeName, setPlaceName] = useState<string>('');
 
   const libraries = useMemo(() => ['places'], []);
 

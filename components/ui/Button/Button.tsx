@@ -18,7 +18,6 @@ export const Button = ({
   disabled,
   ...rest
 }: ComponentProps<'button'> & ButtonProps) => {
-  console.log('Button Fired');
   return (
     <button
       type={type}
