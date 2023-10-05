@@ -1,6 +1,7 @@
 import { PlaceInfo } from '@/lib/types';
 
 interface OfferType {
+  logo: any;
   title: string;
   salary: string;
   technologies: string;
@@ -13,7 +14,11 @@ interface AirTableFormatType {
   fields: OfferType;
 }
 
-export const sendOffer = async (offer: OfferType, placeInfo: PlaceInfo) => {
+export const sendOffer = async (
+  offer: any,
+  placeInfo: PlaceInfo,
+  logo: any
+) => {
   const coord = { lat: placeInfo.lat, lng: placeInfo.lng };
   // const coord = 'pewnie dlatego sie krzaczy';
 
@@ -25,6 +30,7 @@ export const sendOffer = async (offer: OfferType, placeInfo: PlaceInfo) => {
       location: placeInfo.placeName,
       coordinates: JSON.stringify(coord),
       description: offer.description,
+      logo: logo,
     },
   };
 

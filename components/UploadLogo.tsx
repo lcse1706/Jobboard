@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import React, { useState, useRef } from 'react';
 import { Button } from './ui/Button';
+import { sendOffer } from '@/services/offers';
 
 function UploadLogo() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -31,20 +32,19 @@ function UploadLogo() {
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    console.log('1');
     setDragging(false);
     const file = event.dataTransfer.files[0];
-    console.log(URL.createObjectURL(file));
     setPreview(URL.createObjectURL(file));
-    console.log(file);
     validateFile(file);
   };
 
   const handleFileInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     const file = event.target.files ? event.target.files[0] : null;
 
     if (file) {
       setPreview(URL.createObjectURL(file));
+      console.log(URL.createObjectURL(file));
     } else {
       // Handle the case where event.target.files is null or empty
     }
@@ -52,9 +52,33 @@ function UploadLogo() {
     validateFile(file);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(selectedFile);
+
+    if (!selectedFile) {
+      setError('Please select a file');
+      return;
+    }
+
+    console.log('File selected:', selectedFile);
+
+    //Mock
+    const data = {
+      title: 'sssss',
+      salary: 'sssss',
+      technologies: 'sssss',
+      description: 'sssss',
+    };
+
+    const place = {
+      placeName: 'dupa',
+      lat: 2323,
+      lng: 42222222223,
+    };
+
+    sendOffer(data, place, selectedFile);
+
+    setSelectedFile(null);
   };
 
   const validateFile = (file: File | null) => {
@@ -91,6 +115,7 @@ function UploadLogo() {
           <Button label="Add File" type="button" onClick={onBtnClick} />
           <p className="mt-2">Or</p>
           <p>Drag and Drop to Upload</p>
+          <button type="submit">Send</button>
         </form>
         {error && <p className="text-red-500 mt-2">{error}</p>}
 
