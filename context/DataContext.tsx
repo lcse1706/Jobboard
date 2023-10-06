@@ -8,7 +8,7 @@ type Coordinates = {
 };
 
 interface OffersType {
-  // imgSrc: any;
+  imgSrc: any;
   title: string;
   salary: string;
   technologies: string;
@@ -19,7 +19,7 @@ interface OffersType {
 
 const JobOffers: OffersType[] = [
   {
-    // imgSrc: '/favicon.ico',
+    imgSrc: '/favicon.ico',
     title: 'JS Developer',
     salary: '20k-30k',
     technologies: 'JS ,CSS, React , StoryBook',
@@ -30,7 +30,7 @@ const JobOffers: OffersType[] = [
   },
 
   {
-    // imgSrc: '/favicon.ico',
+    imgSrc: '/favicon.ico',
     title: 'Python Developer',
     salary: '25k-35k',
     technologies: 'Python, Django, SQL, REST API',
@@ -40,7 +40,7 @@ const JobOffers: OffersType[] = [
       'Poszukujemy doświadczonego programisty Python, który będzie odpowiedzialny za rozwijanie aplikacji webowych w oparciu o Django oraz tworzenie i zarządzanie bazami danych SQL.',
   },
   {
-    // imgSrc: '/favicon.ico',
+    imgSrc: '/favicon.ico',
     title: 'Frontend Developer',
     salary: '22k-32k',
     technologies: 'HTML, CSS, JavaScript, Vue.js',

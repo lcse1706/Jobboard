@@ -46,7 +46,7 @@ export const AddOfferForm: NextPage = () => {
   });
 
   if (!isLoaded) {
-    return <p>Loading...</p>;
+    console.log('Autocomplete loaded successful');
   }
 
   // const submitHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -56,7 +56,7 @@ export const AddOfferForm: NextPage = () => {
     setRecords([
       ...records,
       {
-        // imgSrc: '/favicon.ico',
+        imgSrc: '/favicon.ico',
         title: data.title,
         salary: data.salary,
         technologies: data.technologies,
@@ -66,7 +66,7 @@ export const AddOfferForm: NextPage = () => {
       },
     ]);
 
-    sendOffer(data, placeInfo);
+    // sendOffer(data, placeInfo);
 
     reset();
   };

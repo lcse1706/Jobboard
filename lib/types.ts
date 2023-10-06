@@ -1,15 +1,15 @@
 import { z } from 'zod';
 
 export const offerDTO = z.object({
-  // avatar: z.instanceof(FileList),
+  // logo: z.string(),
   title: z.string(),
   salary: z.string(),
   technologies: z.string(),
-  location: z.string(),
-  coordnates: z.object({
-    lat: z.number(),
-    lng: z.number(),
-  }),
+  // location: z.string(),
+  // coordnates: z.object({
+  //   lat: z.number(),
+  //   lng: z.number(),
+  // }),
   description: z.string(),
 });
 
