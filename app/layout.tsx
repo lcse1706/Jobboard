@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Header titel="Jobboard">
+          <Header title="Jobboard">
             <Navigation nav={nav} />
           </Header>
           {children}
