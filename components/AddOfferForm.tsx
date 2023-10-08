@@ -47,7 +47,7 @@ export const AddOfferForm: NextPage = () => {
   });
 
   if (!isLoaded) {
-    return <p>Loding...</p>;
+    return <p>Loading...</p>;
   }
 
   // const submitHandler = (e: FormEvent<HTMLFormElement>) => {
