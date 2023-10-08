@@ -14,6 +14,7 @@ import { getGeocode, getLatLng } from 'use-places-autocomplete';
 import { PlacesAutocomplete } from './PlacesAutocomplete';
 import UploadLogo from './UploadLogo';
 import { sendOffer } from '@/services/offers';
+import { Input } from '../components/ui';
 
 //TODO Reacthookform + Zod
 
@@ -46,7 +47,7 @@ export const AddOfferForm: NextPage = () => {
   });
 
   if (!isLoaded) {
-    console.log('Autocomplete loaded successful');
+    return <p>Loding...</p>;
   }
 
   // const submitHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -75,7 +76,7 @@ export const AddOfferForm: NextPage = () => {
     <div className="flex flex-row justify-center items-start mt-48 w-screen">
       <UploadLogo />
       <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
-        <input
+        <Input
           {...register('title')}
           type="text"
           placeholder="Title"
@@ -84,7 +85,7 @@ export const AddOfferForm: NextPage = () => {
         {errors.title && (
           <p className={errorStyles}>{`${errors.title.message}`}</p>
         )}
-        <input
+        <Input
           {...register('salary')}
           type="text"
           placeholder="Salary"
@@ -93,7 +94,7 @@ export const AddOfferForm: NextPage = () => {
         {errors.salary && (
           <p className={errorStyles}>{`${errors.salary.message}`}</p>
         )}
-        <input
+        <Input
           {...register('technologies')}
           type="text"
           placeholder="Technologies"
@@ -114,13 +115,13 @@ export const AddOfferForm: NextPage = () => {
           }}
         />
 
-        <input
+        <Input
           {...register('description')}
           type="text"
           placeholder="Description"
           // className="w-full h-32 p-2 border rounded"
           className={inputStyles}
-        ></input>
+        />
         {errors.description && (
           <p className={errorStyles}>{`${errors.description.message}`}</p>
         )}
