@@ -15,7 +15,7 @@ export const Navigation = (props: NavProps) => {
             <Link href={item.link}>{item.label}</Link>
           </li>
         ))}
-        <Button label="Log In"></Button>
+        <Button type="submit" label="Log In"></Button>
       </ul>
     </nav>
   );
