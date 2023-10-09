@@ -62,22 +62,6 @@ function UploadLogo() {
 
     console.log('File selected:', selectedFile);
 
-    //Mock
-    const data = {
-      title: 'sssss',
-      salary: 'sssss',
-      technologies: 'sssss',
-      description: 'sssss',
-    };
-
-    const place = {
-      placeName: 'dupa',
-      lat: 2323,
-      lng: 42222222223,
-    };
-
-    sendOffer(data, place, selectedFile);
-
     setSelectedFile(null);
   };
 
