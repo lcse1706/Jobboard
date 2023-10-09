@@ -22,14 +22,29 @@ export type PlaceInfo = {
   lng: number;
 };
 
+export interface OffersType {
+  imgSrc: any;
+  title: string;
+  salary: string;
+  technologies: string;
+  location: string;
+  coordinates: Coordinates;
+  description: string;
+}
+
 export type OfferFirebaseType = {
   // logo?: any;
   title: string;
   salary: string;
   technologies: string;
   location: string;
-  coordinates: any;
+  coordinates: Coordinates;
   description: string;
 };
 
 export type OfferType = Omit<OfferFirebaseType, 'location' | 'coordinates'>;
+
+type Coordinates = {
+  lat: number;
+  lng: number;
+};
