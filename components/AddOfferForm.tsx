@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { useDataContext } from '@/context/DataContext';
 import { TOfferDTO, offerDTO, PlaceInfo } from '@/lib/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useLoadScript } from '@react-google-maps/api';
@@ -68,15 +68,15 @@ export const AddOfferForm: NextPage = () => {
       },
     ]);
 
-    // const sendData = async () => {};
-    // try {
-    //   await sendOffer(data, placeInfo);
-    //   console.log('Data ok');
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    const sendData = async () => {};
+    try {
+      await sendOffer(data, placeInfo);
+      console.log('Data ok');
+    } catch (error) {
+      console.log(error);
+    }
 
-    // sendData();
+    sendData();
 
     reset();
   };
