@@ -5,14 +5,8 @@ import { useDataContext } from '@/context/DataContext';
 import { useEffect, useState } from 'react';
 import { fetchOffers } from '@/services/offers';
 
-interface OffersT {
-  imgSrc: any;
-  title: string;
-  salary: string;
-  technologies: string[];
-  location: string;
-  description: string;
-}
+import { OffersType } from '@/lib/types';
+
 //TODO Seperate Search function
 
 export const JobOfferList = () => {
@@ -27,7 +21,7 @@ export const JobOfferList = () => {
   const getData = async () => {
     try {
       const data = await fetchOffers();
-      const jobOffers: any = [];
+      const jobOffers: OffersType[] = [];
 
       const fetchedData = (data: any) => {
         for (const item in data) {
@@ -37,7 +31,6 @@ export const JobOfferList = () => {
             ...data[item],
           });
         }
-        console.log(jobOffers);
         setRecords(jobOffers);
       };
       fetchedData(data);

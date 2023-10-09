@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 interface OffersProps {
   offers: Array<{
-    imgSrc: any;
+    id: string;
     title: string;
     salary: string;
     technologies: string;
@@ -17,16 +17,16 @@ export const OfferListForm = (props: OffersProps) => {
 
   return (
     <ul className="m-5">
-      {props.offers.map((offer, index) => (
+      {props.offers.map(offer => (
         <li
-          key={index}
+          key={offer.id}
           className={`p-4 mb-4 border rounded-lg shadow-lg hover:scale-105 hover:ring-1 ${
             hoveredMarkerId === offer.title ? 'scale-105 ring-1' : ''
           }`}
         >
           <div className="flex items-center mb-2">
             <Image
-              src={offer.imgSrc}
+              src=""
               alt="tech img"
               width={25}
               height={25}

@@ -58,7 +58,7 @@ export const AddOfferForm: NextPage = () => {
     setRecords([
       ...records,
       {
-        imgSrc: '/favicon.ico',
+        id: '',
         title: data.title,
         salary: data.salary,
         technologies: data.technologies,

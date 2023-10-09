@@ -23,7 +23,7 @@ export type PlaceInfo = {
 };
 
 export interface OffersType {
-  imgSrc: any;
+  id: string;
   title: string;
   salary: string;
   technologies: string;
