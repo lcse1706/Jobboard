@@ -27,6 +27,7 @@ export const AddOfferForm: NextPage = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
+    // } = useForm();
   } = useForm<TOfferDTO>({
     resolver: zodResolver(offerDTO),
   });
@@ -67,7 +68,15 @@ export const AddOfferForm: NextPage = () => {
       },
     ]);
 
-    // sendOffer(data, placeInfo);
+    // const sendData = async () => {};
+    // try {
+    //   await sendOffer(data, placeInfo);
+    //   console.log('Data ok');
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+    // sendData();
 
     reset();
   };
@@ -77,7 +86,7 @@ export const AddOfferForm: NextPage = () => {
       <UploadLogo />
       <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
         <Input
-          {...register('title')}
+          register={register('title')}
           type="text"
           placeholder="Title"
           className={inputStyles}
@@ -86,7 +95,7 @@ export const AddOfferForm: NextPage = () => {
           <p className={errorStyles}>{`${errors.title.message}`}</p>
         )}
         <Input
-          {...register('salary')}
+          register={register('salary')}
           type="text"
           placeholder="Salary"
           className={inputStyles}
@@ -95,7 +104,7 @@ export const AddOfferForm: NextPage = () => {
           <p className={errorStyles}>{`${errors.salary.message}`}</p>
         )}
         <Input
-          {...register('technologies')}
+          register={register('technologies')}
           type="text"
           placeholder="Technologies"
           className={inputStyles}
@@ -116,7 +125,7 @@ export const AddOfferForm: NextPage = () => {
         />
 
         <Input
-          {...register('description')}
+          register={register('description')}
           type="text"
           placeholder="Description"
           // className="w-full h-32 p-2 border rounded"
