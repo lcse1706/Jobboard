@@ -1,16 +1,8 @@
-import { PlaceInfo } from '@/lib/types';
+import { OfferFirebaseType, OfferType, PlaceInfo } from '@/lib/types';
 
-type OfferFirebaseType = {
-  // logo?: any;
-  title: string;
-  salary: string;
-  technologies: string;
-  location: string;
-  coordinates: any;
-  description: string;
+const headers = {
+  'Content-Type': 'application/json',
 };
-
-type OfferType = Omit<OfferFirebaseType, 'location' | 'coordinates'>;
 
 export const sendOffer = async (
   offer: OfferType,
@@ -30,11 +22,6 @@ export const sendOffer = async (
     // logo: logo,
   };
 
-  const headers = {
-    // Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
-    'Content-Type': 'application/json',
-  };
-
   const sendResponse: Response = await fetch(
     `${process.env.NEXT_PUBLIC_FIREBASE_BASE_URL}`,
     {
@@ -51,4 +38,24 @@ export const sendOffer = async (
   }
 
   return null;
+};
+
+export const fetchOffers = async () => {
+  const fetchResponse: Response = await fetch(
+    `${process.env.NEXT_PUBLIC_FIREBASE_BASE_URL}`,
+    {
+      method: 'GET',
+      headers: headers,
+      body: null,
+    }
+  );
+
+  if (fetchResponse.ok) {
+    console.log('Data load successful !');
+  } else {
+    throw new Error('Loading failed.');
+  }
+
+  const data = await fetchResponse.json();
+  return data;
 };
