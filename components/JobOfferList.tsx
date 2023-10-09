@@ -3,6 +3,7 @@
 import { OfferListForm } from '@/components/OfferList.Form';
 import { useDataContext } from '@/context/DataContext';
 import { useEffect, useState } from 'react';
+import { fetchOffers } from '@/services/offers';
 
 interface OffersT {
   imgSrc: any;
@@ -22,6 +23,25 @@ export const JobOfferList = () => {
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchField(e.target.value);
   };
+
+  const getData = async () => {
+    try {
+      const data = await fetchOffers();
+
+      const restoreData = (data: any) => {
+        for (const item in data) {
+          console.log(item, data[item]);
+        }
+      };
+      restoreData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   useEffect(() => {
     const filteredData = records.filter(data => {
