@@ -1,55 +1,7 @@
 'use client';
 
 import { useContext, createContext, useState } from 'react';
-
-type Coordinates = {
-  lat: number;
-  lng: number;
-};
-
-interface OffersType {
-  imgSrc: any;
-  title: string;
-  salary: string;
-  technologies: string;
-  location: string;
-  coordinates: Coordinates;
-  description: string;
-}
-
-const JobOffers: OffersType[] = [
-  {
-    imgSrc: '/favicon.ico',
-    title: 'JS Developer',
-    salary: '20k-30k',
-    technologies: 'JS ,CSS, React , StoryBook',
-    location: 'Gdansk',
-    coordinates: { lat: 54.3611593, lng: 18.607628 },
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dolore ad iste expedita eaque natus excepturi beatae aut, maxime dolor!',
-  },
-
-  {
-    imgSrc: '/favicon.ico',
-    title: 'Python Developer',
-    salary: '25k-35k',
-    technologies: 'Python, Django, SQL, REST API',
-    location: 'Warsaw',
-    coordinates: { lat: 52.2330144, lng: 20.978795 },
-    description:
-      'Poszukujemy doświadczonego programisty Python, który będzie odpowiedzialny za rozwijanie aplikacji webowych w oparciu o Django oraz tworzenie i zarządzanie bazami danych SQL.',
-  },
-  {
-    imgSrc: '/favicon.ico',
-    title: 'Frontend Developer',
-    salary: '22k-32k',
-    technologies: 'HTML, CSS, JavaScript, Vue.js',
-    location: 'Krakow',
-    coordinates: { lat: 50.0468467, lng: 19.9224739 },
-    description:
-      'Jesteśmy zespołem Frontend Developerów poszukującym kreatywnego i ambitnego programisty, który będzie odpowiedzialny za tworzenie atrakcyjnych i responsywnych interfejsów użytkownika.',
-  },
-];
+import { OffersType } from '@/lib/types';
 
 interface DataContextType {
   records: OffersType[];
@@ -69,7 +21,7 @@ export const useDataContext = () => {
 };
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
-  const [records, setRecords] = useState<OffersType[]>(JobOffers);
+  const [records, setRecords] = useState<OffersType[]>([]);
   const [filteredData, setFilteredData] = useState(records);
 
   return (

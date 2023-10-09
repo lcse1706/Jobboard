@@ -9,15 +9,12 @@ export const sendOffer = async (
   placeInfo: PlaceInfo
   // logo: any
 ) => {
-  const coord = { lat: placeInfo.lat, lng: placeInfo.lng };
-  // const coord = 'pewnie dlatego sie krzaczy';
-
   const Offer: OfferFirebaseType = {
     title: offer.title,
     salary: offer.salary,
     technologies: offer.technologies,
     location: placeInfo.placeName,
-    coordinates: JSON.stringify(coord),
+    coordinates: { lat: placeInfo.lat, lng: placeInfo.lng },
     description: offer.description,
     // logo: logo,
   };

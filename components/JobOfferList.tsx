@@ -27,13 +27,20 @@ export const JobOfferList = () => {
   const getData = async () => {
     try {
       const data = await fetchOffers();
+      const jobOffers: any = [];
 
-      const restoreData = (data: any) => {
+      const fetchedData = (data: any) => {
         for (const item in data) {
-          console.log(item, data[item]);
+          jobOffers.push({
+            id: item,
+            coordinates: data[item].coordinates,
+            ...data[item],
+          });
         }
+        console.log(jobOffers);
+        setRecords(jobOffers);
       };
-      restoreData(data);
+      fetchedData(data);
     } catch (error) {
       console.log(error);
     }
@@ -44,6 +51,7 @@ export const JobOfferList = () => {
   }, []);
 
   useEffect(() => {
+    console.log(records);
     const filteredData = records.filter(data => {
       return (
         data.title.toLowerCase().includes(searchField.toLowerCase()) ||
@@ -58,7 +66,7 @@ export const JobOfferList = () => {
       );
     });
     setFilteredData(filteredData);
-  }, [searchField]);
+  }, [searchField, records]);
   return (
     <section>
       <div className="px-5">
