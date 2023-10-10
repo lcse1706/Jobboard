@@ -22,6 +22,8 @@ export type PlaceInfo = {
   lng: number;
 };
 
+type Coordinates = Pick<PlaceInfo, 'lat' | 'lng'>;
+
 export interface OffersType {
   id: string;
   title: string;
@@ -42,9 +44,4 @@ export type OfferFirebaseType = {
   description: string;
 };
 
-export type OfferType = Omit<OfferFirebaseType, 'location' | 'coordinates'>;
-
-type Coordinates = {
-  lat: number;
-  lng: number;
-};
+// export type FormDataType = Omit<OfferFirebaseType, 'location' | 'coordinates'>;

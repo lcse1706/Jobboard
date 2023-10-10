@@ -1,11 +1,11 @@
-import { OfferFirebaseType, OfferType, PlaceInfo } from '@/lib/types';
+import { TOfferDTO, OfferFirebaseType, PlaceInfo } from '@/lib/types';
 
 const headers = {
   'Content-Type': 'application/json',
 };
 
 export const sendOffer = async (
-  offer: OfferType,
+  offer: TOfferDTO,
   placeInfo: PlaceInfo
   // logo: any
 ) => {

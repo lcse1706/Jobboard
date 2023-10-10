@@ -37,7 +37,7 @@ export const GoogleMaps: NextPage = () => {
   return (
     <GoogleMap
       options={mapOptions}
-      zoom={6}
+      zoom={5}
       center={mapCenter}
       mapTypeId={google.maps.MapTypeId.ROADMAP}
       mapContainerStyle={mapStyles}
