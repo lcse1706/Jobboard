@@ -5,6 +5,9 @@ import React, { useState, useRef } from 'react';
 import { Button } from './ui/Button';
 import { sendOffer } from '@/services/offers';
 
+import { ref, uploadBytes } from '@firebase/storage';
+import storage from '../services/firebaseConfig'; // Import the Firebase configuration
+
 function UploadLogo() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState<boolean>(false);
@@ -44,7 +47,7 @@ function UploadLogo() {
 
     if (file) {
       setPreview(URL.createObjectURL(file));
-      console.log(URL.createObjectURL(file));
+      setSelectedFile(file);
     } else {
       // Handle the case where event.target.files is null or empty
     }
@@ -60,7 +63,17 @@ function UploadLogo() {
       return;
     }
 
-    console.log('File selected:', selectedFile);
+    if (selectedFile) {
+      const storagePath = 'img'; // Set the desired storage path
+      const storageRef = ref(storage, storagePath);
+
+      try {
+        const snapshot = await uploadBytes(storageRef, selectedFile);
+        console.log('File uploaded successfully:', snapshot);
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
+    }
 
     setSelectedFile(null);
   };
