@@ -5,15 +5,26 @@ import React, { useState, useRef } from 'react';
 import { Button } from './ui/Button';
 import { sendOffer } from '@/services/offers';
 
-import { ref, uploadBytes, getDownloadURL } from '@firebase/storage';
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  connectStorageEmulator,
+} from '@firebase/storage';
 import storage from '../services/firebaseConfig'; // Import the Firebase configuration
+import { useDataContext } from '@/context/DataContext';
 
-function UploadLogo() {
+function UploadLogo({ submitRef }: any) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const iconRef = useRef<HTMLInputElement>(null!);
   const [preview, setPreview] = useState('');
+
+  const { logoId } = useDataContext();
+  console.log(logoId);
+
+  // const { logoId } = useDataContext();
 
   const onBtnClick = () => {
     /*Collecting node-element and performing click*/
@@ -65,7 +76,8 @@ function UploadLogo() {
 
     if (selectedFile) {
       console.log(selectedFile);
-      const storagePath = '/logos/img'; // Set the desired storage path
+      console.log(logoId);
+      const storagePath = `/logos/${logoId}`; // Set the desired storage path
       const storageRef = ref(storage, storagePath);
 
       try {
@@ -117,7 +129,11 @@ function UploadLogo() {
           <Button label="Add File" type="button" onClick={onBtnClick} />
           <p className="mt-2">Or</p>
           <p>Drag and Drop to Upload</p>
-          <button type="submit">Send</button>
+          <button
+            ref={submitRef}
+            type="submit"
+            style={{ display: 'none' }}
+          />{' '}
         </form>
         {error && <p className="text-red-500 mt-2">{error}</p>}
 

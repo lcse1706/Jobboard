@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { useDataContext } from '@/context/DataContext';
 import { TOfferDTO, offerDTO, PlaceInfo } from '@/lib/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useLoadScript } from '@react-google-maps/api';
@@ -13,7 +13,7 @@ import type { NextPage } from 'next';
 import { getGeocode, getLatLng } from 'use-places-autocomplete';
 import { PlacesAutocomplete } from './PlacesAutocomplete';
 import UploadLogo from './UploadLogo';
-import { sendOffer } from '@/services/offers';
+import { fetchOffers, sendOffer } from '@/services/offers';
 import { Input } from '../components/ui';
 
 //TODO Reacthookform + Zod
@@ -32,7 +32,9 @@ export const AddOfferForm: NextPage = () => {
     resolver: zodResolver(offerDTO),
   });
 
-  const { records, setRecords } = useDataContext();
+  const submitRef = useRef<HTMLFormElement | null>(null);
+
+  const { records, setRecords, setLogoId } = useDataContext();
 
   const [placeInfo, setPlaceInfo] = useState<PlaceInfo>({
     placeName: '',
@@ -54,7 +56,7 @@ export const AddOfferForm: NextPage = () => {
   // const submitHandler = (e: FormEvent<HTMLFormElement>) => {
   const submitHandler = async (data: TOfferDTO) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log(data);
+
     setRecords([
       ...records,
       {
@@ -72,6 +74,23 @@ export const AddOfferForm: NextPage = () => {
     try {
       await sendOffer(data, placeInfo);
       console.log('Data ok');
+
+      /// Getting offers from firebase to get id of the last record
+
+      const getDataFromFirebase = await fetchOffers();
+
+      const keys = Object.keys(getDataFromFirebase);
+      const lastKey = keys[keys.length - 1];
+      console.log(typeof lastKey);
+      setLogoId(lastKey);
+
+      // Submiting UplodLogo component after Realtime Firebase record addded, to pass id ass img name
+      // Settingtimeout to wait for setLogoId
+      setTimeout(() => {
+        if (submitRef.current) {
+          submitRef.current.click();
+        }
+      }, 1);
     } catch (error) {
       console.log(error);
     }
@@ -83,7 +102,7 @@ export const AddOfferForm: NextPage = () => {
 
   return (
     <div className="flex flex-row justify-center items-start mt-48 w-screen">
-      <UploadLogo />
+      <UploadLogo submitRef={submitRef} />
       <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
         <Input
           register={register('title')}
