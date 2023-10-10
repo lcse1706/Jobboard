@@ -43,13 +43,13 @@ export const GoogleMaps: NextPage = () => {
       mapContainerStyle={mapStyles}
       onLoad={() => console.log('Map Component Loaded...')}
     >
-      {filteredData.map((pos, index) => (
+      {filteredData.map(pos => (
         <MarkerF
-          key={index}
+          key={pos.id}
           position={pos.coordinates}
           onClick={() => console.log('Marker Added')}
           onMouseOver={() => {
-            setHoveredMarkerId(pos.title);
+            setHoveredMarkerId(pos.id);
           }}
           onMouseOut={() => setHoveredMarkerId('')}
         />
