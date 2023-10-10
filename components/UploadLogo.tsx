@@ -5,7 +5,7 @@ import React, { useState, useRef } from 'react';
 import { Button } from './ui/Button';
 import { sendOffer } from '@/services/offers';
 
-import { ref, uploadBytes } from '@firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from '@firebase/storage';
 import storage from '../services/firebaseConfig'; // Import the Firebase configuration
 
 function UploadLogo() {
@@ -64,18 +64,23 @@ function UploadLogo() {
     }
 
     if (selectedFile) {
-      const storagePath = 'img'; // Set the desired storage path
+      console.log(selectedFile);
+      const storagePath = '/logos/img'; // Set the desired storage path
       const storageRef = ref(storage, storagePath);
 
       try {
         const snapshot = await uploadBytes(storageRef, selectedFile);
         console.log('File uploaded successfully:', snapshot);
+
+        const downloadURL = await getDownloadURL(storageRef);
+        console.log('Download URL:', downloadURL);
       } catch (error) {
         console.error('Error uploading file:', error);
       }
     }
 
     setSelectedFile(null);
+    setPreview('');
   };
 
   const validateFile = (file: File | null) => {
