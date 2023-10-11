@@ -20,8 +20,7 @@ function UploadLogo({ submitRef }: any) {
   const [error, setError] = useState<string>('');
   const iconRef = useRef<HTMLInputElement>(null!);
   const [preview, setPreview] = useState('');
-  const { setLogoURL, logoURL } = useDataContext();
-  const id = useId();
+  const { setLogoURL } = useDataContext();
 
   const onBtnClick = () => {
     /*Collecting node-element and performing click*/
@@ -62,9 +61,14 @@ function UploadLogo({ submitRef }: any) {
 
     validateFile(file);
   };
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    function getUID() {
+      return Date.now().toString(10);
+    }
+
+    console.log(getUID());
 
     if (!selectedFile) {
       setError('Please select a file');
@@ -72,7 +76,7 @@ function UploadLogo({ submitRef }: any) {
     }
 
     if (selectedFile) {
-      const storagePath = `/logos/${id}`;
+      const storagePath = `/logos/${getUID()}`;
       const storageRef = ref(storage, storagePath);
 
       try {
@@ -82,7 +86,6 @@ function UploadLogo({ submitRef }: any) {
         const downloadURL = await getDownloadURL(storageRef);
         console.log('Download URL:', downloadURL);
         setLogoURL(downloadURL);
-        // console.log(logoURL);
       } catch (error) {
         console.error('Error uploading file:', error);
       }
@@ -126,11 +129,7 @@ function UploadLogo({ submitRef }: any) {
           <Button label="Add File" type="button" onClick={onBtnClick} />
           <p className="mt-2">Or</p>
           <p>Drag and Drop to Upload</p>
-          <button
-            ref={submitRef}
-            type="submit"
-            // style={{ display: 'none' }}
-          >
+          <button ref={submitRef} type="submit" style={{ display: 'none' }}>
             Send
           </button>
         </form>

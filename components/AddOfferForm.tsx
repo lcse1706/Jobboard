@@ -56,9 +56,9 @@ export const AddOfferForm: NextPage = () => {
   }
 
   const submitHandler = async (data: TOfferDTO) => {
-    // if (submitRef.current) {
-    //   submitRef.current.click();
-    // }
+    if (submitRef.current) {
+      submitRef.current.click();
+    }
 
     console.log('1');
     await new Promise(resolve => setTimeout(resolve, 1000));
