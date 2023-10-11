@@ -50,6 +50,8 @@ export const AddOfferForm: NextPage = () => {
     }
   };
 
+  //Update record with stored logoUrl in context. Cant do it with submiting two forms, when one of then setlogoURL in context, second one read logoURL from context. It was accesible with next render/submit
+
   useEffect(() => {
     console.log('Logo URL has been updated:', logoURL);
 
