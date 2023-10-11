@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { useLoadScript } from '@react-google-maps/api';
 import type { NextPage } from 'next';
 
+import { fetchOffers, updateOffer } from '@/services/offers';
 import { getGeocode, getLatLng } from 'use-places-autocomplete';
 import { PlacesAutocomplete } from './PlacesAutocomplete';
 import UploadLogo from './UploadLogo';
@@ -34,8 +35,27 @@ export const AddOfferForm: NextPage = () => {
   const submitRef = useRef<HTMLFormElement | null>(null);
 
   const { logoURL } = useDataContext();
+
+  const updateLastRecord = async () => {
+    const data = await fetchOffers();
+    if (data) {
+      const keys = Object.keys(data);
+      const lastKey = keys[keys.length - 1];
+      const lastObject = data[lastKey];
+      const newRecord = {
+        ...lastObject,
+        logoURL: logoURL,
+      };
+      updateOffer(lastKey, newRecord);
+    }
+  };
+
   useEffect(() => {
     console.log('Logo URL has been updated:', logoURL);
+
+    setTimeout(() => {
+      updateLastRecord();
+    }, 1000);
   }, [logoURL]);
 
   const [placeInfo, setPlaceInfo] = useState<PlaceInfo>({
