@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useId } from 'react';
 import { Button } from './ui/Button';
 import { sendOffer } from '@/services/offers';
 
@@ -20,11 +20,8 @@ function UploadLogo({ submitRef }: any) {
   const [error, setError] = useState<string>('');
   const iconRef = useRef<HTMLInputElement>(null!);
   const [preview, setPreview] = useState('');
-
-  const { logoId } = useDataContext();
-  console.log(logoId);
-
-  // const { logoId } = useDataContext();
+  const { setLogoURL, logoURL } = useDataContext();
+  const id = useId();
 
   const onBtnClick = () => {
     /*Collecting node-element and performing click*/
@@ -75,9 +72,7 @@ function UploadLogo({ submitRef }: any) {
     }
 
     if (selectedFile) {
-      console.log(selectedFile);
-      console.log(logoId);
-      const storagePath = `/logos/${logoId}`; // Set the desired storage path
+      const storagePath = `/logos/${id}`;
       const storageRef = ref(storage, storagePath);
 
       try {
@@ -86,6 +81,8 @@ function UploadLogo({ submitRef }: any) {
 
         const downloadURL = await getDownloadURL(storageRef);
         console.log('Download URL:', downloadURL);
+        setLogoURL(downloadURL);
+        // console.log(logoURL);
       } catch (error) {
         console.error('Error uploading file:', error);
       }
@@ -132,8 +129,10 @@ function UploadLogo({ submitRef }: any) {
           <button
             ref={submitRef}
             type="submit"
-            style={{ display: 'none' }}
-          />{' '}
+            // style={{ display: 'none' }}
+          >
+            Send
+          </button>
         </form>
         {error && <p className="text-red-500 mt-2">{error}</p>}
 

@@ -13,7 +13,7 @@ import type { NextPage } from 'next';
 import { getGeocode, getLatLng } from 'use-places-autocomplete';
 import { PlacesAutocomplete } from './PlacesAutocomplete';
 import UploadLogo from './UploadLogo';
-import { fetchOffers, sendOffer } from '@/services/offers';
+import { sendOffer } from '@/services/offers';
 import { Input } from '../components/ui';
 
 //TODO Reacthookform + Zod
@@ -27,14 +27,16 @@ export const AddOfferForm: NextPage = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-    // } = useForm();
   } = useForm<TOfferDTO>({
     resolver: zodResolver(offerDTO),
   });
 
   const submitRef = useRef<HTMLFormElement | null>(null);
 
-  const { records, setRecords, setLogoId } = useDataContext();
+  const { logoURL } = useDataContext();
+  useEffect(() => {
+    console.log('Logo URL has been updated:', logoURL);
+  }, [logoURL]);
 
   const [placeInfo, setPlaceInfo] = useState<PlaceInfo>({
     placeName: '',
@@ -53,49 +55,24 @@ export const AddOfferForm: NextPage = () => {
     return <p>Loading...</p>;
   }
 
-  // const submitHandler = (e: FormEvent<HTMLFormElement>) => {
   const submitHandler = async (data: TOfferDTO) => {
+    // if (submitRef.current) {
+    //   submitRef.current.click();
+    // }
+
+    console.log('1');
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    setRecords([
-      ...records,
-      {
-        id: '',
-        title: data.title,
-        salary: data.salary,
-        technologies: data.technologies,
-        location: placeInfo.placeName,
-        coordinates: { lat: placeInfo.lat, lng: placeInfo.lng },
-        description: data.description,
-      },
-    ]);
+    console.log('2');
+    console.log('logoURL:', logoURL);
 
-    const sendData = async () => {};
     try {
-      await sendOffer(data, placeInfo);
+      await sendOffer(data, placeInfo, logoURL);
       console.log('Data ok');
-
-      /// Getting offers from firebase to get id of the last record
-
-      const getDataFromFirebase = await fetchOffers();
-
-      const keys = Object.keys(getDataFromFirebase);
-      const lastKey = keys[keys.length - 1];
-      console.log(typeof lastKey);
-      setLogoId(lastKey);
-
-      // Submiting UplodLogo component after Realtime Firebase record addded, to pass id ass img name
-      // Settingtimeout to wait for setLogoId
-      setTimeout(() => {
-        if (submitRef.current) {
-          submitRef.current.click();
-        }
-      }, 1);
+      console.log('logoURL:', logoURL);
     } catch (error) {
       console.log(error);
     }
-
-    sendData();
 
     reset();
   };
