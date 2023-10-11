@@ -26,13 +26,13 @@ export const OfferListForm = (props: OffersProps) => {
           }`}
         >
           <div className="flex items-center mb-2">
-            {/* <Image
+            <Image
               src={offer.logoURL}
               alt="tech img"
               width={25}
               height={25}
               className="mr-2"
-            /> */}
+            />
             <p className="text-xl font-semibold">{offer.title}</p>
           </div>
           <p className="text-gray-600">{offer.salary}</p>
