@@ -6,17 +6,17 @@ const headers = {
 
 export const sendOffer = async (
   offer: TOfferDTO,
-  placeInfo: PlaceInfo
-  // logo: any
+  placeInfo: PlaceInfo,
+  logoURL: string
 ) => {
   const Offer: OfferFirebaseType = {
+    logoURL: logoURL,
     title: offer.title,
     salary: offer.salary,
     technologies: offer.technologies,
     location: placeInfo.placeName,
     coordinates: { lat: placeInfo.lat, lng: placeInfo.lng },
     description: offer.description,
-    // logo: logo,
   };
 
   const sendResponse: Response = await fetch(

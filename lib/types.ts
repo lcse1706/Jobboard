@@ -25,6 +25,7 @@ export type PlaceInfo = {
 type Coordinates = Pick<PlaceInfo, 'lat' | 'lng'>;
 
 export interface OffersType {
+  logoURL: string;
   id: string;
   title: string;
   salary: string;
@@ -35,7 +36,7 @@ export interface OffersType {
 }
 
 export type OfferFirebaseType = {
-  // logo?: any;
+  logoURL: string;
   title: string;
   salary: string;
   technologies: string;

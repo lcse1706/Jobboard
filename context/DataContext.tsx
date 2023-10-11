@@ -8,8 +8,8 @@ interface DataContextType {
   setRecords: React.Dispatch<React.SetStateAction<OffersType[]>>;
   filteredData: OffersType[];
   setFilteredData: React.Dispatch<React.SetStateAction<OffersType[]>>;
-  logoId: string;
-  setLogoId: React.Dispatch<React.SetStateAction<string>>;
+  logoURL: string;
+  setLogoURL: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const DataContext = createContext<DataContextType | null>(null);
@@ -25,7 +25,7 @@ export const useDataContext = () => {
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [records, setRecords] = useState<OffersType[]>([]);
   const [filteredData, setFilteredData] = useState<OffersType[]>(records);
-  const [logoId, setLogoId] = useState<string>('');
+  const [logoURL, setLogoURL] = useState<string>('');
 
   return (
     <DataContext.Provider
@@ -34,8 +34,8 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
         setRecords,
         filteredData,
         setFilteredData,
-        logoId,
-        setLogoId,
+        logoURL,
+        setLogoURL,
       }}
     >
       {children}
