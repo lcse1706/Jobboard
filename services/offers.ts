@@ -56,3 +56,17 @@ export const fetchOffers = async () => {
   const data = await fetchResponse.json();
   return data;
 };
+
+export const updateOffer = (recordKey: string, newData: OfferFirebaseType) => {
+  fetch(`${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_URL}/${recordKey}.json`, {
+    method: 'PUT',
+    body: JSON.stringify(newData),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Record updated:', data);
+    })
+    .catch(error => {
+      console.error('Error updating record:', error);
+    });
+};
