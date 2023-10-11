@@ -57,7 +57,7 @@ export const AddOfferForm: NextPage = () => {
 
     setTimeout(() => {
       updateLastRecord();
-    }, 1000);
+    }, 2000);
   }, [logoURL]);
 
   const [placeInfo, setPlaceInfo] = useState<PlaceInfo>({
