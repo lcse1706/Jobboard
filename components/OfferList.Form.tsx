@@ -1,4 +1,4 @@
-import { useHoverContext } from '@/context/HoverContext';
+import { useHelpersContext } from '@/context/HelpersContext';
 import Image from 'next/image';
 
 interface OffersProps {
@@ -14,7 +14,7 @@ interface OffersProps {
 }
 //TODO change offer.title
 export const OfferListForm = (props: OffersProps) => {
-  const { hoveredMarkerId } = useHoverContext();
+  const { hoveredMarkerId } = useHelpersContext();
 
   return (
     <ul className="m-5">

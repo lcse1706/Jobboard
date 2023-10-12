@@ -1,24 +1,19 @@
 'use client';
 
-import { Button } from '@/components/ui/Button';
-import { useDataContext } from '@/context/DataContext';
-import { useHelpersContext } from '@/context/HelpersContext';
-import { TOfferDTO, offerDTO, PlaceInfo } from '@/lib/types';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-
-import { useLoadScript } from '@react-google-maps/api';
 import type { NextPage } from 'next';
 
-import { fetchOffers, updateOffer } from '@/services/offers';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useLoadScript } from '@react-google-maps/api';
 import { getGeocode, getLatLng } from 'use-places-autocomplete';
+
+import { Button, Input } from '@/components/ui';
+import { useDataContext, useHelpersContext } from '@/context';
+import { TOfferDTO, offerDTO, PlaceInfo } from '@/lib/types';
+import { fetchOffers, updateOffer, sendOffer } from '@/services/offers';
 import { PlacesAutocomplete } from './PlacesAutocomplete';
 import UploadLogo from './UploadLogo';
-import { sendOffer } from '@/services/offers';
-import { Input } from '../components/ui';
-
-//TODO Reacthookform + Zod
 
 const inputStyles = 'w-full mb-2 p-2 border rounded';
 const errorStyles = 'text-red-500 mb-3';

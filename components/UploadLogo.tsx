@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import React, { useState, useRef, useId } from 'react';
 import { Button } from './ui/Button';
-import { sendOffer } from '@/services/offers';
+import { sendOffer } from '@/services';
 
 import {
   ref,
@@ -11,7 +11,7 @@ import {
   getDownloadURL,
   connectStorageEmulator,
 } from '@firebase/storage';
-import storage from '../services/firebaseConfig'; // Import the Firebase configuration
+import { firebaseStorage } from '../services'; // Import the Firebase configuration
 import { useDataContext } from '@/context/DataContext';
 
 function UploadLogo({ submitRef }: any) {
@@ -77,7 +77,7 @@ function UploadLogo({ submitRef }: any) {
 
     if (selectedFile) {
       const storagePath = `/logos/${getUID()}`;
-      const storageRef = ref(storage, storagePath);
+      const storageRef = ref(firebaseStorage, storagePath);
 
       try {
         const snapshot = await uploadBytes(storageRef, selectedFile);

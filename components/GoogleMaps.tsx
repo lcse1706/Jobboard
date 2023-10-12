@@ -1,7 +1,7 @@
 'use client';
 
 import { useDataContext } from '@/context/DataContext';
-import { useHoverContext } from '@/context/HoverContext';
+import { useHelpersContext } from '@/context/HelpersContext';
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api';
 import type { NextPage } from 'next';
 import { useMemo } from 'react';
@@ -14,7 +14,7 @@ const mapStyles = {
 export const GoogleMaps: NextPage = () => {
   const mapCenter = useMemo(() => ({ lat: 51.8689731, lng: 19.2029511 }), []);
   const { filteredData } = useDataContext();
-  const { setHoveredMarkerId } = useHoverContext();
+  const { setHoveredMarkerId } = useHelpersContext();
 
   const mapOptions = useMemo<google.maps.MapOptions>(
     () => ({

@@ -5,6 +5,8 @@ import { useContext, createContext, useState } from 'react';
 interface HelpersContextType {
   checkLastFirebaseKey: string;
   setCheckLastFirebaseKey: React.Dispatch<React.SetStateAction<string>>;
+  hoveredMarkerId: string;
+  setHoveredMarkerId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const HelpersContext = createContext<HelpersContextType | null>(null);
@@ -23,12 +25,15 @@ export const HelpersProvider = ({
   children: React.ReactNode;
 }) => {
   const [checkLastFirebaseKey, setCheckLastFirebaseKey] = useState<string>('');
+  const [hoveredMarkerId, setHoveredMarkerId] = useState<string>('');
 
   return (
     <HelpersContext.Provider
       value={{
         checkLastFirebaseKey,
         setCheckLastFirebaseKey,
+        hoveredMarkerId,
+        setHoveredMarkerId,
       }}
     >
       {children}
