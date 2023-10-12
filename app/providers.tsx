@@ -1,10 +1,13 @@
 import { DataProvider } from '@/context/DataContext';
+import { HelpersProvider } from '@/context/HelpersContext';
 import { HoverProvider } from '@/context/HoverContext';
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <DataProvider>
-      <HoverProvider>{children}</HoverProvider>
+      <HoverProvider>
+        <HelpersProvider>{children}</HelpersProvider>
+      </HoverProvider>
     </DataProvider>
   );
 };

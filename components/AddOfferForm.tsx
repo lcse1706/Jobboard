@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/Button';
 import { useDataContext } from '@/context/DataContext';
+import { useHelpersContext } from '@/context/HelpersContext';
 import { TOfferDTO, offerDTO, PlaceInfo } from '@/lib/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -34,27 +35,44 @@ export const AddOfferForm: NextPage = () => {
 
   const submitRef = useRef<HTMLFormElement | null>(null);
 
+  const { checkLastFirebaseKey, setCheckLastFirebaseKey } = useHelpersContext();
   const { logoURL } = useDataContext();
 
   const updateLastRecord = async () => {
+    console.log('checking if data');
     const data = await fetchOffers();
+    console.log(data);
     if (data) {
       const keys = Object.keys(data);
+
       const lastKey = keys[keys.length - 1];
+      console.log('Check if keys are the same');
+      console.log('checkLastKey: ', checkLastFirebaseKey, 'lastKey: ', lastKey);
+      //Prevent rewrite last record, while component rendering.
+
+      if (checkLastFirebaseKey == lastKey) {
+        console.log('Stop: Same Keys');
+        return;
+      } else {
+        console.log('Keys are different. Continuing ....');
+      }
+
+      setCheckLastFirebaseKey(lastKey);
       const lastObject = data[lastKey];
       const newRecord = {
         ...lastObject,
         logoURL: logoURL,
       };
       updateOffer(lastKey, newRecord);
+      console.log('offer with id:', lastKey, ' updated');
     }
   };
 
   //Update record with stored logoUrl in context. Cant do it with submiting two forms, when one of then setlogoURL in context, second one read logoURL from context. It was accesible with next render/submit
 
   useEffect(() => {
-    console.log('Logo URL has been updated:', logoURL);
-
+    // console.log('Logo URL has been updated:', logoURL);
+    console.log('useEffect render');
     setTimeout(() => {
       updateLastRecord();
     }, 2000);
