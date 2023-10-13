@@ -1,22 +1,23 @@
-'use client';
+"use client";
 
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import type { NextPage } from 'next';
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useLoadScript } from '@react-google-maps/api';
-import { getGeocode, getLatLng } from 'use-places-autocomplete';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useLoadScript } from "@react-google-maps/api";
+import type { NextPage } from "next";
+import { getGeocode, getLatLng } from "use-places-autocomplete";
 
-import { Button, Input } from '@/components/ui';
-import { useDataContext, useHelpersContext } from '@/context';
-import { TOfferDTO, offerDTO, PlaceInfo } from '@/lib/types';
-import { fetchOffers, updateOffer, sendOffer } from '@/services/offers';
-import { PlacesAutocomplete } from './PlacesAutocomplete';
-import UploadLogo from './UploadLogo';
+import { Button, Input } from "@/components/ui";
+import { useDataContext, useHelpersContext } from "@/context";
+import { TOfferDTO, offerDTO, PlaceInfo } from "@/lib/types";
+import { fetchOffers, updateOffer, sendOffer } from "@/services/offers";
 
-const inputStyles = 'w-full mb-2 p-2 border rounded';
-const errorStyles = 'text-red-500 mb-3';
+import { PlacesAutocomplete } from "./PlacesAutocomplete";
+import UploadLogo from "./UploadLogo";
+
+const inputStyles = "w-full mb-2 p-2 border rounded";
+const errorStyles = "text-red-500 mb-3";
 
 export const AddOfferForm: NextPage = () => {
   const {
@@ -34,22 +35,22 @@ export const AddOfferForm: NextPage = () => {
   const { logoURL } = useDataContext();
 
   const updateLastRecord = async () => {
-    console.log('checking if data');
+    console.log("checking if data");
     const data = await fetchOffers();
     console.log(data);
     if (data) {
       const keys = Object.keys(data);
 
       const lastKey = keys[keys.length - 1];
-      console.log('Check if keys are the same');
-      console.log('checkLastKey: ', checkLastFirebaseKey, 'lastKey: ', lastKey);
+      console.log("Check if keys are the same");
+      console.log("checkLastKey: ", checkLastFirebaseKey, "lastKey: ", lastKey);
       //Prevent rewrite last record, while component rendering.
 
       if (checkLastFirebaseKey == lastKey) {
-        console.log('Stop: Same Keys');
+        console.log("Stop: Same Keys");
         return;
       } else {
-        console.log('Keys are different. Continuing ....');
+        console.log("Keys are different. Continuing ....");
       }
 
       setCheckLastFirebaseKey(lastKey);
@@ -59,7 +60,7 @@ export const AddOfferForm: NextPage = () => {
         logoURL: logoURL,
       };
       updateOffer(lastKey, newRecord);
-      console.log('offer with id:', lastKey, ' updated');
+      console.log("offer with id:", lastKey, " updated");
     }
   };
 
@@ -67,19 +68,19 @@ export const AddOfferForm: NextPage = () => {
 
   useEffect(() => {
     // console.log('Logo URL has been updated:', logoURL);
-    console.log('useEffect render');
+    console.log("useEffect render");
     setTimeout(() => {
       updateLastRecord();
     }, 2000);
   }, [logoURL]);
 
   const [placeInfo, setPlaceInfo] = useState<PlaceInfo>({
-    placeName: '',
+    placeName: "",
     lat: 0,
     lng: 0,
   });
 
-  const libraries = useMemo(() => ['places'], []);
+  const libraries = useMemo(() => ["places"], []);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOGGLE_API as string,
@@ -95,16 +96,16 @@ export const AddOfferForm: NextPage = () => {
       submitRef.current.click();
     }
 
-    console.log('1');
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log("1");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    console.log('2');
-    console.log('logoURL:', logoURL);
+    console.log("2");
+    console.log("logoURL:", logoURL);
 
     try {
       await sendOffer(data, placeInfo, logoURL);
-      console.log('Data ok');
-      console.log('logoURL:', logoURL);
+      console.log("Data ok");
+      console.log("logoURL:", logoURL);
     } catch (error) {
       console.log(error);
     }
@@ -117,7 +118,7 @@ export const AddOfferForm: NextPage = () => {
       <UploadLogo submitRef={submitRef} />
       <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
         <Input
-          register={register('title')}
+          register={register("title")}
           type="text"
           placeholder="Title"
           className={inputStyles}
@@ -126,7 +127,7 @@ export const AddOfferForm: NextPage = () => {
           <p className={errorStyles}>{`${errors.title.message}`}</p>
         )}
         <Input
-          register={register('salary')}
+          register={register("salary")}
           type="text"
           placeholder="Salary"
           className={inputStyles}
@@ -135,7 +136,7 @@ export const AddOfferForm: NextPage = () => {
           <p className={errorStyles}>{`${errors.salary.message}`}</p>
         )}
         <Input
-          register={register('technologies')}
+          register={register("technologies")}
           type="text"
           placeholder="Technologies"
           className={inputStyles}
@@ -145,8 +146,8 @@ export const AddOfferForm: NextPage = () => {
         )}
 
         <PlacesAutocomplete
-          onAddressSelect={address => {
-            getGeocode({ address: address }).then(results => {
+          onAddressSelect={(address) => {
+            getGeocode({ address: address }).then((results) => {
               const { lat, lng } = getLatLng(results[0]);
 
               setPlaceInfo({ placeName: address, lat: lat, lng: lng });
@@ -156,7 +157,7 @@ export const AddOfferForm: NextPage = () => {
         />
 
         <Input
-          register={register('description')}
+          register={register("description")}
           type="text"
           placeholder="Description"
           // className="w-full h-32 p-2 border rounded"

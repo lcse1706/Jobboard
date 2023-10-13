@@ -1,14 +1,16 @@
-'use client';
+"use client";
 
-import { useDataContext } from '@/context/DataContext';
-import { useHelpersContext } from '@/context/HelpersContext';
-import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api';
-import type { NextPage } from 'next';
-import { useMemo } from 'react';
+import { useMemo } from "react";
+
+import { useLoadScript, GoogleMap, MarkerF } from "@react-google-maps/api";
+import type { NextPage } from "next";
+
+import { useDataContext } from "@/context/DataContext";
+import { useHelpersContext } from "@/context/HelpersContext";
 
 const mapStyles = {
-  width: '100%',
-  height: '100%',
+  width: "100%",
+  height: "100%",
 };
 
 export const GoogleMaps: NextPage = () => {
@@ -41,17 +43,17 @@ export const GoogleMaps: NextPage = () => {
       center={mapCenter}
       mapTypeId={google.maps.MapTypeId.ROADMAP}
       mapContainerStyle={mapStyles}
-      onLoad={() => console.log('Map Component Loaded...')}
+      onLoad={() => console.log("Map Component Loaded...")}
     >
-      {filteredData.map(pos => (
+      {filteredData.map((pos) => (
         <MarkerF
           key={pos.id}
           position={pos.coordinates}
-          onClick={() => console.log('Marker Added')}
+          onClick={() => console.log("Marker Added")}
           onMouseOver={() => {
             setHoveredMarkerId(pos.id);
           }}
-          onMouseOut={() => setHoveredMarkerId('')}
+          onMouseOut={() => setHoveredMarkerId("")}
         />
       ))}
     </GoogleMap>
