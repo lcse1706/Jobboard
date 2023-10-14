@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const offerDTO = z.object({
   // logo: z.string(),
@@ -22,7 +22,7 @@ export type PlaceInfo = {
   lng: number;
 };
 
-type Coordinates = Pick<PlaceInfo, 'lat' | 'lng'>;
+type Coordinates = Pick<PlaceInfo, "lat" | "lng">;
 
 export interface OffersType {
   logoURL: string;
@@ -43,6 +43,10 @@ export type OfferFirebaseType = {
   location: string;
   coordinates: Coordinates;
   description: string;
+};
+
+export type fetchOffersType = {
+  [key: string]: OffersType;
 };
 
 // export type FormDataType = Omit<OfferFirebaseType, 'location' | 'coordinates'>;
