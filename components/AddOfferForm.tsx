@@ -29,13 +29,18 @@ export const AddOfferForm: NextPage = () => {
     resolver: zodResolver(offerDTO),
   });
 
-  const submitRef = useRef<HTMLFormElement | null>(null);
-
   const { checkLastFirebaseKey, setCheckLastFirebaseKey } = useHelpersContext();
   const { logoURL } = useDataContext();
 
+  const [placeInfo, setPlaceInfo] = useState<PlaceInfo>({
+    placeName: "",
+    lat: 0,
+    lng: 0,
+  });
+
+  const submitRef = useRef<HTMLFormElement | null>(null);
+
   const updateLastRecord = async () => {
-    console.log("checking if data");
     const data = await fetchOffers();
     console.log(data);
     if (data) {
@@ -43,9 +48,7 @@ export const AddOfferForm: NextPage = () => {
 
       const lastKey = keys[keys.length - 1];
       console.log("Check if keys are the same");
-      console.log("checkLastKey: ", checkLastFirebaseKey, "lastKey: ", lastKey);
       //Prevent rewrite last record, while component rendering.
-
       if (checkLastFirebaseKey == lastKey) {
         console.log("Stop: Same Keys");
         return;
@@ -65,20 +68,15 @@ export const AddOfferForm: NextPage = () => {
   };
 
   //Update record with stored logoUrl in context. Cant do it with submiting two forms, when one of then setlogoURL in context, second one read logoURL from context. It was accesible with next render/submit
-
+  // Timeout - fixing problems with data fetching from Firebase - without it sometimes records was not updated with the last one
   useEffect(() => {
-    // console.log('Logo URL has been updated:', logoURL);
     console.log("useEffect render");
     setTimeout(() => {
       updateLastRecord();
     }, 2000);
   }, [logoURL]);
 
-  const [placeInfo, setPlaceInfo] = useState<PlaceInfo>({
-    placeName: "",
-    lat: 0,
-    lng: 0,
-  });
+  //Autocomplete
 
   const libraries = useMemo(() => ["places"], []);
 
@@ -95,12 +93,6 @@ export const AddOfferForm: NextPage = () => {
     if (submitRef.current) {
       submitRef.current.click();
     }
-
-    console.log("1");
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    console.log("2");
-    console.log("logoURL:", logoURL);
 
     try {
       await sendOffer(data, placeInfo, logoURL);
@@ -151,7 +143,6 @@ export const AddOfferForm: NextPage = () => {
               const { lat, lng } = getLatLng(results[0]);
 
               setPlaceInfo({ placeName: address, lat: lat, lng: lng });
-              // setPlaceName(address);
             });
           }}
         />
@@ -160,7 +151,6 @@ export const AddOfferForm: NextPage = () => {
           register={register("description")}
           type="text"
           placeholder="Description"
-          // className="w-full h-32 p-2 border rounded"
           className={inputStyles}
         />
         {errors.description && (
