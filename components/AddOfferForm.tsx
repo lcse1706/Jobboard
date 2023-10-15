@@ -39,6 +39,7 @@ export const AddOfferForm: NextPage = () => {
   });
 
   const submitRef = useRef<HTMLFormElement | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const updateLastRecord = async () => {
     const data = await fetchOffers();
@@ -90,6 +91,8 @@ export const AddOfferForm: NextPage = () => {
   }
 
   const submitHandler = async (data: TOfferDTO) => {
+    setIsSubmitted(false);
+
     if (submitRef.current) {
       submitRef.current.click();
     }
@@ -103,6 +106,7 @@ export const AddOfferForm: NextPage = () => {
     }
 
     reset();
+    setIsSubmitted(true);
   };
 
   return (
@@ -138,7 +142,8 @@ export const AddOfferForm: NextPage = () => {
         )}
 
         <PlacesAutocomplete
-          onAddressSelect={(address) => {
+          isSubmitted={isSubmitted}
+          onAddressSelect={(address: string) => {
             getGeocode({ address: address }).then((results) => {
               const { lat, lng } = getLatLng(results[0]);
 

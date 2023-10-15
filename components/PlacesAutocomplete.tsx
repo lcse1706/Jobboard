@@ -1,8 +1,13 @@
-import usePlacesAutocomplete from 'use-places-autocomplete';
+import { useEffect } from "react";
+
+import usePlacesAutocomplete from "use-places-autocomplete";
+import { boolean } from "zod";
 
 export const PlacesAutocomplete = ({
   onAddressSelect,
+  isSubmitted,
 }: {
+  isSubmitted?: boolean;
   onAddressSelect?: (address: string) => void;
 }) => {
   const {
@@ -18,7 +23,7 @@ export const PlacesAutocomplete = ({
   });
 
   const renderSuggestions = () => {
-    return data.map(suggestion => {
+    return data.map((suggestion) => {
       const {
         place_id,
         structured_formatting: { main_text, secondary_text },
@@ -40,17 +45,23 @@ export const PlacesAutocomplete = ({
     });
   };
 
+  useEffect(() => {
+    if (isSubmitted) {
+      setValue("");
+    }
+  }, [isSubmitted]);
+
   return (
     <div>
       <input
         value={value}
         className="w-full mb-2 p-2 border rounded"
         disabled={!ready}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
         placeholder="Location"
       />
 
-      {status === 'OK' && <ul>{renderSuggestions()}</ul>}
+      {status === "OK" && <ul>{renderSuggestions()}</ul>}
     </div>
   );
 };
