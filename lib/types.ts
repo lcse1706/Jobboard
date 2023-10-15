@@ -49,4 +49,16 @@ export type fetchOffersType = {
   [key: string]: OffersType;
 };
 
+export interface OffersProps {
+  offers: Array<{
+    logoURL: string;
+    id: string;
+    title: string;
+    salary: string;
+    technologies: string;
+    location: string;
+    description: string;
+  }>;
+}
+
 // export type FormDataType = Omit<OfferFirebaseType, 'location' | 'coordinates'>;
