@@ -30,13 +30,9 @@ export const Navigation = (props: NavProps) => {
           </li>
         ))}
         {session.status !== "authenticated" ? (
-          <Button type="submit" label="LogIn" onClick={logInHandler}></Button>
+          <Button type="submit" label="Login" onClick={logInHandler}></Button>
         ) : (
-          <Button
-            type="submit"
-            label="Log Out"
-            onClick={logOutHandler}
-          ></Button>
+          <Button type="submit" label="Logout" onClick={logOutHandler}></Button>
         )}
       </ul>
     </nav>

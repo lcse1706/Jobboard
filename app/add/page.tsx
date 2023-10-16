@@ -1,7 +1,8 @@
-import { AddOfferForm } from '../../components/AddOfferForm';
+import { loginIsRequiredServer } from "@/lib/auth";
 
-const AddOffer = () => {
+import { AddOfferForm } from "../../components/AddOfferForm";
+
+export default async function AddOffer() {
+  await loginIsRequiredServer();
   return <AddOfferForm />;
-};
-
-export default AddOffer;
+}

@@ -5,6 +5,8 @@ import { FormEventHandler, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+import { Button } from "./ui";
+
 interface CredentialsFormProps {
   csrfToken?: string;
 }
@@ -57,12 +59,7 @@ export function CredentialsForm(props: CredentialsFormProps) {
         className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
       />
 
-      <button
-        type="submit"
-        className="w-full h-12 px-6 mt-4 text-lg text-white transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700"
-      >
-        Log in
-      </button>
+      <Button label="Log in" type="submit" />
     </form>
   );
 }

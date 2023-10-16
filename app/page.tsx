@@ -1,10 +1,7 @@
 import { GoogleMaps } from "@/components/GoogleMaps";
 import { JobOfferList } from "@/components/JobOfferList";
-import { loginIsRequiredServer } from "@/lib/auth";
 
 export default async function Page() {
-  await loginIsRequiredServer();
-
   return (
     <section className="flex flex-row w-full  p-5">
       <section className="w-2/3">
