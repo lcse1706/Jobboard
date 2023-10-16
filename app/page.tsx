@@ -1,7 +1,10 @@
-import { GoogleMaps } from '@/components/GoogleMaps';
-import { JobOfferList } from '@/components/JobOfferList';
+import { GoogleMaps } from "@/components/GoogleMaps";
+import { JobOfferList } from "@/components/JobOfferList";
+import { loginIsRequiredServer } from "@/lib/auth";
 
-const Home = () => {
+export default async function Page() {
+  await loginIsRequiredServer();
+
   return (
     <section className="flex flex-row w-full  p-5">
       <section className="w-2/3">
@@ -12,6 +15,4 @@ const Home = () => {
       </section>
     </section>
   );
-};
-
-export default Home;
+}
