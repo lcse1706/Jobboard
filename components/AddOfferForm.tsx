@@ -99,8 +99,6 @@ export const AddOfferForm: NextPage = () => {
 
     try {
       await sendOffer(data, placeInfo, logoURL);
-      console.log("Data ok");
-      console.log("logoURL:", logoURL);
     } catch (error) {
       console.log(error);
     }

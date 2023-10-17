@@ -3,6 +3,7 @@ import { getCsrfToken } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 import { CredentialsForm } from "@/components/CredentialsForm";
+import { RegisterForm } from "@/components/RegisterForm";
 import {
   CredentialsSignInButton,
   GithubSignInButton,
@@ -31,6 +32,9 @@ export default async function SignInPage() {
         </span>
         {/* <CredentialsSignInButton /> */}
         <CredentialsForm />
+
+        <h1 className="mt-10 mb-4 text-4xl font-bold">Register</h1>
+        <RegisterForm />
       </div>
     </div>
   );

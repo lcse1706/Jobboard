@@ -1,7 +1,12 @@
-import { TOfferDTO, OfferFirebaseType, PlaceInfo } from '@/lib/types';
+import {
+  TOfferDTO,
+  OfferFirebaseType,
+  PlaceInfo,
+  TRegisterSchema,
+} from "@/lib/types";
 
 const headers = {
-  'Content-Type': 'application/json',
+  "Content-Type": "application/json",
 };
 
 export const sendOffer = async (
@@ -20,18 +25,18 @@ export const sendOffer = async (
   };
 
   const sendResponse: Response = await fetch(
-    `${process.env.NEXT_PUBLIC_FIREBASE_BASE_URL}`,
+    `${process.env.NEXT_PUBLIC_FIREBASE_OFFERS_URL}`,
     {
-      method: 'POST',
+      method: "POST",
       headers: headers,
       body: JSON.stringify(Offer),
     }
   );
 
   if (sendResponse.ok) {
-    console.log('Data send successful !');
+    console.log("Data send successful !");
   } else {
-    throw new Error('Sending failed.');
+    throw new Error("Sending failed.");
   }
 
   return null;
@@ -39,18 +44,18 @@ export const sendOffer = async (
 
 export const fetchOffers = async () => {
   const fetchResponse: Response = await fetch(
-    `${process.env.NEXT_PUBLIC_FIREBASE_BASE_URL}`,
+    `${process.env.NEXT_PUBLIC_FIREBASE_OFFERS_URL}`,
     {
-      method: 'GET',
+      method: "GET",
       headers: headers,
       body: null,
     }
   );
 
   if (fetchResponse.ok) {
-    console.log('Data load successful !');
+    console.log("Data load successful !");
   } else {
-    throw new Error('Loading failed.');
+    throw new Error("Loading failed.");
   }
 
   const data = await fetchResponse.json();
@@ -59,14 +64,38 @@ export const fetchOffers = async () => {
 
 export const updateOffer = (recordKey: string, newData: OfferFirebaseType) => {
   fetch(`${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_URL}/${recordKey}.json`, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify(newData),
   })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Record updated:', data);
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Record updated:", data);
     })
-    .catch(error => {
-      console.error('Error updating record:', error);
+    .catch((error) => {
+      console.error("Error updating record:", error);
     });
+};
+
+export const registerUser = async (data: TRegisterSchema) => {
+  const User = {
+    email: data.email,
+    password: data.password,
+  };
+
+  const sendResponse: Response = await fetch(
+    `${process.env.NEXT_PUBLIC_FIREBASE_USERS_URL}`,
+    {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(User),
+    }
+  );
+
+  if (sendResponse.ok) {
+    console.log("Registration user data send successful !");
+  } else {
+    throw new Error("Registration failed.");
+  }
+
+  return null;
 };

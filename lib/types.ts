@@ -16,6 +16,19 @@ export const offerDTO = z.object({
 
 export type TOfferDTO = z.infer<typeof offerDTO>;
 
+export const registerSchema = z
+  .object({
+    email: z.string().email(),
+    password: z.string().min(10, "Password must be at least 10 characters"),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords must match",
+    path: ["confirmPassword"],
+  });
+
+export type TRegisterSchema = z.infer<typeof registerSchema>;
+
 export type PlaceInfo = {
   placeName: string;
   lat: number;
