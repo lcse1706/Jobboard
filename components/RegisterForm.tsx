@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { NextPage } from "next";
 
 import { TRegisterSchema, registerSchema } from "@/lib/types";
-import { registerUser } from "@/services/offers";
+import { registerUser } from "@/services/users";
 
 import { Button, Input } from "./ui";
 

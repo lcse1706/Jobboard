@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { OfferListForm } from "@/components/OfferList.Form";
+import { OfferListForm } from "@/components/OfferListForm";
 import { useDataContext } from "@/context/DataContext";
 import { OffersType, fetchOffersType } from "@/lib/types";
 import { fetchOffers } from "@/services/offers";

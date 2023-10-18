@@ -4,6 +4,8 @@ import GoogleProvider from "next-auth/providers/google";
 import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 
+import { checkRegister, registerUser } from "@/services/users";
+
 // import GithubProvider from 'next-auth/providers/github';
 
 export const authConfig: NextAuthOptions = {
@@ -26,7 +28,7 @@ export const authConfig: NextAuthOptions = {
         //   where: { email: credentials.email },
         // });
 
-        const dbUser = {
+        const dbUser1 = {
           email: "lukaszczarniecki1@gmail.com",
           password: "123",
           id: "1",
@@ -36,13 +38,26 @@ export const authConfig: NextAuthOptions = {
           createdAt: "29.10.2023",
         };
 
+        const users = await checkRegister();
+
+        for (const dbUser in users) {
+          console.log(users[dbUser]);
+
+          if (users && users[dbUser].password === credentials.password) {
+            // const { password, createdAt, id, ...dbUserWithoutPassword } =
+            //   dbUser;
+            return users[dbUser] as User;
+          }
+        }
+
+        console.log(users);
+
         //Verify Password here
         //We are going to use a simple === operator
-        //In production DB, passwords should be encrypted using something like bcrypt...
-        if (dbUser && dbUser.password === credentials.password) {
-          const { password, createdAt, id, ...dbUserWithoutPassword } = dbUser;
-          return dbUserWithoutPassword as User;
-        }
+        //In production DB, passwords shou // if (dbUser && dbUser.password === credentials.password) {
+        //   const { password, createdAt, id, ...dbUserWithoutPassword } = dbUser;
+        //   return dbUserWithoutPassword as User;
+        // }ld be encrypted using something like bcrypt...
 
         return null;
       },
