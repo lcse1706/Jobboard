@@ -1,9 +1,13 @@
 "use client";
 
 import { FormEventHandler, useState } from "react";
+import { useForm } from "react-hook-form";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+
+import { TLoginSchema, loginSchema } from "@/lib/types";
 
 import { Button, Input } from "./ui";
 
@@ -14,16 +18,30 @@ interface CredentialsFormProps {
 export function CredentialsForm(props: CredentialsFormProps) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<TLoginSchema>({
+    resolver: zodResolver(loginSchema),
+  });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
+  const submitHandler = async (data: TLoginSchema) => {
+    // e.preventDefault();
+    // const data = new FormData(e.currentTarget);
 
     const signInResponse = await signIn("credentials", {
-      email: data.get("email"),
-      password: data.get("password"),
+      email: data.email,
+      password: data.password,
       redirect: false,
     });
+
+    // const signInResponse = await signIn("credentials", {
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    //   redirect: false,
+    // });
 
     if (signInResponse && !signInResponse.error) {
       router.push("/");
@@ -36,7 +54,7 @@ export function CredentialsForm(props: CredentialsFormProps) {
   return (
     <form
       className="w-full mt-8 text-xl text-black font-semibold flex flex-col"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(submitHandler)}
     >
       {error && (
         <span className="p-4 mb-2 text-lg font-semibold text-white bg-red-500 rounded-md">
@@ -44,17 +62,16 @@ export function CredentialsForm(props: CredentialsFormProps) {
         </span>
       )}
       <Input
-        name="email"
+        register={register("email")}
         type="email"
         placeholder="Email"
         className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
       />
 
       <Input
+        register={register("password")}
         type="password"
-        name="password"
         placeholder="Password"
-        required
         className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
       />
 

@@ -19,7 +19,7 @@ export type TOfferDTO = z.infer<typeof offerDTO>;
 export const registerSchema = z
   .object({
     email: z.string().email(),
-    password: z.string().min(10, "Password must be at least 10 characters"),
+    password: z.string().min(3, "Password must be at least 3 characters"),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -28,6 +28,13 @@ export const registerSchema = z
   });
 
 export type TRegisterSchema = z.infer<typeof registerSchema>;
+
+export const loginSchema = z.object({
+  email: z.string(),
+  password: z.string(),
+});
+
+export type TLoginSchema = z.infer<typeof loginSchema>;
 
 export type PlaceInfo = {
   placeName: string;
