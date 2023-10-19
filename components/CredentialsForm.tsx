@@ -5,7 +5,7 @@ import { FormEventHandler, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import { Button } from "./ui";
+import { Button, Input } from "./ui";
 
 interface CredentialsFormProps {
   csrfToken?: string;
@@ -43,15 +43,14 @@ export function CredentialsForm(props: CredentialsFormProps) {
           {error}
         </span>
       )}
-      <input
-        type="email"
+      <Input
         name="email"
+        type="email"
         placeholder="Email"
-        required
         className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
       />
 
-      <input
+      <Input
         type="password"
         name="password"
         placeholder="Password"
