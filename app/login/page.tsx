@@ -22,8 +22,8 @@ export default async function SignInPage() {
   // }
 
   return (
-    <div className="w-full flex flex-col items-center justify-center min-dh-screen py-2">
-      <div className="flex flex-col items-center mt-10 p-10 shadow-lg border border-gray-200 rounded-md">
+    <div className="w-full flex flex-row items-center justify-center min-dh-screen py-2">
+      <div className="flex flex-col items-center mt-10 p-10 mr-5 shadow-lg border border-gray-200 rounded-md">
         <h1 className="mt-10 mb-4 text-4xl font-bold">Sign In</h1>
         <GoogleSignInButton />
         {/* <GithubSignInButton /> */}
@@ -32,7 +32,8 @@ export default async function SignInPage() {
         </span>
         {/* <CredentialsSignInButton /> */}
         <CredentialsForm />
-
+      </div>
+      <div className="flex flex-col items-center mt-10 p-10 shadow-lg border border-gray-200 rounded-md">
         <h1 className="mt-10 mb-4 text-4xl font-bold">Register</h1>
         <RegisterForm />
       </div>
