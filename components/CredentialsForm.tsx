@@ -18,30 +18,16 @@ interface CredentialsFormProps {
 export function CredentialsForm(props: CredentialsFormProps) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<TLoginSchema>({
+  const { register, handleSubmit } = useForm<TLoginSchema>({
     resolver: zodResolver(loginSchema),
   });
 
   const submitHandler = async (data: TLoginSchema) => {
-    // e.preventDefault();
-    // const data = new FormData(e.currentTarget);
-
     const signInResponse = await signIn("credentials", {
       email: data.email,
       password: data.password,
       redirect: false,
     });
-
-    // const signInResponse = await signIn("credentials", {
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    //   redirect: false,
-    // });
 
     if (signInResponse && !signInResponse.error) {
       router.push("/");
@@ -67,14 +53,12 @@ export function CredentialsForm(props: CredentialsFormProps) {
         placeholder="Email"
         className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
       />
-
       <Input
         register={register("password")}
         type="password"
         placeholder="Password"
         className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
       />
-
       <Button label="Log in" type="submit" />
     </form>
   );
