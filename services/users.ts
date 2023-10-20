@@ -8,7 +8,7 @@ export const registerUser = async (data: TRegisterSchema) => {
   const User = {
     email: data.email,
     password: data.password,
-    createdAt: Date.now(),
+    createdAt: new Date().toISOString().slice(0, 10),
   };
 
   const sendResponse: Response = await fetch(
