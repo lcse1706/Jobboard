@@ -1,3 +1,5 @@
+Project in progress...
+
 <h2 align='center'>Jobboard</h2>
 
 <p align='center'>App where user can log in, add offer, save favorites etc.</p>
