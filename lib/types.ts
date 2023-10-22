@@ -1,17 +1,10 @@
 import { z } from "zod";
 
 export const offerDTO = z.object({
-  // logo: z.string(),
-  // title: z.string().trim().min(1),
-  title: z.string(),
-  salary: z.string(),
-  technologies: z.string(),
-  // location: z.string(),
-  // coordnates: z.object({
-  //   lat: z.number(),
-  //   lng: z.number(),
-  // }),
-  description: z.string(),
+  title: z.string().trim().min(1, "Field cannot be empty"),
+  salary: z.string().trim().min(1, "Field cannot be empty"),
+  technologies: z.string().trim().min(1, "Field cannot be empty"),
+  description: z.string().trim().min(1, "Field cannot be empty"),
 });
 
 export type TOfferDTO = z.infer<typeof offerDTO>;
@@ -19,7 +12,7 @@ export type TOfferDTO = z.infer<typeof offerDTO>;
 export const registerSchema = z
   .object({
     email: z.string().email(),
-    password: z.string().min(3, "Password must be at least 3 characters"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {

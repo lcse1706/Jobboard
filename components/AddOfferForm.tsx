@@ -150,11 +150,10 @@ export const AddOfferForm: NextPage = () => {
           }}
         />
 
-        <Input
-          register={register("description")}
-          type="text"
+        <textarea
+          {...register("description")}
           placeholder="Description"
-          className={inputStyles}
+          className={`${inputStyles} h-44 `}
         />
         {errors.description && (
           <p className={errorStyles}>{`${errors.description.message}`}</p>

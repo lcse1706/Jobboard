@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import usePlacesAutocomplete from "use-places-autocomplete";
-import { boolean } from "zod";
 
 export const PlacesAutocomplete = ({
   onAddressSelect,
@@ -21,6 +20,8 @@ export const PlacesAutocomplete = ({
     debounce: 300,
     cache: 86400,
   });
+
+  const [error, setError] = useState(false);
 
   const renderSuggestions = () => {
     return data.map((suggestion) => {
@@ -47,6 +48,10 @@ export const PlacesAutocomplete = ({
 
   useEffect(() => {
     if (isSubmitted) {
+      if (!value) {
+        setError(true);
+        return;
+      }
       setValue("");
     }
   }, [isSubmitted]);
@@ -60,6 +65,8 @@ export const PlacesAutocomplete = ({
         onChange={(e) => setValue(e.target.value)}
         placeholder="Location"
       />
+
+      {error && <p className="text-red-500 mb-3">Field cannot be empty</p>}
 
       {status === "OK" && <ul>{renderSuggestions()}</ul>}
     </div>
