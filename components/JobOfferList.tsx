@@ -22,11 +22,12 @@ export const JobOfferList = () => {
         for (const item in data) {
           const { id, coordinates, ...rest } = data[item];
           jobOffers.push({
-            id,
+            id: item,
             coordinates,
             ...rest,
           });
         }
+        console.log(jobOffers);
         setRecords(jobOffers);
       };
       fetchedData(data);
