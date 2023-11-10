@@ -1,13 +1,16 @@
-'use client';
+"use client";
 
-import { useContext, createContext, useState } from 'react';
-import { OffersType } from '@/lib/types';
+import { useContext, createContext, useState } from "react";
+
+import { OffersType } from "@/lib/types";
 
 interface DataContextType {
   records: OffersType[];
   setRecords: React.Dispatch<React.SetStateAction<OffersType[]>>;
   filteredData: OffersType[];
   setFilteredData: React.Dispatch<React.SetStateAction<OffersType[]>>;
+  offerId: string;
+  setOfferId: React.Dispatch<React.SetStateAction<string>>;
   logoURL: string;
   setLogoURL: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -17,7 +20,7 @@ const DataContext = createContext<DataContextType | null>(null);
 export const useDataContext = () => {
   const context = useContext(DataContext);
   if (!context) {
-    throw new Error('Component should be placed in DataProvider !');
+    throw new Error("Component should be placed in DataProvider !");
   }
   return context;
 };
@@ -25,7 +28,8 @@ export const useDataContext = () => {
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [records, setRecords] = useState<OffersType[]>([]);
   const [filteredData, setFilteredData] = useState<OffersType[]>(records);
-  const [logoURL, setLogoURL] = useState<string>('');
+  const [offerId, setOfferId] = useState<string>("");
+  const [logoURL, setLogoURL] = useState<string>("");
 
   return (
     <DataContext.Provider
@@ -34,6 +38,8 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
         setRecords,
         filteredData,
         setFilteredData,
+        offerId,
+        setOfferId,
         logoURL,
         setLogoURL,
       }}
