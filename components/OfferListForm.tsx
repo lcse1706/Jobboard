@@ -5,10 +5,12 @@ import { useDataContext } from "@/context";
 import { useHelpersContext } from "@/context/HelpersContext";
 import { OffersProps } from "@/lib/types";
 
+import defaultLogo from "../app/favicon.ico";
+
 export const OfferListForm = (props: OffersProps) => {
   const { hoveredMarkerId } = useHelpersContext();
   const { setOfferId } = useDataContext();
-
+  console.log(props.offers);
   return (
     <ul className="m-5">
       {props.offers.map((offer) => (
@@ -25,7 +27,7 @@ export const OfferListForm = (props: OffersProps) => {
           >
             <div className="flex items-center mb-2">
               <Image
-                src={offer.logoURL}
+                src={offer.logoURL === "" ? defaultLogo : offer.logoURL}
                 alt="tech img"
                 width={25}
                 height={25}
