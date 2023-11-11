@@ -50,8 +50,6 @@ export const authConfig: NextAuthOptions = {
           }
         }
 
-        console.log(users);
-
         //Verify Password here
         //We are going to use a simple === operator
         //In production DB, passwords shou // if (dbUser && dbUser.password === credentials.password) {
@@ -75,6 +73,7 @@ export const authConfig: NextAuthOptions = {
 
 export async function loginIsRequiredServer() {
   const session = await getServerSession(authConfig);
+  // console.log(session);
   if (!session) return redirect("/login");
 }
 
