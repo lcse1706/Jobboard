@@ -3,6 +3,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui";
 import { DetailsProps } from "@/lib/types";
 
+import defaultLogo from "../favicon.ico";
+
 export const Details = (props: DetailsProps) => {
   console.log(props.details);
   const data = props.details;
@@ -10,11 +12,11 @@ export const Details = (props: DetailsProps) => {
     <div className="bg-white p-8 rounded-lg shadow-md max-w-6xl mx-auto mt-8">
       <div className="flex items-center justify-center mb-4">
         <Image
-          src={data.logoURL}
+          src={data.logoURL === "" ? defaultLogo : data.logoURL}
           alt="logo"
           width={50}
           height={50}
-          className="rounded-full"
+          className="rounded-full mr-3"
         />
         <p className="text-2xl font-bold mb-2"> {data.title}</p>
       </div>
