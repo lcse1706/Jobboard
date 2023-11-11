@@ -18,7 +18,6 @@ export const JobOfferList = () => {
       const jobOffers: OffersType[] = [];
 
       const fetchedData = (data: fetchOffersType) => {
-        console.log(data);
         for (const item in data) {
           const { id, coordinates, ...rest } = data[item];
           jobOffers.push({
@@ -27,7 +26,6 @@ export const JobOfferList = () => {
             ...rest,
           });
         }
-        console.log(jobOffers);
         setRecords(jobOffers);
       };
       fetchedData(data);

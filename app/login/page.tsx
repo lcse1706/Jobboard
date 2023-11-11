@@ -1,5 +1,4 @@
 import { getServerSession } from "next-auth";
-import { getCsrfToken } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 import { CredentialsForm } from "@/components/CredentialsForm";
@@ -9,7 +8,7 @@ import { authConfig } from "@/lib/auth";
 
 export default async function SignInPage() {
   const session = await getServerSession(authConfig);
-
+  console.log(session?.user?.email);
   if (session) return redirect("/");
 
   return (

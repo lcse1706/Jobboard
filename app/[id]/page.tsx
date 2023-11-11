@@ -11,9 +11,7 @@ const DetailsPage = () => {
   // records.map((item) => console.log(item.id));
 
   const getData = () => {
-    console.log();
     const data = records.filter((record) => record.id === offerId);
-    console.log(data);
     return data[0];
   };
 
