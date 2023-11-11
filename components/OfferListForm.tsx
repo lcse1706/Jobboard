@@ -1,16 +1,25 @@
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 
 import { useDataContext } from "@/context";
 import { useHelpersContext } from "@/context/HelpersContext";
+import { authConfig } from "@/lib/auth";
 import { OffersProps } from "@/lib/types";
 
 import defaultLogo from "../app/favicon.ico";
+import { Button } from "./ui";
 
 export const OfferListForm = (props: OffersProps) => {
   const { hoveredMarkerId } = useHelpersContext();
   const { setOfferId } = useDataContext();
-  console.log(props.offers);
+
+  const handleFavorite = async (offerId: string) => {
+    const session = await getServerSession(authConfig);
+    // console.log(session?.user?.email);
+    console.log(offerId);
+  };
+
   return (
     <ul className="m-5">
       {props.offers.map((offer) => (
@@ -41,6 +50,11 @@ export const OfferListForm = (props: OffersProps) => {
             <p className="text-gray-600">{offer.location}</p>
             <p className="mt-2">{offer.description}</p>
           </Link>
+          <Button
+            type="button"
+            label="Add to Favorite"
+            onClick={() => handleFavorite(offer.id)}
+          />
         </li>
       ))}
     </ul>
