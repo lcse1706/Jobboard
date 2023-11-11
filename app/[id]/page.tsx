@@ -14,7 +14,7 @@ const DetailsPage = () => {
     console.log();
     const data = records.filter((record) => record.id === offerId);
     console.log(data);
-    return data;
+    return data[0];
   };
 
   return <Details details={getData()} />;

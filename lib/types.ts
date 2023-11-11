@@ -74,4 +74,8 @@ export interface OffersProps {
   }>;
 }
 
+export interface DetailsProps {
+  details: OffersType;
+}
+
 // export type FormDataType = Omit<OfferFirebaseType, 'location' | 'coordinates'>;
