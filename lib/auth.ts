@@ -4,7 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 
-import { checkRegister, registerUser } from "@/services/users";
+import { getUsers, registerUser } from "@/services/users";
 
 // import GithubProvider from 'next-auth/providers/github';
 
@@ -38,7 +38,7 @@ export const authConfig: NextAuthOptions = {
           createdAt: "29.10.2023",
         };
 
-        const users = await checkRegister();
+        const users = await getUsers();
 
         for (const dbUser in users) {
           console.log(users[dbUser]);

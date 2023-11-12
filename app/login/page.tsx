@@ -8,7 +8,6 @@ import { authConfig } from "@/lib/auth";
 
 export default async function SignInPage() {
   const session = await getServerSession(authConfig);
-  console.log(session?.user?.email);
   if (session) return redirect("/");
 
   return (
