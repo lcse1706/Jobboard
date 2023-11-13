@@ -23,13 +23,11 @@ export const OfferListForm = (props: OffersProps) => {
     //1. Wyszukac odpowiedniego uztkownika
 
     for (const user in users) {
-      //TODO logowanie przez email wtawialo dane do session,
       //TODO logowanie przez google stwarzalo uzytkownika w bazie danych
 
-      // console.log(loggedEmail);
-      // console.log(users[user].email);
-
-      //Looking for logged user in database
+      // console.log("Logged User :" + loggedEmail);
+      // console.log("User from DB :" + users[user].email);
+      // Looking for logged user in database
       if (loggedEmail === users[user].email) {
         let favoriteExists = false;
 
@@ -38,7 +36,7 @@ export const OfferListForm = (props: OffersProps) => {
           console.log(favorite);
 
           if (favorite === offerId) {
-            console.log("Already exists in favorites");
+            console.log("Already exists in favorites. Deleting ...");
             favoriteExists = true;
 
             // Remove offerId from favorites array
@@ -58,14 +56,14 @@ export const OfferListForm = (props: OffersProps) => {
         }
 
         if (!favoriteExists) {
-          console.log("Not found in favorites");
+          console.log("Not found in favorites. Adding ...");
 
           const updatedUser = {
             ...users[user],
             favorites: [...users[user].favorites, offerId],
           };
 
-          console.log(updatedUser);
+          // console.log(updatedUser);
           updateUser(user, updatedUser);
         }
       }

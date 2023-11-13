@@ -40,6 +40,7 @@ export const authConfig: NextAuthOptions = {
 
         const users = await getUsers();
 
+        //TODO Poprawic walidacje hasla, poniewaz przy jednakowaych haslach wchodzi pierwszy uzytkownik z danych haslem
         for (const dbUser in users) {
           console.log(users[dbUser]);
 
