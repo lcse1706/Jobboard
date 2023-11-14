@@ -40,13 +40,15 @@ export const authConfig: NextAuthOptions = {
 
         const users = await getUsers();
 
-        //TODO Poprawic walidacje hasla, poniewaz przy jednakowaych haslach wchodzi pierwszy uzytkownik z danych haslem
         for (const dbUser in users) {
-          console.log(users[dbUser]);
-
-          if (users && users[dbUser].password === credentials.password) {
+          if (
+            users &&
+            users[dbUser].password === credentials.password &&
+            users[dbUser].email === credentials.email
+          ) {
             // const { password, createdAt, id, ...dbUserWithoutPassword } =
             //   dbUser;
+            console.log("You are logged as:" + users[dbUser].email);
             return users[dbUser] as User;
           }
         }
