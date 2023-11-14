@@ -17,18 +17,27 @@ export const Navigation = (props: NavProps) => {
 
   const logInHandler = () => {
     router.push("/login");
+    console.log(session);
   };
   const logOutHandler = () => {
     signOut();
+    console.log(session);
   };
   return (
-    <nav className="flex w-2/5 justify-end items-end" style={props.style}>
+    <nav className="flex justify-end items-end" style={props.style}>
       <ul className="flex flex-row space-x-2">
         {props.nav.map((item, index) => (
           <li key={index} className="grow text-center py-2 px-4 m-1">
             <Link href={item.link}>{item.label}</Link>
           </li>
         ))}
+        {session.status !== "authenticated" ? (
+          <p></p>
+        ) : (
+          <p className="border-l-2  border-gray-600 py-2 px-4 m-1">
+            You are logged as {session.data.user?.name} !
+          </p>
+        )}
         {session.status !== "authenticated" ? (
           <Button type="submit" label="Login" onClick={logInHandler}></Button>
         ) : (

@@ -46,6 +46,15 @@ export const RegisterForm: NextPage = () => {
           <p className="text-red-500">{`${errors.email.message}`}</p>
         )}
         <Input
+          register={register("name")}
+          type="name"
+          placeholder="Your name"
+          className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
+        />
+        {errors.name && (
+          <p className="text-red-500">{`${errors.name.message}`}</p>
+        )}
+        <Input
           register={register("password")}
           type="password"
           placeholder="Password"

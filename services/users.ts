@@ -7,6 +7,7 @@ const headers = {
 export const registerUser = async (data: TRegisterSchema) => {
   const User = {
     email: data.email,
+    name: data.name,
     password: data.password,
     createdAt: new Date().toISOString().slice(0, 10),
     favorites: [""],
