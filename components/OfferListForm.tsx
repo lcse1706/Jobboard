@@ -1,13 +1,14 @@
-import { getServerSession } from "next-auth";
+import { User, getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect, useRouter } from "next/navigation";
 
 import { useDataContext } from "@/context";
 import { useHelpersContext } from "@/context/HelpersContext";
 import { authConfig } from "@/lib/auth";
 import { OffersProps } from "@/lib/types";
-import { getUsers, updateUser } from "@/services/users";
+import { getUsers, registerUser, updateUser } from "@/services/users";
 
 import defaultLogo from "../app/favicon.ico";
 import { Button } from "./ui";
@@ -16,69 +17,78 @@ export const OfferListForm = (props: OffersProps) => {
   const { hoveredMarkerId } = useHelpersContext();
   const { setOfferId } = useDataContext();
   const { data: session } = useSession();
+  const router = useRouter();
 
   const handleFavorite = async (offerId: string) => {
-    const users = await getUsers();
-    const loggedEmail = session?.user?.email;
-    //1. Wyszukac odpowiedniego uztkownika
+    if (session) {
+      const users = await getUsers();
+      const loggedEmail = session?.user?.email;
+      let userExist = false;
 
-    for (const user in users) {
-      //TODO logowanie przez google stwarzalo uzytkownika w bazie danych
-
-      // console.log("Logged User :" + loggedEmail);
-      // console.log("User from DB :" + users[user].email);
-      // Looking for logged user in database
-      if (loggedEmail === users[user].email) {
-        let favoriteExists = false;
-
-        for (let i = 0; i < users[user].favorites.length; i++) {
-          const favorite = users[user].favorites[i];
-          console.log(favorite);
-
-          if (favorite === offerId) {
-            console.log("Already exists in favorites. Deleting ...");
-            favoriteExists = true;
-
-            // Remove offerId from favorites array
-            const updatedFavorites = [...users[user].favorites];
-            updatedFavorites.splice(i, 1);
-
-            const updatedUser = {
-              ...users[user],
-              favorites: updatedFavorites,
-            };
-
-            console.log(updatedUser);
-            updateUser(user, updatedUser);
-
-            break; // No need to continue checking, exit the loop
-          }
-        }
-
-        if (!favoriteExists) {
-          console.log("Not found in favorites. Adding ...");
-
-          const updatedUser = {
-            ...users[user],
-            favorites: [...users[user].favorites, offerId],
-          };
-
-          // console.log(updatedUser);
-          updateUser(user, updatedUser);
+      //check if user exist
+      for (const user in users) {
+        if (users[user].email === loggedEmail) {
+          userExist = true;
+          console.log("sprawdzamy users: " + users[user].email + loggedEmail);
         }
       }
+
+      if (!userExist) {
+        const newUser = {
+          email: loggedEmail,
+        };
+
+        await registerUser(newUser);
+      }
+
+      const updatedUsers = await getUsers();
+
+      //1. Wyszukac odpowiedniego uztkownika
+      for (const user in updatedUsers) {
+        if (loggedEmail === updatedUsers[user].email) {
+          let favoriteExists = false;
+
+          for (let i = 0; i < updatedUsers[user].favorites.length; i++) {
+            const favorite = updatedUsers[user].favorites[i];
+            console.log(favorite);
+
+            if (favorite === offerId) {
+              console.log("Already exists in favorites. Deleting ...");
+              favoriteExists = true;
+
+              // Remove offerId from favorites array
+              const updatedFavorites = [...updatedUsers[user].favorites];
+              updatedFavorites.splice(i, 1);
+
+              const updatedUser = {
+                ...updatedUsers[user],
+                favorites: updatedFavorites,
+              };
+
+              console.log(updatedUser);
+              updateUser(user, updatedUser);
+
+              break; // No need to continue checking, exit the loop
+            }
+          }
+
+          if (!favoriteExists) {
+            console.log("Not found in favorites. Adding ...");
+
+            const updatedUser = {
+              ...updatedUsers[user],
+              favorites: [...updatedUsers[user].favorites, offerId],
+            };
+
+            // console.log(updatedUser);
+            updateUser(user, updatedUser);
+          }
+        }
+      }
+    } else {
+      console.log("No logged user.");
+      router.push("/login");
     }
-    // 2. sprawdzic czy record jest jest w favorite
-
-    // jesli nie  - DODAC
-
-    // jesli tak - USUNAC
-
-    // console.log(users);
-    // const session = await getServerSession(authConfig);
-    // console.log(session?.user?.email);
-    // console.log(session?.user?.email);
-    // console.log(offerId);
   };
 
   return (

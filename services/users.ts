@@ -27,8 +27,6 @@ export const registerUser = async (data: TRegisterSchema) => {
   } else {
     throw new Error("Registration failed.");
   }
-
-  return null;
 };
 
 export const getUsers = async () => {
