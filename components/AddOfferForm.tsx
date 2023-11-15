@@ -6,12 +6,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoadScript } from "@react-google-maps/api";
 import type { NextPage } from "next";
+import { useSession } from "next-auth/react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 
 import { Button, Input } from "@/components/ui";
 import { useDataContext, useHelpersContext } from "@/context";
 import { TOfferDTO, offerDTO, PlaceInfo } from "@/lib/types";
 import { fetchOffers, updateOffer, sendOffer } from "@/services/offers";
+import { getUsers, updateUser } from "@/services/users";
 
 import { PlacesAutocomplete } from "./PlacesAutocomplete";
 import UploadLogo from "./UploadLogo";
@@ -40,10 +42,10 @@ export const AddOfferForm: NextPage = () => {
 
   const submitRef = useRef<HTMLFormElement | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { data: session } = useSession();
 
   const updateLastRecord = async () => {
     const data = await fetchOffers();
-    console.log(data);
     if (data) {
       const keys = Object.keys(data);
 
@@ -90,6 +92,20 @@ export const AddOfferForm: NextPage = () => {
     return <p>Loading...</p>;
   }
 
+  const addOfferToUser = async (id: string) => {
+    const users = await getUsers();
+    const loggedEmail = session?.user?.email;
+    for (const user in users) {
+      if (users[user].email === loggedEmail) {
+        const updatedUser = {
+          ...users[user],
+          offersPublished: [...users[user].offersPublished, id],
+        };
+        updateUser(user, updatedUser);
+      }
+    }
+  };
+
   const submitHandler = async (data: TOfferDTO) => {
     setIsSubmitted(false);
 
@@ -98,7 +114,9 @@ export const AddOfferForm: NextPage = () => {
     }
 
     try {
-      await sendOffer(data, placeInfo, logoURL);
+      const idOfJustAddedOffer = await sendOffer(data, placeInfo, logoURL);
+      console.log("Just added offer id: " + idOfJustAddedOffer);
+      addOfferToUser(idOfJustAddedOffer);
     } catch (error) {
       console.log(error);
     }

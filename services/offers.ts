@@ -1,8 +1,4 @@
-import {
-  TOfferDTO,
-  OfferFirebaseType,
-  PlaceInfo,
-} from "@/lib/types";
+import { TOfferDTO, OfferFirebaseType, PlaceInfo } from "@/lib/types";
 
 const headers = {
   "Content-Type": "application/json",
@@ -33,12 +29,13 @@ export const sendOffer = async (
   );
 
   if (sendResponse.ok) {
+    const responseData = await sendResponse.json();
     console.log("Data send successful !");
+    //Returning offer id
+    return responseData.name;
   } else {
     throw new Error("Sending failed.");
   }
-
-  return null;
 };
 
 export const fetchOffers = async () => {
@@ -74,4 +71,3 @@ export const updateOffer = (recordKey: string, newData: OfferFirebaseType) => {
       console.error("Error updating record:", error);
     });
 };
-

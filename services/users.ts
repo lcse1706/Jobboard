@@ -10,6 +10,7 @@ export const registerUser = async (data: TRegisterSchema) => {
     name: data.name,
     password: data.password,
     createdAt: new Date().toISOString().slice(0, 10),
+    offersPublished: [""],
     favorites: [""],
   };
 
