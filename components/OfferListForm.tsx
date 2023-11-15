@@ -12,6 +12,7 @@ import { getUsers, registerUser, updateUser } from "@/services/users";
 
 import defaultLogo from "../app/favicon.ico";
 import { Button } from "./ui";
+import { checkIfUserInDb } from "./utils/checkIfUserInDb";
 
 export const OfferListForm = (props: OffersProps) => {
   const { hoveredMarkerId } = useHelpersContext();
@@ -21,25 +22,9 @@ export const OfferListForm = (props: OffersProps) => {
 
   const handleFavorite = async (offerId: string) => {
     if (session) {
-      const users = await getUsers();
       const loggedEmail = session?.user?.email;
-      let userExist = false;
 
-      //check if user exist
-      for (const user in users) {
-        if (users[user].email === loggedEmail) {
-          userExist = true;
-          console.log("sprawdzamy users: " + users[user].email + loggedEmail);
-        }
-      }
-
-      if (!userExist) {
-        const newUser = {
-          email: loggedEmail,
-        };
-
-        await registerUser(newUser);
-      }
+      await checkIfUserInDb(session);
 
       const updatedUsers = await getUsers();
 
