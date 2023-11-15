@@ -17,6 +17,7 @@ import { getUsers, updateUser } from "@/services/users";
 
 import { PlacesAutocomplete } from "./PlacesAutocomplete";
 import UploadLogo from "./UploadLogo";
+import { checkIfUserInDb } from "./utils/checkIfUserInDb";
 
 const inputStyles = "w-full mb-2 p-2 border rounded";
 const errorStyles = "text-red-500 mb-3";
@@ -93,6 +94,9 @@ export const AddOfferForm: NextPage = () => {
   }
 
   const addOfferToUser = async (id: string) => {
+    //Check if user exist in db
+    await checkIfUserInDb(session);
+
     const users = await getUsers();
     const loggedEmail = session?.user?.email;
     for (const user in users) {

@@ -24,6 +24,7 @@ export const OfferListForm = (props: OffersProps) => {
     if (session) {
       const loggedEmail = session?.user?.email;
 
+      //Check if exist in db
       await checkIfUserInDb(session);
 
       const updatedUsers = await getUsers();
