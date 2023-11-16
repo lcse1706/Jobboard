@@ -19,10 +19,7 @@ export const Navigation = (props: NavProps) => {
     router.push("/login");
     console.log(session);
   };
-  const logOutHandler = () => {
-    signOut();
-    console.log(session);
-  };
+
   return (
     <nav className="flex justify-end items-end" style={props.style}>
       <ul className="flex flex-row space-x-2">
@@ -41,7 +38,11 @@ export const Navigation = (props: NavProps) => {
         {session.status !== "authenticated" ? (
           <Button type="submit" label="Login" onClick={logInHandler}></Button>
         ) : (
-          <Button type="submit" label="Logout" onClick={logOutHandler}></Button>
+          <Button
+            type="submit"
+            label="My profile"
+            onClick={() => router.push("/profile")}
+          ></Button>
         )}
       </ul>
     </nav>
