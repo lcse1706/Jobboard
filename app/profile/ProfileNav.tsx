@@ -19,8 +19,13 @@ export const ProfileNav = () => {
           </Link>
         </li>
         <li>
-          <Link href="/profile/offers" className="hover:text-gray-600">
+          <Link href="/profile/offers" className="hover:text-gray-600 mr-5">
             My Offers
+          </Link>
+        </li>
+        <li>
+          <Link href="/profile/favorites" className="hover:text-gray-600 mr-5">
+            Favorites Offers
           </Link>
         </li>
       </ul>

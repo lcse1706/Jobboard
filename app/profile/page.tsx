@@ -5,7 +5,6 @@ import { ProfileNav } from "./ProfileNav";
 const ProfilePage = () => {
   return (
     <div className="flex flex-col items-center justify-start h-screen">
-      <ProfileNav />
       <section className="ml-8">
         <p>Profile Info</p>
       </section>
