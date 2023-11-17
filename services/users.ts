@@ -37,6 +37,7 @@ export const getUsers = async () => {
       method: "GET",
       headers,
       body: null,
+      next: { tags: ["users"] },
     }
   );
   if (getUsers.ok) {

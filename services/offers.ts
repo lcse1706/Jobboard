@@ -45,6 +45,7 @@ export const fetchOffers = async () => {
       method: "GET",
       headers: headers,
       body: null,
+      next: { tags: ["offers"] },
     }
   );
 
