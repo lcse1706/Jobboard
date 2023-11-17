@@ -5,10 +5,9 @@ import { authConfig } from "@/lib/auth";
 import { fetchOffers } from "@/services";
 import { getUsers } from "@/services/users";
 
-import { ProfileNav } from "../ProfileNav";
-import { ProfileOffers } from "./ProfileOffers";
+import { ProfileOffers } from "./offers/ProfileOffers";
 
-export default async function Offers() {
+export const ProfileOffersTab = async () => {
   const offers = await fetchOffers();
   const users = await getUsers();
   revalidateTag("users");
@@ -35,15 +34,12 @@ export default async function Offers() {
   }
 
   return (
-    <div className="flex items-center justify-around h-screen">
-      <ProfileNav />
-      <ul>
-        {userOffers.map((item) => (
-          <li key={item}>
-            <ProfileOffers data={item} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {userOffers.map((item) => (
+        <li key={item}>
+          <ProfileOffers data={item} />
+        </li>
+      ))}
+    </ul>
   );
-}
+};

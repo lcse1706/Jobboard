@@ -25,6 +25,7 @@ export const ProfileOffers = (props: any) => {
       <p className="text-left">{data.description}</p>
       <div className="flex justify-center">
         <Button label="Edit" type="button" />
+        <Button label="Delete" className="bg-red-600" type="button" />
       </div>
     </div>
   );
