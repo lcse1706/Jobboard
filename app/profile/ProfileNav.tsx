@@ -11,18 +11,15 @@ export const ProfileNav = () => {
   };
 
   return (
-    <nav className="bg-gray-800 p-4 relative top-0 left-0 h-2/3 flex flex-col justify-between">
-      <ul className="flex flex-col space-y-2">
+    <nav className="flex flex-row h-20 bg-gray-200 items-center justify-end p-4 flex w-full ">
+      <ul className="flex flex-row justify-end w-1/2">
         <li>
-          <Link href="/profile/" className="text-white hover:text-gray-300">
+          <Link href="/profile/" className="hover:text-gray-600 mr-5">
             Profile
           </Link>
         </li>
         <li>
-          <Link
-            href="/profile/offers"
-            className="text-white hover:text-gray-300"
-          >
+          <Link href="/profile/offers" className="hover:text-gray-600">
             My Offers
           </Link>
         </li>
@@ -31,7 +28,7 @@ export const ProfileNav = () => {
         type="button"
         label="LogOut"
         onClick={logOutHandler}
-        className="text-white hover:text-gray-300"
+        className="text-white hover:text-gray-300 ml-5"
       />
     </nav>
   );

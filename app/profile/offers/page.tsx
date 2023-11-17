@@ -35,7 +35,7 @@ export default async function Offers() {
   }
 
   return (
-    <div className="flex items-center justify-around h-screen">
+    <div className="flex flex-col items-center justify-start h-screen">
       <ProfileNav />
       <ul>
         {userOffers.map((item) => (
