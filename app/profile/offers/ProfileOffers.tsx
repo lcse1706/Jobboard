@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 import { Button } from "@/components/ui";
-import { DetailsProps } from "@/lib/types";
 
-import defaultLogo from "../favicon.ico";
+import defaultLogo from "../../favicon.ico";
 
-export const Details = (props: DetailsProps) => {
-  const data = props.details;
+export const ProfileOffers = (props: any) => {
+  const data = props.data;
+
   return (
     <div className="bg-white p-8 rounded-lg shadow-md max-w-6xl mx-auto mt-8">
       <div className="flex items-center justify-center mb-4">
@@ -24,7 +24,7 @@ export const Details = (props: DetailsProps) => {
       <p className="italic text-gray-500 mb-4">{data.technologies}</p>
       <p className="text-left">{data.description}</p>
       <div className="flex justify-center">
-        <Button label="Apply" type="button" />
+        <Button label="Edit" type="button" />
       </div>
     </div>
   );

@@ -1,15 +1,19 @@
-import { useLayoutEffect } from "react";
+import { getServerSession } from "next-auth";
+import { revalidateTag } from "next/cache";
 
-import { useSession } from "next-auth/react";
-
+import { authConfig } from "@/lib/auth";
 import { fetchOffers } from "@/services";
 import { getUsers } from "@/services/users";
 
-const Offers = async () => {
+import { ProfileOffers } from "./ProfileOffers";
+
+export default async function Offers() {
   const offers = await fetchOffers();
   const users = await getUsers();
-  const { data: session } = useSession();
-
+  revalidateTag("users");
+  revalidateTag("offers");
+  // console.log(users);
+  const session = await getServerSession(authConfig);
   const sessionUser = session?.user?.email;
 
   // Find logged user
@@ -17,12 +21,16 @@ const Offers = async () => {
   for (const user in users) {
     if (sessionUser === users[user].email) userData = users[user];
   }
+  // console.log(userData);
 
   // Find published offers
   let userOffers = [];
+  // console.log(offers);
+
   for (const offer in offers) {
-    for (const published in userData.offersPublished)
-      if (published === offer) userOffers.push(offer);
+    for (const published of userData.offersPublished) {
+      if (published === offer) userOffers.push(offers[offer]);
+    }
   }
 
   console.log(userOffers);
@@ -30,10 +38,10 @@ const Offers = async () => {
   return (
     <ul>
       {userOffers.map((item) => (
-        <li key={item}>{item}</li>
+        <li key={item}>
+          <ProfileOffers data={item} />
+        </li>
       ))}
     </ul>
   );
-};
-
-export default Offers;
+}
