@@ -1,10 +1,9 @@
 import { NextAuthOptions, User, getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import { useSession } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
-import { getUsers, registerUser } from "@/services/users";
+import { getUsers } from "@/services/users";
 
 // import GithubProvider from 'next-auth/providers/github';
 
@@ -27,16 +26,6 @@ export const authConfig: NextAuthOptions = {
         // const dbUser = await prisma.user.findFirst({
         //   where: { email: credentials.email },
         // });
-
-        const dbUser1 = {
-          email: "lukaszczarniecki1@gmail.com",
-          password: "123",
-          id: "1",
-          // name?: string | null
-          // email?: string | null
-          // image?: string | null
-          createdAt: "29.10.2023",
-        };
 
         const users = await getUsers();
 
@@ -76,7 +65,7 @@ export const authConfig: NextAuthOptions = {
 
 export async function loginIsRequiredServer() {
   const session = await getServerSession(authConfig);
-  // console.log(session);
+  console.log(session);
   if (!session) return redirect("/login");
 }
 
