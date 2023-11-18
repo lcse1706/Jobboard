@@ -1,18 +1,24 @@
-export const pickOffers = (
-  offers: [],
-  users: any,
-  sessionUser: any,
-  pickOffers: string
-) => {
+import { getServerSession } from "next-auth";
+import { revalidateTag } from "next/cache";
+
+import { authConfig } from "@/lib/auth";
+import { fetchOffers, getUsers } from "@/services";
+
+export const pickOffers = async (pickOffers: string) => {
+  const offers = await fetchOffers();
+  const users = await getUsers();
+  revalidateTag("users");
+  revalidateTag("offers");
+
+  const session = await getServerSession(authConfig);
+  const sessionUser = session?.user?.email;
+
   let userData;
   for (const user in users) {
     if (sessionUser === users[user].email) userData = users[user];
   }
-  // console.log(userData);
 
-  // Find published offers
   let userOffers: any[] = [];
-  // console.log(offers);
 
   for (const offer in offers) {
     for (const published of userData[pickOffers]) {

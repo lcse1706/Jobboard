@@ -1,5 +1,3 @@
-import { ProfileNav } from "./ProfileNav";
-
 // Import your ProfileOffers component here
 
 const ProfilePage = () => {
