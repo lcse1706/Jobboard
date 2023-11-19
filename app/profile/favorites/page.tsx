@@ -4,7 +4,6 @@ import { FavoritesOffers } from "./FavoritesOffers";
 
 export default async function Offers() {
   const userOffers = await pickOffers("favorites");
-  console.log("offers: " + userOffers);
 
   return (
     <ul className="flex flex-col items-center justify-start h-screen">

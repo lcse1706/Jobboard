@@ -6,13 +6,12 @@ import { redirect, useRouter } from "next/navigation";
 
 import { useDataContext } from "@/context";
 import { useHelpersContext } from "@/context/HelpersContext";
-import { authConfig } from "@/lib/auth";
 import { OffersProps } from "@/lib/types";
-import { getUsers, registerUser, updateUser } from "@/services/users";
 
 import defaultLogo from "../app/favicon.ico";
 import { Button } from "./ui";
 import { checkIfUserInDb } from "./utils/checkIfUserInDb";
+import { toggleFavorite } from "./utils/toggleFavorite";
 
 export const OfferListForm = (props: OffersProps) => {
   const { hoveredMarkerId } = useHelpersContext();
@@ -22,55 +21,11 @@ export const OfferListForm = (props: OffersProps) => {
 
   const handleFavorite = async (offerId: string) => {
     if (session) {
-      const loggedEmail = session?.user?.email;
-
       //Check if exist in db
       await checkIfUserInDb(session);
-
-      const updatedUsers = await getUsers();
+      await toggleFavorite(offerId, session);
 
       //1. Wyszukac odpowiedniego uztkownika
-      for (const user in updatedUsers) {
-        if (loggedEmail === updatedUsers[user].email) {
-          let favoriteExists = false;
-
-          for (let i = 0; i < updatedUsers[user].favorites.length; i++) {
-            const favorite = updatedUsers[user].favorites[i];
-            console.log(favorite);
-
-            if (favorite === offerId) {
-              console.log("Already exists in favorites. Deleting ...");
-              favoriteExists = true;
-
-              // Remove offerId from favorites array
-              const updatedFavorites = [...updatedUsers[user].favorites];
-              updatedFavorites.splice(i, 1);
-
-              const updatedUser = {
-                ...updatedUsers[user],
-                favorites: updatedFavorites,
-              };
-
-              console.log(updatedUser);
-              updateUser(user, updatedUser);
-
-              break; // No need to continue checking, exit the loop
-            }
-          }
-
-          if (!favoriteExists) {
-            console.log("Not found in favorites. Adding ...");
-
-            const updatedUser = {
-              ...updatedUsers[user],
-              favorites: [...updatedUsers[user].favorites, offerId],
-            };
-
-            // console.log(updatedUser);
-            updateUser(user, updatedUser);
-          }
-        }
-      }
     } else {
       console.log("No logged user.");
       router.push("/login");

@@ -1,8 +1,9 @@
+import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 
 import { getUsers, registerUser } from "@/services/users";
 
-export const checkIfUserInDb = async (session: any) => {
+export const checkIfUserInDb = async (session: Session | null | undefined) => {
   const users = await getUsers();
   const loggedEmail = session?.user?.email;
   let userExist = false;

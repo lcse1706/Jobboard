@@ -6,6 +6,9 @@ import defaultLogo from "../../favicon.ico";
 
 export const FavoritesOffers = (props: any) => {
   const data = props.data;
+  console.log(data);
+
+  const deleteFavorite = (data: string) => {};
 
   return (
     <div className="bg-white p-8 rounded-lg shadow-md max-w-6xl mx-auto mt-8">
@@ -28,6 +31,7 @@ export const FavoritesOffers = (props: any) => {
           label="Delete From Favorites"
           className="bg-red-600"
           type="button"
+          // onClick={() => deleteFavorite(data)}
         />
       </div>
     </div>

@@ -21,8 +21,8 @@ export const pickOffers = async (pickOffers: string) => {
   let userOffers: any[] = [];
 
   for (const offer in offers) {
-    for (const published of userData[pickOffers]) {
-      if (published === offer) userOffers.push(offers[offer]);
+    for (const item of userData[pickOffers]) {
+      if (item === offer) userOffers.push(offers[offer]);
     }
   }
 
