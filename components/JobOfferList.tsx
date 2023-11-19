@@ -41,7 +41,9 @@ export const JobOfferList = () => {
   return (
     <section>
       <SearchBar />
-      <OfferListForm offers={filteredData} />
+      {filteredData.map((offer) => (
+        <OfferListForm key={offer.id} offer={offer} />
+      ))}
     </section>
   );
 };
