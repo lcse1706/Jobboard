@@ -62,6 +62,7 @@ export const fetchOffers = async () => {
 export const updateOffer = (recordKey: string, newData: OfferFirebaseType) => {
   fetch(`${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_URL}/${recordKey}.json`, {
     method: "PUT",
+    headers,
     body: JSON.stringify(newData),
   })
     .then((response) => response.json())
@@ -70,5 +71,25 @@ export const updateOffer = (recordKey: string, newData: OfferFirebaseType) => {
     })
     .catch((error) => {
       console.error("Error updating record:", error);
+    });
+};
+
+//FIXME link doesnt work from env
+export const deleteDashboardOffer = (recordKey: string) => {
+  // fetch(`${process.env.NEXT_PUBLIC_FIREBASE_DELETE_URL}/${recordKey}.json`, {
+  fetch(
+    `https://jobboard-335d5-default-rtdb.europe-west1.firebasedatabase.app/Offers/${recordKey}.json`,
+    {
+      method: "DELETE",
+      headers,
+      body: JSON.stringify(null),
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Record deleted:", recordKey);
+    })
+    .catch((error) => {
+      console.error("Error deleting record:", error);
     });
 };

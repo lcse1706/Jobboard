@@ -7,20 +7,21 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui";
-import { deleteOffer } from "@/components/utils/deleteOffer";
+import { deleteUserOffer } from "@/components/utils/deleteUserOffer";
+import { deleteDashboardOffer } from "@/services/offers";
 
 import defaultLogo from "../../favicon.ico";
 
 export const ProfileOffers = (props: any) => {
   const data = props.data;
-  console.log(data);
+  // console.log(data);
 
   const { data: session } = useSession();
   const router = useRouter();
   //TODO add informationn if no offers
-  //TODO delete it from general offers
-  const handleDelate = () => {
-    deleteOffer(data.id, session, "offersPublished");
+  const handleDelete = async () => {
+    await deleteUserOffer(data.id, session, "offersPublished");
+    await deleteDashboardOffer(data.id);
     setTimeout(() => {
       router.refresh();
     }, 250);
@@ -52,7 +53,7 @@ export const ProfileOffers = (props: any) => {
           label="Delete"
           className="bg-red-600"
           type="button"
-          onClick={handleDelate}
+          onClick={handleDelete}
         />
       </div>
     </div>
