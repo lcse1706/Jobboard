@@ -22,7 +22,14 @@ export const pickOffers = async (pickOffers: string) => {
 
   for (const offer in offers) {
     for (const item of userData[pickOffers]) {
-      if (item === offer) userOffers.push(offers[offer]);
+      if (item === offer) {
+        const offerWithId = {
+          id: item,
+          ...offers[offer],
+        };
+
+        userOffers.push(offerWithId);
+      }
     }
   }
 

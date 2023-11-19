@@ -1,14 +1,26 @@
+"use client";
+
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui";
+import { deleteOffer } from "@/components/utils/deleteOffer";
 
 import defaultLogo from "../../favicon.ico";
 
 export const FavoritesOffers = (props: any) => {
   const data = props.data;
   console.log(data);
+  const { data: session } = useSession();
+  const router = useRouter();
 
-  const deleteFavorite = (data: string) => {};
+  const handleDelate = () => {
+    deleteOffer(data.id, session);
+    setTimeout(() => {
+      router.refresh();
+    }, 500);
+  };
 
   return (
     <div className="bg-white p-8 rounded-lg shadow-md max-w-6xl mx-auto mt-8">
@@ -31,7 +43,7 @@ export const FavoritesOffers = (props: any) => {
           label="Delete From Favorites"
           className="bg-red-600"
           type="button"
-          // onClick={() => deleteFavorite(data)}
+          onClick={handleDelate}
         />
       </div>
     </div>
