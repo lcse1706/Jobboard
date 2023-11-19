@@ -1,8 +1,7 @@
-import { User, getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { useDataContext } from "@/context";
 import { useHelpersContext } from "@/context/HelpersContext";
