@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -9,6 +11,8 @@ import { deleteOffer } from "@/components/utils/deleteOffer";
 
 import defaultLogo from "../../favicon.ico";
 
+//TODO add informationn if no offers
+
 export const FavoritesOffers = (props: any) => {
   const data = props.data;
   console.log(data);
@@ -16,11 +20,15 @@ export const FavoritesOffers = (props: any) => {
   const router = useRouter();
 
   const handleDelate = () => {
-    deleteOffer(data.id, session);
+    deleteOffer(data.id, session, "favorites");
     setTimeout(() => {
       router.refresh();
-    }, 500);
+    }, 250);
   };
+
+  useEffect(() => {
+    router.refresh();
+  }, []);
 
   return (
     <div className="bg-white p-8 rounded-lg shadow-md max-w-6xl mx-auto mt-8">

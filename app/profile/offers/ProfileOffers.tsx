@@ -1,11 +1,34 @@
+"use client";
+
+import { useEffect } from "react";
+
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui";
+import { deleteOffer } from "@/components/utils/deleteOffer";
 
 import defaultLogo from "../../favicon.ico";
 
 export const ProfileOffers = (props: any) => {
   const data = props.data;
+  console.log(data);
+
+  const { data: session } = useSession();
+  const router = useRouter();
+  //TODO add informationn if no offers
+  //TODO delete it from general offers
+  const handleDelate = () => {
+    deleteOffer(data.id, session, "offersPublished");
+    setTimeout(() => {
+      router.refresh();
+    }, 250);
+  };
+
+  useEffect(() => {
+    router.refresh();
+  }, []);
 
   return (
     <div className="bg-white p-8 rounded-lg shadow-md max-w-6xl mx-auto mt-8">
@@ -24,8 +47,13 @@ export const ProfileOffers = (props: any) => {
       <p className="italic text-gray-500 mb-4">{data.technologies}</p>
       <p className="text-left">{data.description}</p>
       <div className="flex justify-center">
-        <Button label="Edit" type="button" />
-        <Button label="Delete" className="bg-red-600" type="button" />
+        <Button label="Edit (in progress)" type="button" />
+        <Button
+          label="Delete"
+          className="bg-red-600"
+          type="button"
+          onClick={handleDelate}
+        />
       </div>
     </div>
   );
