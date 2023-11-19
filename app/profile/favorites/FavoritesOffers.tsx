@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui";
-import { deleteOffer } from "@/components/utils/deleteOffer";
+import { deleteUserOffer } from "@/components/utils/deleteUserOffer";
 
 import defaultLogo from "../../favicon.ico";
 
@@ -19,8 +19,8 @@ export const FavoritesOffers = (props: any) => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const handleDelate = () => {
-    deleteOffer(data.id, session, "favorites");
+  const handleDelete = () => {
+    deleteUserOffer(data.id, session, "favorites");
     setTimeout(() => {
       router.refresh();
     }, 250);
@@ -51,7 +51,7 @@ export const FavoritesOffers = (props: any) => {
           label="Delete From Favorites"
           className="bg-red-600"
           type="button"
-          onClick={handleDelate}
+          onClick={handleDelete}
         />
       </div>
     </div>
