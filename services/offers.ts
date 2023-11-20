@@ -58,13 +58,18 @@ export const fetchOffers = async () => {
   const data = await fetchResponse.json();
   return data;
 };
+//FIXME link doesnt work from env
 
 export const updateOffer = (recordKey: string, newData: OfferFirebaseType) => {
-  fetch(`${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_URL}/${recordKey}.json`, {
-    method: "PUT",
-    headers,
-    body: JSON.stringify(newData),
-  })
+  // fetch(`${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_URL}/${recordKey}.json`, {
+  fetch(
+    `https://jobboard-335d5-default-rtdb.europe-west1.firebasedatabase.app/Offers/${recordKey}.json`,
+    {
+      method: "PUT",
+      headers,
+      body: JSON.stringify(newData),
+    }
+  )
     .then((response) => response.json())
     .then((data) => {
       console.log("Record updated:", data);
@@ -76,7 +81,7 @@ export const updateOffer = (recordKey: string, newData: OfferFirebaseType) => {
 
 //FIXME link doesnt work from env
 export const deleteDashboardOffer = (recordKey: string) => {
-  // fetch(`${process.env.NEXT_PUBLIC_FIREBASE_DELETE_URL}/${recordKey}.json`, {
+  // fetch(`${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_URL}/${recordKey}.json`, {
   fetch(
     `https://jobboard-335d5-default-rtdb.europe-west1.firebasedatabase.app/Offers/${recordKey}.json`,
     {
