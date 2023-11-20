@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,30 +26,29 @@ export const OfferListForm = (props: any) => {
 
   const [favorite, setFavorite] = useState(false);
 
-  const checkIfFavorite = async () => {
-    const users = await getUsers();
-    console.log(users);
-
-    const sessionUser = session?.user?.email;
-
-    for (const user in users) {
-      if (sessionUser === users[user].email) {
-        // Use some() instead of filter() to check if the offer.id is in favorites
-        if (users[user].favorites.some((item) => item === offer.id)) {
-          setFavorite(true);
-          console.log(offer.id);
+  useEffect(() => {
+    const checkFavorite = async () => {
+      const users = await getUsers();
+      const sessionUser = session?.user?.email;
+      console.log("useEffect favorite");
+      for (const user in users) {
+        if (sessionUser === users[user].email) {
+          if (users[user].favorites.some((item) => item === offer.id)) {
+            setFavorite(true);
+          }
         }
       }
-    }
-  };
+    };
 
-  checkIfFavorite();
+    checkFavorite();
+  }, [session, offer.id]);
 
   const handleFavorite = async (offerId: string) => {
     if (session) {
       //Check if exist in db
       await checkIfUserInDb(session);
       await toggleFavorite(offerId, session);
+      setFavorite(!favorite);
 
       //1. Wyszukac odpowiedniego uztkownika
     } else {
@@ -90,7 +89,7 @@ export const OfferListForm = (props: any) => {
         <Button
           type="button"
           label={<FontAwesomeIcon icon={faStar} />}
-          className={`${favorite ? "text-[#000000]" : "text-white"}`}
+          className={`${favorite ? "text-gray-900" : "text-white"}`}
           onClick={() => handleFavorite(offer.id)}
         />
       </li>

@@ -32,7 +32,7 @@ export const toggleFavorite = async (
           };
 
           console.log(updatedUser);
-          updateUser(user, updatedUser);
+          await updateUser(user, updatedUser);
 
           break; // No need to continue checking, exit the loop
         }
@@ -47,7 +47,7 @@ export const toggleFavorite = async (
         };
 
         // console.log(updatedUser);
-        updateUser(user, updatedUser);
+        await updateUser(user, updatedUser);
       }
     }
   }
