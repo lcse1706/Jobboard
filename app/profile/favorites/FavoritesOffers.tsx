@@ -11,7 +11,7 @@ import { deleteUserOffer } from "@/components/utils/deleteUserOffer";
 
 import defaultLogo from "../../favicon.ico";
 
-//TODO add informationn if no offers
+//FIXME its not refreshing  after adding favorites on dashboard
 
 export const FavoritesOffers = (props: any) => {
   const data = props.data;

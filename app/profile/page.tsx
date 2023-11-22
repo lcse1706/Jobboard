@@ -10,6 +10,7 @@ const ProfilePage = async () => {
   const session = await getServerSession(authConfig);
   console.log(session?.user?.image);
   const logo = session?.user?.image;
+  //FIXME its not refreshing  after add offer on dashboard
   return (
     <div className="flex flex-col items-center justify-start h-screen">
       <section className="flex flex-row mt-10">
