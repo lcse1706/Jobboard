@@ -56,6 +56,7 @@ export const OfferListForm = (props: any) => {
       router.push("/login");
     }
   };
+  //FIXME Not always dispaly color in favorite star - cn be browser problem -because class adding  is done correctly
 
   return (
     <li
@@ -68,7 +69,7 @@ export const OfferListForm = (props: any) => {
         type="button"
         label={<FontAwesomeIcon icon={faStar} />}
         className={`${
-          favorite ? "text-gray-800" : "text-white"
+          favorite ? "text-gray-900" : "text-white"
         } absolute top-2 right-5`}
         onClick={() => handleFavorite(offer.id)}
       />
