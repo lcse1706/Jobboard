@@ -12,7 +12,7 @@ const ProfilePage = async () => {
   const logo = session?.user?.image;
   //FIXME its not refreshing  after add offer on dashboard
   return (
-    <div className="flex flex-col items-center justify-start h-screen">
+    <div className="flex flex-col items-center justify-start dh-screen">
       <section className="flex flex-row mt-10">
         {logo ? (
           typeof logo === "string" ? (

@@ -15,7 +15,6 @@ import defaultLogo from "../../favicon.ico";
 
 export const FavoritesOffers = (props: any) => {
   const data = props.data;
-  console.log(data);
   const { data: session } = useSession();
   const router = useRouter();
 

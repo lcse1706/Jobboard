@@ -6,7 +6,7 @@ export default async function Offers() {
   const userOffers = await pickOffers("favorites");
 
   return (
-    <ul className="flex flex-col items-center justify-start h-screen">
+    <ul className="flex flex-col items-center justify-start dh-screen">
       {userOffers.length > 0 ? (
         userOffers.map((item) => (
           <li key={item}>
