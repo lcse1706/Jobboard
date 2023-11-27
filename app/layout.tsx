@@ -1,7 +1,8 @@
-import { Header } from "@/components/ui/";
-import { Navigation } from "@/components/ui/";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
+import { Header } from "@/components/ui/";
+import { Navigation } from "@/components/ui/";
 
 import "./globals.css";
 import { Providers } from "./providers";
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const nav = [
-    { label: "Offers", link: "/" },
+    { label: "Offers", link: "/dashboard" },
     { label: "Add Offer", link: "/add" },
     { label: "Contact", link: "/contact" },
   ];

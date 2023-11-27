@@ -27,6 +27,7 @@ export type TRegisterSchema = {
   email: string | null | undefined;
   name?: string;
   password?: string;
+  confirmPassword?: string;
 };
 
 export const loginSchema = z.object({

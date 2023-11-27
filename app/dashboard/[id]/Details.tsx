@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui";
 import { DetailsProps } from "@/lib/types";
 
-import defaultLogo from "../favicon.ico";
+import defaultLogo from "../../favicon.ico";
 
 export const Details = (props: DetailsProps) => {
   const data = props.details;

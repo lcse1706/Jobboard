@@ -7,9 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+import { Button, Input } from "@/components/ui";
 import { TLoginSchema, loginSchema } from "@/lib/types";
-
-import { Button, Input } from "./ui";
 
 interface CredentialsFormProps {
   csrfToken?: string;

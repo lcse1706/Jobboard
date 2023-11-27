@@ -7,7 +7,7 @@ import { Button } from "@/components/ui";
 
 export const ProfileNav = () => {
   const logOutHandler = async () => {
-    await signOut({ callbackUrl: "/" });
+    await signOut({ callbackUrl: "/dashboard" });
   };
 
   return (

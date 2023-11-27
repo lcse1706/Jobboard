@@ -1,25 +1,26 @@
-'use client';
-import Image from 'next/image';
+"use client";
 
-import React, { useState, useRef, useId } from 'react';
-import { Button } from './ui/Button';
-import { sendOffer } from '@/services';
+import React, { useState, useRef, useId } from "react";
 
 import {
   ref,
   uploadBytes,
   getDownloadURL,
   connectStorageEmulator,
-} from '@firebase/storage';
-import { firebaseStorage } from '../services'; // Import the Firebase configuration
-import { useDataContext } from '@/context/DataContext';
+} from "@firebase/storage";
+import Image from "next/image";
+
+import { Button } from "@/components/ui/Button";
+// Import the Firebase configuration
+import { useDataContext } from "@/context/DataContext";
+import { firebaseStorage } from "@/services";
 
 function UploadLogo({ submitRef }: any) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
   const iconRef = useRef<HTMLInputElement>(null!);
-  const [preview, setPreview] = useState('');
+  const [preview, setPreview] = useState("");
   const { setLogoURL } = useDataContext();
 
   const onBtnClick = () => {
@@ -71,7 +72,7 @@ function UploadLogo({ submitRef }: any) {
     console.log(getUID());
 
     if (!selectedFile) {
-      setError('Please select a file');
+      setError("Please select a file");
       return;
     }
 
@@ -81,29 +82,29 @@ function UploadLogo({ submitRef }: any) {
 
       try {
         const snapshot = await uploadBytes(storageRef, selectedFile);
-        console.log('File uploaded successfully:', snapshot);
+        console.log("File uploaded successfully:", snapshot);
 
         const downloadURL = await getDownloadURL(storageRef);
-        console.log('Download URL:', downloadURL);
+        console.log("Download URL:", downloadURL);
         setLogoURL(downloadURL);
       } catch (error) {
-        console.error('Error uploading file:', error);
+        console.error("Error uploading file:", error);
       }
     }
 
     setSelectedFile(null);
-    setPreview('');
+    setPreview("");
   };
 
   const validateFile = (file: File | null) => {
     if (file) {
-      if (!file.type.startsWith('image/')) {
-        setError('Please select an image file');
+      if (!file.type.startsWith("image/")) {
+        setError("Please select an image file");
       } else if (file.size > 1000000) {
-        setError('File size is too large');
+        setError("File size is too large");
       } else {
         setSelectedFile(file);
-        setError('');
+        setError("");
       }
     }
   };
@@ -129,7 +130,7 @@ function UploadLogo({ submitRef }: any) {
           <Button label="Add File" type="button" onClick={onBtnClick} />
           <p className="mt-2">Or</p>
           <p>Drag and Drop to Upload</p>
-          <button ref={submitRef} type="submit" style={{ display: 'none' }}>
+          <button ref={submitRef} type="submit" style={{ display: "none" }}>
             Send
           </button>
         </form>
@@ -146,7 +147,7 @@ function UploadLogo({ submitRef }: any) {
                 className="mx-auto"
               />
             ) : (
-              ''
+              ""
             )}
           </div>
         </section>

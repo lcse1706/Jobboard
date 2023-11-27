@@ -2,7 +2,7 @@
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 
-import { authConfig } from "@/lib/auth";
+import { authConfig } from "@/app/login/lib/auth";
 
 import defaultLogo from "../favicon.ico";
 

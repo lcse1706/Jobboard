@@ -8,7 +8,7 @@ import { NextPage } from "next";
 import { TRegisterSchema, registerSchema } from "@/lib/types";
 import { registerUser } from "@/services/users";
 
-import { Button, Input } from "./ui";
+import { Button, Input } from "../../../components/ui";
 
 export const RegisterForm: NextPage = () => {
   const {

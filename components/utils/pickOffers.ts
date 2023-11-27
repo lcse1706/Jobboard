@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { revalidateTag } from "next/cache";
 
-import { authConfig } from "@/lib/auth";
+import { authConfig } from "@/app/login/lib/auth";
 import { fetchOffers, getUsers } from "@/services";
 
 export const pickOffers = async (pickOffers: string) => {

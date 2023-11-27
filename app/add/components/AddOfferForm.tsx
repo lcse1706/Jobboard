@@ -15,9 +15,9 @@ import { TOfferDTO, offerDTO, PlaceInfo } from "@/lib/types";
 import { fetchOffers, updateOffer, sendOffer } from "@/services/offers";
 import { getUsers, updateUser } from "@/services/users";
 
+import { checkIfUserInDb } from "../../../components/utils/checkIfUserInDb";
 import { PlacesAutocomplete } from "./PlacesAutocomplete";
 import UploadLogo from "./UploadLogo";
-import { checkIfUserInDb } from "./utils/checkIfUserInDb";
 
 const inputStyles = "w-full mb-2 p-2 border rounded";
 const errorStyles = "text-red-500 mb-3";

@@ -7,15 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { useDataContext } from "@/context";
-import { useHelpersContext } from "@/context/HelpersContext";
-import { OffersProps } from "@/lib/types";
+import defaultLogo from "@/app/favicon.ico";
+import { Button } from "@/components/ui";
+import { checkIfUserInDb, toggleFavorite } from "@/components/utils";
+import { useDataContext, useHelpersContext } from "@/context";
 import { getUsers } from "@/services";
-
-import defaultLogo from "../app/favicon.ico";
-import { Button } from "./ui";
-import { checkIfUserInDb } from "./utils/checkIfUserInDb";
-import { toggleFavorite } from "./utils/toggleFavorite";
 
 export const OfferListForm = (props: any) => {
   const { hoveredMarkerId } = useHelpersContext();
@@ -74,7 +70,7 @@ export const OfferListForm = (props: any) => {
         onClick={() => handleFavorite(offer.id)}
       />
       <Link
-        href={`/${offer.id}`}
+        href={`/dashboard/${offer.id}`}
         key={offer.id}
         onClick={() => setOfferId(offer.id)}
       >
