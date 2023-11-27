@@ -15,9 +15,11 @@ export const Navigation = (props: NavProps) => {
   const router = useRouter();
   const session = useSession();
 
+  console.log(session.status);
+
   const logInHandler = () => {
     router.push("/login");
-    console.log(session);
+    // console.log(session);
   };
 
   return (

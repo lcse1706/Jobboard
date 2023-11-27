@@ -1,4 +1,4 @@
-import { ProfileNav } from "./ProfileNav";
+import { ProfileNav } from "./components/ProfileNav";
 
 export default function ProfileLayout({
   children,

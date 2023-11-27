@@ -10,7 +10,7 @@ import { Button } from "@/components/ui";
 import { deleteUserOffer } from "@/components/utils/deleteUserOffer";
 import { deleteDashboardOffer } from "@/services/offers";
 
-import defaultLogo from "../../favicon.ico";
+import defaultLogo from "../../../favicon.ico";
 
 export const ProfileOffers = (props: any) => {
   const data = props.data;

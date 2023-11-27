@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui";
 import { deleteUserOffer } from "@/components/utils/deleteUserOffer";
 
-import defaultLogo from "../../favicon.ico";
+import defaultLogo from "../../../favicon.ico";
 
 //FIXME its not refreshing  after adding favorites on dashboard
 

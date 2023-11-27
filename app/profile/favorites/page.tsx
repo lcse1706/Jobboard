@@ -1,6 +1,6 @@
 import { pickOffers } from "@/components/utils/pickOffers";
 
-import { FavoritesOffers } from "./FavoritesOffers";
+import { FavoritesOffers } from "./components/FavoritesOffers";
 
 export default async function Offers() {
   const userOffers = await pickOffers("favorites");
