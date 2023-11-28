@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/Button";
 import { useDataContext } from "@/context/DataContext";
 import { firebaseStorage } from "@/services";
 
-function UploadLogo({ submitRef }: any) {
+export const UploadLogo = ({ submitRef }: any) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
@@ -66,15 +66,13 @@ function UploadLogo({ submitRef }: any) {
     event.preventDefault();
 
     function getUID() {
-      return Date.now().toString(10);
+      return Date.now().toString(20);
     }
 
-    console.log(getUID());
-
-    if (!selectedFile) {
-      setError("Please select a file");
-      return;
-    }
+    // if (!selectedFile) {
+    //   setError("Please select a file");
+    //   return;
+    // }
 
     if (selectedFile) {
       const storagePath = `/logos/${getUID()}`;
@@ -154,6 +152,4 @@ function UploadLogo({ submitRef }: any) {
       </div>
     </div>
   );
-}
-
-export default UploadLogo;
+};

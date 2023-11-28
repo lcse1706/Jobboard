@@ -10,17 +10,19 @@ import { useSession } from "next-auth/react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 
 import { Button, Input } from "@/components/ui";
+import { checkIfUserInDb } from "@/components/utils/checkIfUserInDb";
 import { useDataContext, useHelpersContext } from "@/context";
 import { TOfferDTO, offerDTO, PlaceInfo } from "@/lib/types";
-import { fetchOffers, updateOffer, sendOffer } from "@/services/offers";
-import { getUsers, updateUser } from "@/services/users";
+import {
+  fetchOffers,
+  updateOffer,
+  sendOffer,
+  getUsers,
+  updateUser,
+} from "@/services";
 
-import { checkIfUserInDb } from "../../../components/utils/checkIfUserInDb";
 import { PlacesAutocomplete } from "./PlacesAutocomplete";
-import UploadLogo from "./UploadLogo";
-
-const inputStyles = "w-full mb-2 p-2 border rounded";
-const errorStyles = "text-red-500 mb-3";
+import { UploadLogo } from "./UploadLogo";
 
 export const AddOfferForm: NextPage = () => {
   const {
@@ -31,6 +33,9 @@ export const AddOfferForm: NextPage = () => {
   } = useForm<TOfferDTO>({
     resolver: zodResolver(offerDTO),
   });
+
+  const inputStyles = "w-full mb-2 p-2 border rounded";
+  const errorStyles = "text-red-500 mb-3";
 
   const { checkLastFirebaseKey, setCheckLastFirebaseKey } = useHelpersContext();
   const { logoURL } = useDataContext();
@@ -45,34 +50,37 @@ export const AddOfferForm: NextPage = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { data: session } = useSession();
 
+  //Update record with logoUrl which is returned from UploadLogo component. Sending data like title, salary, description etc is happening in the same time as logo upload thats why, added data is updated which logo Url.
   const updateLastRecord = async () => {
-    const data = await fetchOffers();
-    if (data) {
-      const keys = Object.keys(data);
+    try {
+      const data = await fetchOffers();
+      if (data) {
+        const keys = Object.keys(data);
 
-      const lastKey = keys[keys.length - 1];
-      console.log("Check if keys are the same");
-      //Prevent rewrite last record, while component rendering.
-      if (checkLastFirebaseKey == lastKey) {
-        console.log("Stop: Same Keys");
-        return;
-      } else {
-        console.log("Keys are different. Continuing ....");
+        const lastKey = keys[keys.length - 1];
+        console.log("Check if id are the same");
+        // Prevent rewriting the last record while component rendering.
+        if (checkLastFirebaseKey == lastKey) {
+          console.log("Stop: Same id's");
+          return;
+        } else {
+          console.log("Id's are different. Continuing ....");
+        }
+
+        setCheckLastFirebaseKey(lastKey);
+        const lastObject = data[lastKey];
+        const newRecord = {
+          ...lastObject,
+          logoURL: logoURL,
+        };
+        updateOffer(lastKey, newRecord);
+        console.log("Offer with id:", lastKey, " updated");
       }
-
-      setCheckLastFirebaseKey(lastKey);
-      const lastObject = data[lastKey];
-      const newRecord = {
-        ...lastObject,
-        logoURL: logoURL,
-      };
-      updateOffer(lastKey, newRecord);
-      console.log("offer with id:", lastKey, " updated");
+    } catch (error) {
+      throw new Error(error);
     }
   };
 
-  //Update record with stored logoUrl in context. Cant do it with submiting two forms, when one of then setlogoURL in context, second one read logoURL from context. It was accesible with next render/submit
-  // Timeout - fixing problems with data fetching from Firebase - without it sometimes records was not updated with the last one
   useEffect(() => {
     console.log("useEffect render");
     setTimeout(() => {
@@ -80,7 +88,7 @@ export const AddOfferForm: NextPage = () => {
     }, 2000);
   }, [logoURL]);
 
-  //Autocomplete
+  // Autocomplete
 
   const libraries = useMemo(() => ["places"], []);
 
@@ -93,8 +101,9 @@ export const AddOfferForm: NextPage = () => {
     return <p>Loading...</p>;
   }
 
+  // Searching for a user in the database by matching with data from session and add offer to user's published offers.
   const addOfferToUser = async (id: string) => {
-    //Check if user exist in db
+    // Check if user exist in db
     await checkIfUserInDb(session);
 
     const users = await getUsers();
@@ -112,7 +121,7 @@ export const AddOfferForm: NextPage = () => {
 
   const submitHandler = async (data: TOfferDTO) => {
     setIsSubmitted(false);
-
+    // Sending submit to UploadLogo component
     if (submitRef.current) {
       submitRef.current.click();
     }
@@ -122,7 +131,7 @@ export const AddOfferForm: NextPage = () => {
       console.log("Just added offer id: " + idOfJustAddedOffer);
       addOfferToUser(idOfJustAddedOffer);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
 
     reset();
