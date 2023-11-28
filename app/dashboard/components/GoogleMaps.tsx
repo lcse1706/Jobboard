@@ -5,8 +5,7 @@ import { useMemo } from "react";
 import { useLoadScript, GoogleMap, MarkerF } from "@react-google-maps/api";
 import type { NextPage } from "next";
 
-import { useDataContext } from "@/context/DataContext";
-import { useHelpersContext } from "@/context/HelpersContext";
+import { useDataContext, useHelpersContext } from "@/context";
 
 const mapStyles = {
   width: "100%",
@@ -35,7 +34,6 @@ export const GoogleMaps: NextPage = () => {
     return <p>Loading...</p>;
   }
 
-  //TODO change pos.title to pos.id after connecting to database
   return (
     <GoogleMap
       options={mapOptions}

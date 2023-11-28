@@ -11,9 +11,10 @@ import defaultLogo from "@/app/favicon.ico";
 import { Button } from "@/components/ui";
 import { checkIfUserInDb, toggleFavorite } from "@/components/utils";
 import { useDataContext, useHelpersContext } from "@/context";
+import { OfferListFormProps } from "@/lib/types";
 import { getUsers } from "@/services";
 
-export const OfferListForm = (props: any) => {
+export const OfferListForm = (props: OfferListFormProps) => {
   const { hoveredMarkerId } = useHelpersContext();
   const { setOfferId } = useDataContext();
   const { data: session } = useSession();
@@ -23,10 +24,10 @@ export const OfferListForm = (props: any) => {
   const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
+    // Checking if offer is set as favorite to specific user and show it on the list.
     const checkFavorite = async () => {
       const users = await getUsers();
       const sessionUser = session?.user?.email;
-      console.log("useEffect favorite");
       for (const user in users) {
         if (sessionUser === users[user].email) {
           if (users[user].favorites.some((item) => item === offer.id)) {
@@ -35,7 +36,6 @@ export const OfferListForm = (props: any) => {
         }
       }
     };
-
     checkFavorite();
   }, [session, offer.id]);
 
@@ -45,18 +45,16 @@ export const OfferListForm = (props: any) => {
       await checkIfUserInDb(session);
       await toggleFavorite(offerId, session);
       setFavorite(!favorite);
-
-      //1. Wyszukac odpowiedniego uztkownika
     } else {
       console.log("No logged user.");
       router.push("/login");
     }
   };
-  //FIXME Not always dispaly color in favorite star - cn be browser problem -because class adding  is done correctly
+  //FIXME Not always display color in favorite star - cn be browser problem -because class adding  is done correctly
 
   return (
     <li
-      key={offer.id}
+      key={props.offer.id}
       className={`p-4 mb-4 border rounded-lg shadow-lg hover:scale-105 hover:ring-1 relative ${
         hoveredMarkerId === offer.id ? "scale-105 ring-1" : ""
       }`}
@@ -65,7 +63,7 @@ export const OfferListForm = (props: any) => {
         type="button"
         label={<FontAwesomeIcon icon={faStar} />}
         className={`${
-          favorite ? "text-gray-900" : "text-white"
+          favorite ? "text-gray-800" : "text-white"
         } absolute top-2 right-5`}
         onClick={() => handleFavorite(offer.id)}
       />

@@ -1,5 +1,5 @@
-import { GoogleMaps } from "@/app/dashboard/components/GoogleMaps";
-import { JobOfferList } from "@/app/dashboard/components/JobOfferList";
+import { GoogleMaps } from "./components/GoogleMaps";
+import { JobOfferList } from "./components/JobOfferList";
 
 export default async function Page() {
   return (

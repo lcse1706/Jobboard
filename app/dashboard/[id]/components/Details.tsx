@@ -1,9 +1,8 @@
 import Image from "next/image";
 
+import defaultLogo from "@/app/favicon.ico";
 import { Button } from "@/components/ui";
 import { DetailsProps } from "@/lib/types";
-
-import defaultLogo from "../../favicon.ico";
 
 export const Details = (props: DetailsProps) => {
   const data = props.details;

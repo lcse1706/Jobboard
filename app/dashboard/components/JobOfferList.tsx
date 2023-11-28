@@ -2,15 +2,16 @@
 
 import { useEffect } from "react";
 
-import { OfferListForm } from "@/app/dashboard/components/OfferListForm";
-import { useDataContext } from "@/context/DataContext";
+import { useDataContext } from "@/context";
 import { OffersType, fetchOffersType } from "@/lib/types";
-import { fetchOffers } from "@/services/offers";
+import { fetchOffers } from "@/services";
 
+import { OfferListForm } from "./OfferListForm";
 import { SearchBar } from "./SearchBar";
 
 export const JobOfferList = () => {
   const { setRecords, filteredData } = useDataContext();
+  console.log(filteredData);
 
   const getData = async () => {
     try {
@@ -30,7 +31,7 @@ export const JobOfferList = () => {
       };
       fetchedData(data);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
