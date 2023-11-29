@@ -48,6 +48,10 @@ export interface OfferListFormProps {
   key: string | undefined;
 }
 
+export interface ProfileOffersProps {
+  data: OffersType;
+}
+
 type Coordinates = Pick<PlaceInfo, "lat" | "lng">;
 
 export interface OffersType {

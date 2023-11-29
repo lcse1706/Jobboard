@@ -1,10 +1,9 @@
-import { pickOffers } from "@/components/utils/pickOffers";
+import { pickOffers } from "@/components/utils";
 
 import { FavoritesOffers } from "./components/FavoritesOffers";
 
 export default async function Offers() {
   const userOffers = await pickOffers("favorites");
-
   return (
     <ul className="flex flex-col items-center justify-start dh-screen">
       {userOffers.length > 0 ? (

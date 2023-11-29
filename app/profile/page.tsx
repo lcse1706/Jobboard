@@ -1,4 +1,3 @@
-// Import your ProfileOffers component here
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 
@@ -10,7 +9,6 @@ const ProfilePage = async () => {
   const session = await getServerSession(authConfig);
   console.log(session?.user?.image);
   const logo = session?.user?.image;
-  //FIXME its not refreshing  after add offer on dashboard
   return (
     <div className="flex flex-col items-center justify-start dh-screen">
       <section className="flex flex-row mt-10">

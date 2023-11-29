@@ -6,14 +6,14 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import defaultLogo from "@/app/favicon.ico";
 import { Button } from "@/components/ui";
-import { deleteUserOffer } from "@/components/utils/deleteUserOffer";
-
-import defaultLogo from "../../../favicon.ico";
+import { deleteUserOffer } from "@/components/utils";
+import { ProfileOffersProps } from "@/lib/types";
 
 //FIXME its not refreshing  after adding favorites on dashboard
 
-export const FavoritesOffers = (props: any) => {
+export const FavoritesOffers = (props: ProfileOffersProps) => {
   const data = props.data;
   const { data: session } = useSession();
   const router = useRouter();

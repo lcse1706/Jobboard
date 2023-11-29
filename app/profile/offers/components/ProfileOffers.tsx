@@ -6,15 +6,14 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import defaultLogo from "@/app/favicon.ico";
 import { Button } from "@/components/ui";
-import { deleteUserOffer } from "@/components/utils/deleteUserOffer";
-import { deleteDashboardOffer } from "@/services/offers";
+import { deleteUserOffer } from "@/components/utils";
+import { ProfileOffersProps } from "@/lib/types";
+import { deleteDashboardOffer } from "@/services";
 
-import defaultLogo from "../../../favicon.ico";
-
-export const ProfileOffers = (props: any) => {
+export const ProfileOffers = (props: ProfileOffersProps) => {
   const data = props.data;
-  // console.log(data);
 
   const { data: session } = useSession();
   const router = useRouter();
