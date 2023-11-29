@@ -5,10 +5,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { NextPage } from "next";
 
+import { Button, Input } from "@/components/ui";
 import { TRegisterSchema, registerSchema } from "@/lib/types";
-import { registerUser } from "@/services/users";
-
-import { Button, Input } from "../../../components/ui";
+import { registerUser } from "@/services";
 
 export const RegisterForm: NextPage = () => {
   const {
@@ -24,7 +23,7 @@ export const RegisterForm: NextPage = () => {
     try {
       await registerUser(data);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
 
     reset();

@@ -23,10 +23,6 @@ export const authConfig: NextAuthOptions = {
         if (!credentials || !credentials.email || !credentials.password)
           return null;
 
-        // const dbUser = await prisma.user.findFirst({
-        //   where: { email: credentials.email },
-        // });
-
         const users = await getUsers();
 
         for (const dbUser in users) {
