@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { revalidateTag } from "next/cache";
 
 import { authConfig } from "@/app/login/lib/auth";
+import { OffersType } from "@/lib/types";
 import { fetchOffers, getUsers } from "@/services";
 
 export const pickOffers = async (pickOffers: string) => {
@@ -18,7 +19,7 @@ export const pickOffers = async (pickOffers: string) => {
     if (sessionUser === users[user].email) userData = users[user];
   }
 
-  let userOffers: any[] = [];
+  let userOffers: OffersType[] = [];
 
   for (const offer in offers) {
     for (const item of userData[pickOffers]) {
@@ -33,5 +34,6 @@ export const pickOffers = async (pickOffers: string) => {
     }
   }
 
+  console.log(userOffers);
   return userOffers;
 };

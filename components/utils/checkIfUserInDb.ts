@@ -1,7 +1,6 @@
 import { Session } from "next-auth";
-import { useSession } from "next-auth/react";
 
-import { getUsers, registerUser } from "@/services/users";
+import { getUsers, registerUser } from "@/services";
 
 export const checkIfUserInDb = async (session: Session | null | undefined) => {
   const users = await getUsers();

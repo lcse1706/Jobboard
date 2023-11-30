@@ -54,7 +54,7 @@ export const OfferListForm = (props: OfferListFormProps) => {
 
   return (
     <li
-      key={props.offer.id}
+      key={props.key}
       className={`p-4 mb-4 border rounded-lg shadow-lg hover:scale-105 hover:ring-1 relative ${
         hoveredMarkerId === offer.id ? "scale-105 ring-1" : ""
       }`}

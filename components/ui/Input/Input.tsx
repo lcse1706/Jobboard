@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import { ComponentProps } from "react";
 
 interface InputType {
   type: string;
@@ -7,7 +7,7 @@ interface InputType {
   register?: any;
 }
 
-export const Input = (props: ComponentProps<'input'> & InputType) => {
+export const Input = (props: ComponentProps<"input"> & InputType) => {
   return (
     <input
       type={props.type}
@@ -19,4 +19,4 @@ export const Input = (props: ComponentProps<'input'> & InputType) => {
   );
 };
 
-Input.displayName = 'Input';
+Input.displayName = "Input";

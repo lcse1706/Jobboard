@@ -11,7 +11,6 @@ import { SearchBar } from "./SearchBar";
 
 export const JobOfferList = () => {
   const { setRecords, filteredData } = useDataContext();
-  console.log(filteredData);
 
   const getData = async () => {
     try {
