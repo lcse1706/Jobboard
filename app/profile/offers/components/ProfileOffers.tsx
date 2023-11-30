@@ -9,10 +9,10 @@ import { useRouter } from "next/navigation";
 import defaultLogo from "@/app/favicon.ico";
 import { Button } from "@/components/ui";
 import { deleteUserOffer } from "@/components/utils";
-import { ProfileOffersProps } from "@/lib/types";
+import { ProfileOfferProps } from "@/lib/types";
 import { deleteDashboardOffer } from "@/services";
 
-export const ProfileOffers = (props: ProfileOffersProps) => {
+export const ProfileOffers = (props: ProfileOfferProps) => {
   const data = props.data;
 
   const { data: session } = useSession();

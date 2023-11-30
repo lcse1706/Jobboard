@@ -19,7 +19,7 @@ export const OfferListForm = (props: OfferListFormProps) => {
   const { setOfferId } = useDataContext();
   const { data: session } = useSession();
   const router = useRouter();
-  const offer = props.offer;
+  const offer = props.data;
 
   const [favorite, setFavorite] = useState(false);
 

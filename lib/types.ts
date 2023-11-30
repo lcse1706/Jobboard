@@ -21,8 +21,6 @@ export const registerSchema = z
     path: ["confirmPassword"],
   });
 
-// export type TRegisterSchema = z.infer<typeof registerSchema>;
-
 export type TRegisterSchema = {
   email: string | null | undefined;
   name?: string;
@@ -43,20 +41,10 @@ export type PlaceInfo = {
   lng: number;
 };
 
-export interface OfferListFormProps {
-  offer: OffersType;
-  key: string | undefined;
-}
-
-export interface ProfileOffersProps {
-  data: OffersType;
-}
-
 type Coordinates = Pick<PlaceInfo, "lat" | "lng">;
 
-export interface OffersType {
+interface OffersBase {
   logoURL: string;
-  id: string;
   title: string;
   salary: string;
   technologies: string;
@@ -65,34 +53,29 @@ export interface OffersType {
   description: string;
 }
 
-export type OfferFirebaseType = {
-  logoURL: string;
-  title: string;
-  salary: string;
-  technologies: string;
-  location: string;
-  coordinates: Coordinates;
-  description: string;
-};
+export interface OffersType extends OffersBase {
+  id: string;
+}
 
-export type fetchOffersType = {
-  [key: string]: OffersType;
-};
+export interface OfferFirebaseType extends OffersBase {}
+
+export type fetchOffersType = Record<string, OffersType>;
+
+export interface ItemProps extends OffersType {}
+
+interface OfferProps {
+  data: OffersType;
+  key?: string;
+}
+
+export interface ProfileOfferProps extends OfferProps {}
+
+export interface OfferListFormProps extends OfferProps {}
 
 export interface OffersProps {
-  offers: Array<{
-    logoURL: string;
-    id: string;
-    title: string;
-    salary: string;
-    technologies: string;
-    location: string;
-    description: string;
-  }>;
+  offers: ItemProps[];
 }
 
 export interface DetailsProps {
   details: OffersType;
 }
-
-// export type FormDataType = Omit<OfferFirebaseType, 'location' | 'coordinates'>;
