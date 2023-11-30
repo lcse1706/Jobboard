@@ -60,41 +60,42 @@ export const fetchOffers = async () => {
 };
 //FIXME link doesnt work from env
 
-export const updateOffer = (recordKey: string, newData: OfferFirebaseType) => {
-  // fetch(`${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_URL}/${recordKey}.json`, {
-  fetch(
-    `https://jobboard-335d5-default-rtdb.europe-west1.firebasedatabase.app/Offers/${recordKey}.json`,
+export const updateOffer = async (
+  recordKey: string,
+  newData: OfferFirebaseType
+) => {
+  const updatedResponse: Response = await fetch(
+    `${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_OFFERS_URL}/${recordKey}.json`,
+    // `https://jobboard-335d5-default-rtdb.europe-west1.firebasedatabase.app/Offers/${recordKey}.json`,
     {
       method: "PUT",
       headers,
       body: JSON.stringify(newData),
     }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Record updated:", data);
-    })
-    .catch((error) => {
-      console.error("Error updating record:", error);
-    });
+  );
+
+  if (updatedResponse.ok) {
+    const data = await updatedResponse.json();
+    console.log("Record updated:", data);
+  } else {
+    throw new Error("Update failed.");
+  }
 };
 
 //FIXME link doesnt work from env
-export const deleteDashboardOffer = (recordKey: string) => {
-  // fetch(`${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_URL}/${recordKey}.json`, {
-  fetch(
-    `https://jobboard-335d5-default-rtdb.europe-west1.firebasedatabase.app/Offers/${recordKey}.json`,
+export const deleteDashboardOffer = async (recordKey: string) => {
+  const deleteResponse: Response = await fetch(
+    `${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_OFFERS_URL}/${recordKey}.json`,
     {
       method: "DELETE",
       headers,
       body: JSON.stringify(null),
     }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Record deleted:", recordKey);
-    })
-    .catch((error) => {
-      console.error("Error deleting record:", error);
-    });
+  );
+
+  if (deleteResponse.ok) {
+    console.log("Record " + recordKey + " deleted !");
+  } else {
+    throw new Error("Something went wrong ! Deleting failed !");
+  }
 };

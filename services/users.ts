@@ -1,4 +1,4 @@
-import { TRegisterSchema } from "@/lib/types";
+import { OffersType, TRegisterSchema } from "@/lib/types";
 
 const headers = {
   "Content-Type": "application/json",
@@ -49,19 +49,18 @@ export const getUsers = async () => {
   return data;
 };
 
-export const updateUser = (recordKey: string, newData: any) => {
-  fetch(
+export const updateUser = async (recordKey: string, newData: OffersType) => {
+  const updateUserResponse: Response = await fetch(
     `${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_USER_URL}/${recordKey}.json`,
     {
       method: "PUT",
       body: JSON.stringify(newData),
     }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("User updated:", data);
-    })
-    .catch((error) => {
-      console.error("Error updating user:", error);
-    });
+  );
+
+  if (updateUserResponse.ok) {
+    console.log("User with id: " + recordKey + " updated !");
+  } else {
+    throw new Error("User update failed !");
+  }
 };

@@ -31,10 +31,9 @@ export const toggleFavorite = async (
             favorites: updatedFavorites,
           };
 
-          console.log(updatedUser);
-          await updateUser(user, updatedUser);
+          updateUser(user, updatedUser);
 
-          break; // No need to continue checking, exit the loop
+          break;
         }
       }
 
@@ -46,8 +45,7 @@ export const toggleFavorite = async (
           favorites: [...users[user].favorites, offerId],
         };
 
-        // console.log(updatedUser);
-        await updateUser(user, updatedUser);
+        updateUser(user, updatedUser);
       }
     }
   }
