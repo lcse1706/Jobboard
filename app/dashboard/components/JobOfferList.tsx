@@ -43,7 +43,7 @@ export const JobOfferList = () => {
       <SearchBar />
       <ul className="m-5">
         {filteredData.map((offer) => (
-          <OfferListForm key={offer.id} offer={offer} />
+          <OfferListForm key={offer.id} data={offer} />
         ))}
       </ul>
     </section>
