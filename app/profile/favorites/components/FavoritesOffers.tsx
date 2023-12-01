@@ -9,11 +9,11 @@ import { useRouter } from "next/navigation";
 import defaultLogo from "@/app/favicon.ico";
 import { Button } from "@/components/ui";
 import { deleteUserOffer } from "@/components/utils";
-import { ProfileOffersProps } from "@/lib/types";
+import { ProfileOfferProps } from "@/lib/types";
 
 //FIXME its not refreshing  after adding favorites on dashboard
 
-export const FavoritesOffers = (props: ProfileOffersProps) => {
+export const FavoritesOffers = (props: ProfileOfferProps) => {
   const data = props.data;
   const { data: session } = useSession();
   const router = useRouter();
@@ -30,7 +30,7 @@ export const FavoritesOffers = (props: ProfileOffersProps) => {
   }, []);
 
   return (
-    <div className="bg-white p-8 rounded-lg border shadow-lg max-w-6xl mx-auto mt-8">
+    <li className="bg-white p-8 rounded-lg border shadow-lg max-w-6xl mx-auto mt-8">
       <div className="flex items-center justify-center mb-4">
         <Image
           src={data.logoURL === "" ? defaultLogo : data.logoURL}
@@ -53,6 +53,6 @@ export const FavoritesOffers = (props: ProfileOffersProps) => {
           onClick={handleDelete}
         />
       </div>
-    </div>
+    </li>
   );
 };
