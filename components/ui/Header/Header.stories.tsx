@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Navigation } from '../Navigation/Navigation';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Header } from './Header';
+import { Navigation } from "../Navigation/Navigation";
+import { Header } from "./Header";
 
 const meta = {
-  title: 'UI/Header',
+  title: "UI/Header",
   component: Header,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {},
 } satisfies Meta<typeof Header>;
 
@@ -18,14 +18,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    titel: 'Header',
-    style: { width: '80vw' },
+    title: "Header",
+    style: { width: "80vw" },
     children: (
       <Navigation
         nav={[
-          { label: 'Offers', link: '/offers' },
-          { label: 'Add Offer', link: '/add' },
-          { label: 'About', link: '/about' },
+          { label: "Offers", link: "/offers" },
+          { label: "Add Offer", link: "/add" },
+          { label: "About", link: "/about" },
         ]}
       />
     ),
