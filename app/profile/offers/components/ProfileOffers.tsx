@@ -31,7 +31,7 @@ export const ProfileOffers = (props: ProfileOfferProps) => {
   }, []);
 
   return (
-    <div className="bg-white p-8 rounded-lg border shadow-lg max-w-6xl mx-auto mt-8">
+    <li className="bg-white p-8 rounded-lg border shadow-lg max-w-6xl mx-auto mt-8">
       <div className="flex items-center justify-center mb-4">
         <Image
           src={data.logoURL === "" ? defaultLogo : data.logoURL}
@@ -55,6 +55,6 @@ export const ProfileOffers = (props: ProfileOfferProps) => {
           onClick={handleDelete}
         />
       </div>
-    </div>
+    </li>
   );
 };

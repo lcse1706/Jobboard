@@ -8,7 +8,6 @@ export const deleteUserOffer = async (
   pickOffers: string
 ) => {
   const users = await getUsers();
-
   const sessionUser = session?.user?.email;
 
   for (const user in users) {
