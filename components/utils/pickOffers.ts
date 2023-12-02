@@ -34,6 +34,5 @@ export const pickOffers = async (pickOffers: string) => {
     }
   }
 
-  console.log(userOffers);
   return userOffers;
 };

@@ -16,7 +16,6 @@ export const toggleFavorite = async (
 
       for (let i = 0; i < users[user].favorites.length; i++) {
         const favorite = users[user].favorites[i];
-        console.log(favorite);
 
         if (favorite === offerId) {
           console.log("Already exists in favorites. Deleting ...");

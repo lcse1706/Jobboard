@@ -3,8 +3,6 @@ import { pickOffers } from "@/components/utils/pickOffers";
 import { ProfileOffers } from "./components/ProfileOffers";
 
 export default async function Offers() {
-  // console.log(users);
-
   const userOffers = await pickOffers("offersPublished");
 
   return (

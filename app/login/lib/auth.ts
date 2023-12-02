@@ -61,7 +61,6 @@ export const authConfig: NextAuthOptions = {
 
 export async function loginIsRequiredServer() {
   const session = await getServerSession(authConfig);
-  console.log(session);
   if (!session) return redirect("/login");
 }
 

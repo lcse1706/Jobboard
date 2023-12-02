@@ -17,7 +17,6 @@ export const ProfileOffers = (props: ProfileOfferProps) => {
 
   const { data: session } = useSession();
   const router = useRouter();
-  //TODO add informationn if no offers
   const handleDelete = async () => {
     await deleteUserOffer(data.id, session, "offersPublished");
     await deleteDashboardOffer(data.id);

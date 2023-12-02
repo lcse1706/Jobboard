@@ -82,7 +82,6 @@ export const updateOffer = async (
   }
 };
 
-//FIXME link doesnt work from env
 export const deleteDashboardOffer = async (recordKey: string) => {
   const deleteResponse: Response = await fetch(
     `${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_OFFERS_URL}/${recordKey}.json`,
