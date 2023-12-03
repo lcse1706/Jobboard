@@ -50,7 +50,8 @@ export const OfferListForm = (props: OfferListFormProps) => {
       router.push("/login");
     }
   };
-  //FIXME Not always display color in favorite star - cn be browser problem -because class adding  is done correctly
+  //PROBLEM Not always display color in favorite star
+  //SOLUTION Use just button instead of component UI, base class text-white caused conflict, that was a reason why star didn't change color
 
   return (
     <li
@@ -58,14 +59,16 @@ export const OfferListForm = (props: OfferListFormProps) => {
         hoveredMarkerId === offer.id ? "scale-105 ring-1" : ""
       }`}
     >
-      <Button
+      <button
         type="button"
-        label={<FontAwesomeIcon icon={faStar} />}
-        className={`${
-          favorite ? "text-gray-800" : "text-white"
-        } absolute top-2 right-5`}
+        className={`bg-pink-500 hover:bg-pink-700 disabled:bg-gray-500 font-bold py-2 px-4 rounded-full m-1 absolute top-2 right-5 ${
+          favorite ? "text-gray-900" : "text-white"
+        } `}
         onClick={() => handleFavorite(offer.id)}
-      />
+      >
+        <FontAwesomeIcon icon={faStar} />
+      </button>
+
       <Link
         href={`/dashboard/${offer.id}`}
         key={offer.id}
