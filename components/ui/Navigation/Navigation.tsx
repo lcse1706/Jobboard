@@ -35,13 +35,13 @@ export const Navigation = (props: NavProps) => {
           </p>
         )}
         {session.status !== "authenticated" ? (
-          <Button type="submit" label="Login" onClick={logInHandler}></Button>
+          <Button type="submit" label="Login" onClick={logInHandler} />
         ) : (
           <Button
             type="submit"
             label="My profile"
             onClick={() => router.push("/profile")}
-          ></Button>
+          />
         )}
       </ul>
     </nav>
