@@ -1,8 +1,8 @@
-Project in progress...
-
 <h2 align='center'>Jobboard</h2>
 
 <p align='center'>App where user can log in, add offer, save favorites etc.</p>
+
+<h3><a href="https://jobboard-lcse1706.vercel.app/dashboard">DEMO App</a></h3> https://jobboard-lcse1706.vercel.app/dashboard
 
 <h3>Used Technologies:</h3>
 
@@ -21,9 +21,7 @@ Project in progress...
 - Log in with Google
 - Adding offers
 - Saving picked offer as favorite
+- in progress
 
-<h3>How to run:</h3>
-
-- git clone https://github.com/lcse1706/Jobboard.git
-- npm install
-- npm run dev
+<h3> Notes </h3>
+.env.local represents how .env file looks like.
