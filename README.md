@@ -1,8 +1,6 @@
 <h2 align='center'>Jobboard</h2>
 
-<p align='center'>App where user can log in, add offer, save favorites etc.</p>
-
-<h3 align='center'><a href="https://jobboard-lcse1706.vercel.app/dashboard">DEMO App</a></h3>
+<h3 align='center'><a href="https://jobboard-lcse1706.vercel.app/dashboard">DEMO</a></h3>
 
 <h3>Used Technologies:</h3>
 
