@@ -1,6 +1,6 @@
 <h2 align='center'>Jobboard</h2>
 
-<h3 align='center'><a href="https://jobboard-lcse1706.vercel.app/dashboard">DEMO</a></h3>
+<h3 align='center'>Application Preview: <a href="https://jobboard-lcse1706.vercel.app/dashboard">DEMO</a></h3>
 
 <h3>Used Technologies:</h3>
 
