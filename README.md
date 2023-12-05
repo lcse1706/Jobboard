@@ -24,4 +24,5 @@
 - in progress
 
 <h3> Notes </h3>
-.env.local represents how .env file looks like.
+
+- .env.local represents how .env file looks like.
