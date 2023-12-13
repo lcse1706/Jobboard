@@ -22,10 +22,11 @@ export const Primary: Story = {
   },
 };
 
-export const Secondary: Story = {
+export const Delete: Story = {
   args: {
-    label: "Button",
+    label: "Delete",
     type: "button",
+    className: "bg-red-600 hover:bg-red-700",
   },
 };
 
