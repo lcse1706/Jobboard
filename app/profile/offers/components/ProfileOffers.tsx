@@ -49,7 +49,7 @@ export const ProfileOffers = (props: ProfileOfferProps) => {
         <Button label="Edit (in progress)" type="button" />
         <Button
           label="Delete"
-          className="bg-red-600"
+          className="bg-red-600 hover:bg-red-700"
           type="button"
           onClick={handleDelete}
         />
