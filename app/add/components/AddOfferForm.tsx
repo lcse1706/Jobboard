@@ -143,7 +143,7 @@ export const AddOfferForm: NextPage = () => {
       <UploadLogo submitRef={submitRef} />
       <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
         <Input
-          register={register("title")}
+          {...register("title")}
           type="text"
           placeholder="Title"
           className={inputStyles}
@@ -152,7 +152,7 @@ export const AddOfferForm: NextPage = () => {
           <p className={errorStyles}>{`${errors.title.message}`}</p>
         )}
         <Input
-          register={register("salary")}
+          {...register("salary")}
           type="text"
           placeholder="Salary"
           className={inputStyles}
@@ -161,7 +161,7 @@ export const AddOfferForm: NextPage = () => {
           <p className={errorStyles}>{`${errors.salary.message}`}</p>
         )}
         <Input
-          register={register("technologies")}
+          {...register("technologies")}
           type="text"
           placeholder="Technologies"
           className={inputStyles}
