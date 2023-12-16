@@ -1,20 +1,25 @@
 import { ComponentProps } from "react";
 
-interface InputType {
+type InputType = {
   type: string;
-  placeholder?: string;
+  // placeholder?: string;
   className?: string;
-  register?: any;
-}
+} & ComponentProps<"input">;
 
-export const Input = (props: ComponentProps<"input"> & InputType) => {
+export const Input = ({
+  type,
+  placeholder,
+  value,
+  className,
+  ...rest
+}: InputType) => {
   return (
     <input
-      type={props.type}
-      placeholder={props.placeholder}
-      value={props.value}
-      {...props.register}
-      className={props.className}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      className={className}
+      {...rest}
     />
   );
 };
