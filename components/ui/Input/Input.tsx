@@ -1,8 +1,9 @@
 import { ComponentProps } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 type InputType = {
   type: string;
-  register?: any;
+  register?: UseFormRegisterReturn;
 } & ComponentProps<"input">;
 
 export const Input = ({ type, register, ...rest }: InputType) => {
