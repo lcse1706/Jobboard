@@ -45,6 +45,7 @@ export const OfferListForm = (props: OfferListFormProps) => {
       await checkIfUserInDb(session);
       await toggleFavorite(offerId, session);
       setFavorite(!favorite);
+      router.refresh();
     } else {
       console.log("No logged user.");
       router.push("/login");
