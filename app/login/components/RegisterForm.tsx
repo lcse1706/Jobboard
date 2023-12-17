@@ -36,7 +36,7 @@ export const RegisterForm: NextPage = () => {
         className="w-full mt-8 text-xl text-black font-semibold flex flex-col"
       >
         <Input
-          {...register("email")}
+          register={register("email")}
           type="email"
           placeholder="Email"
           className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
@@ -45,7 +45,7 @@ export const RegisterForm: NextPage = () => {
           <p className="text-red-500">{`${errors.email.message}`}</p>
         )}
         <Input
-          {...register("name")}
+          register={register("name")}
           type="name"
           placeholder="Your name"
           className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
@@ -54,7 +54,7 @@ export const RegisterForm: NextPage = () => {
           <p className="text-red-500">{`${errors.name.message}`}</p>
         )}
         <Input
-          {...register("password")}
+          register={register("password")}
           type="password"
           placeholder="Password"
           className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
@@ -63,7 +63,7 @@ export const RegisterForm: NextPage = () => {
           <p className="text-red-500">{`${errors.password.message}`}</p>
         )}
         <Input
-          {...register("confirmPassword")}
+          register={register("confirmPassword")}
           type="password"
           placeholder="Confirm password"
           className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"

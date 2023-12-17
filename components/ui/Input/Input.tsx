@@ -2,26 +2,11 @@ import { ComponentProps } from "react";
 
 type InputType = {
   type: string;
-  // placeholder?: string;
-  className?: string;
+  register?: any;
 } & ComponentProps<"input">;
 
-export const Input = ({
-  type,
-  placeholder,
-  value,
-  className,
-  ...rest
-}: InputType) => {
-  return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      className={className}
-      {...rest}
-    />
-  );
+export const Input = ({ type, register, ...rest }: InputType) => {
+  return <input type={type} {...register} {...rest} />;
 };
 
 Input.displayName = "Input";
