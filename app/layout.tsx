@@ -26,7 +26,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-gray-200`}>
         <Providers>
           <Header title="Jobboard">
             <Navigation nav={nav} />
