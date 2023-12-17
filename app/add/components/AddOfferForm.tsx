@@ -139,59 +139,61 @@ export const AddOfferForm: NextPage = () => {
   };
 
   return (
-    <div className="flex flex-row justify-center items-start mt-48 w-screen">
-      <UploadLogo submitRef={submitRef} />
-      <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
-        <Input
-          register={register("title")}
-          type="text"
-          placeholder="Title"
-          className={inputStyles}
-        />
-        {errors.title && (
-          <p className={errorStyles}>{`${errors.title.message}`}</p>
-        )}
-        <Input
-          register={register("salary")}
-          type="text"
-          placeholder="Salary"
-          className={inputStyles}
-        />
-        {errors.salary && (
-          <p className={errorStyles}>{`${errors.salary.message}`}</p>
-        )}
-        <Input
-          register={register("technologies")}
-          type="text"
-          placeholder="Technologies"
-          className={inputStyles}
-        />
-        {errors.technologies && (
-          <p className={errorStyles}>{`${errors.technologies.message}`}</p>
-        )}
+    <div className="container flex justify-around m-auto ">
+      <div className="flex justify-around  mt-48 bg-white p-4 mb-4 border rounded-lg shadow-lg w-1/2">
+        <UploadLogo submitRef={submitRef} />
+        <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
+          <Input
+            register={register("title")}
+            type="text"
+            placeholder="Title"
+            className={inputStyles}
+          />
+          {errors.title && (
+            <p className={errorStyles}>{`${errors.title.message}`}</p>
+          )}
+          <Input
+            register={register("salary")}
+            type="text"
+            placeholder="Salary"
+            className={inputStyles}
+          />
+          {errors.salary && (
+            <p className={errorStyles}>{`${errors.salary.message}`}</p>
+          )}
+          <Input
+            register={register("technologies")}
+            type="text"
+            placeholder="Technologies"
+            className={inputStyles}
+          />
+          {errors.technologies && (
+            <p className={errorStyles}>{`${errors.technologies.message}`}</p>
+          )}
 
-        <PlacesAutocomplete
-          isSubmitted={isSubmitted}
-          onAddressSelect={(address: string) => {
-            getGeocode({ address: address }).then((results) => {
-              const { lat, lng } = getLatLng(results[0]);
+          <PlacesAutocomplete
+            isSubmitted={isSubmitted}
+            onAddressSelect={(address: string) => {
+              getGeocode({ address: address }).then((results) => {
+                const { lat, lng } = getLatLng(results[0]);
 
-              setPlaceInfo({ placeName: address, lat: lat, lng: lng });
-            });
-          }}
-        />
+                setPlaceInfo({ placeName: address, lat: lat, lng: lng });
+              });
+            }}
+          />
 
-        <textarea
-          {...register("description")}
-          placeholder="Description"
-          className={`${inputStyles} h-44 `}
-        />
-        {errors.description && (
-          <p className={errorStyles}>{`${errors.description.message}`}</p>
-        )}
+          <textarea
+            {...register("description")}
+            placeholder="Description"
+            className={`${inputStyles} h-44 `}
+          />
+          {errors.description && (
+            <p className={errorStyles}>{`${errors.description.message}`}</p>
+          )}
 
-        <Button label="Add Offer" type="submit" disabled={isSubmitting} />
-      </form>
+          <Button label="Add Offer" type="submit" disabled={isSubmitting} />
+        </form>
+      </div>
     </div>
   );
 };
