@@ -140,7 +140,7 @@ export const AddOfferForm: NextPage = () => {
 
   return (
     <div className="container flex justify-around m-auto ">
-      <div className="flex justify-around  mt-48 bg-white p-4 mb-4 border rounded-lg shadow-lg w-1/2">
+      <div className="flex justify-around mt-20 bg-white p-4 border rounded-lg shadow-lg">
         <UploadLogo submitRef={submitRef} />
         <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
           <Input
