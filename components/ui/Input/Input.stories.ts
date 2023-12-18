@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    type: "string",
+    label: "Storybook",
     placeholder: "Storybook",
     className: "w-full mb-2 p-2 border rounded",
   },
