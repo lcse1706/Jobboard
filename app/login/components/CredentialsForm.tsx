@@ -47,13 +47,15 @@ export function CredentialsForm(props: CredentialsFormProps) {
         </span>
       )}
       <Input
-        register={register("email")}
+        label="Email"
+        {...register("email")}
         type="email"
         placeholder="Email"
         className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
       />
       <Input
-        register={register("password")}
+        label="Password"
+        {...register("password")}
         type="password"
         placeholder="Password"
         className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"

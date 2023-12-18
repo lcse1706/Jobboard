@@ -144,33 +144,27 @@ export const AddOfferForm: NextPage = () => {
         <UploadLogo submitRef={submitRef} />
         <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
           <Input
-            register={register("title")}
-            type="text"
+            label="Title"
+            {...register("title")}
             placeholder="Title"
             className={inputStyles}
+            error={errors.title}
           />
-          {errors.title && (
-            <p className={errorStyles}>{`${errors.title.message}`}</p>
-          )}
           <Input
-            register={register("salary")}
-            type="text"
+            label="Salary"
+            {...register("salary")}
             placeholder="Salary"
             className={inputStyles}
+            error={errors.salary}
           />
-          {errors.salary && (
-            <p className={errorStyles}>{`${errors.salary.message}`}</p>
-          )}
           <Input
-            register={register("technologies")}
+            label="Technologies"
+            {...register("technologies")}
             type="text"
             placeholder="Technologies"
             className={inputStyles}
+            error={errors.technologies}
           />
-          {errors.technologies && (
-            <p className={errorStyles}>{`${errors.technologies.message}`}</p>
-          )}
-
           <PlacesAutocomplete
             isSubmitted={isSubmitted}
             onAddressSelect={(address: string) => {
