@@ -5,7 +5,7 @@ import { classMerge } from "../utils/cn";
 
 type InputType = {
   label: string;
-  error: FieldError;
+  error?: FieldError;
 } & ComponentPropsWithRef<"input">;
 
 export const Input = forwardRef(
