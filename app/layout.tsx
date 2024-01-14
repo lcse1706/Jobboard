@@ -1,3 +1,6 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -33,6 +36,7 @@ export default function RootLayout({
           </Header>
           {children}
         </Providers>
+        <ToastContainer />
       </body>
     </html>
   );
