@@ -1,11 +1,18 @@
-import { DataProvider, HelpersProvider, NextAuthProvider } from "@/context";
+import {
+  DataProvider,
+  HelpersProvider,
+  NextAuthProvider,
+  ToastProvider,
+} from "@/context";
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-    <DataProvider>
-      <HelpersProvider>
-        <NextAuthProvider>{children}</NextAuthProvider>
-      </HelpersProvider>
-    </DataProvider>
+    <ToastProvider>
+      <DataProvider>
+        <HelpersProvider>
+          <NextAuthProvider>{children}</NextAuthProvider>
+        </HelpersProvider>
+      </DataProvider>
+    </ToastProvider>
   );
 };
