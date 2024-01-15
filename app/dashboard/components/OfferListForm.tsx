@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
+// import { toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSession } from "next-auth/react";
@@ -21,8 +21,8 @@ export const OfferListForm = (props: OfferListFormProps) => {
   const { data: session } = useSession();
   const router = useRouter();
   const offer = props.data;
-  const addNotify = () => toast("Offer added to favorites !");
-  const deleteNotify = () => toast("Offer removed from favorites !");
+  // const addNotify = () => toast("Offer added to favorites !");
+  // const deleteNotify = () => toast("Offer removed from favorites !");
 
   const [favorite, setFavorite] = useState(false);
 
@@ -48,13 +48,13 @@ export const OfferListForm = (props: OfferListFormProps) => {
       await checkIfUserInDb(session);
       await toggleFavorite(offerId, session);
       setFavorite(!favorite);
-      if (favorite) {
-        deleteNotify();
-        console.log("Delete");
-      } else {
-        addNotify();
-        console.log("Add");
-      }
+      // if (favorite) {
+      //   deleteNotify();
+      //   console.log("Delete");
+      // } else {
+      //   addNotify();
+      //   console.log("Add");
+      // }
       router.refresh();
     } else {
       console.log("No logged user.");
