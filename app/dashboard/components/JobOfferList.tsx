@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { useDataContext } from "@/context";
 import { OffersType, fetchOffersType } from "@/lib/types";
@@ -40,6 +42,7 @@ export const JobOfferList = () => {
 
   return (
     <section>
+      <ToastContainer position="bottom-right" />
       <SearchBar />
       <ul className="m-5">
         {filteredData.map((offer) => (
