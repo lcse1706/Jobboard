@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoadScript } from "@react-google-maps/api";
@@ -39,6 +40,9 @@ export const AddOfferForm: NextPage = () => {
 
   const { checkLastFirebaseKey, setCheckLastFirebaseKey } = useHelpersContext();
   const { logoURL } = useDataContext();
+
+  const addNotify = () => toast.success("Offer add successful !");
+  const errorNotify = () => toast.error("En error occurred !");
 
   const [placeInfo, setPlaceInfo] = useState<PlaceInfo>({
     placeName: "",
@@ -130,7 +134,9 @@ export const AddOfferForm: NextPage = () => {
       const idOfJustAddedOffer = await sendOffer(data, placeInfo, logoURL);
       console.log("Just added offer id: " + idOfJustAddedOffer);
       addOfferToUser(idOfJustAddedOffer);
+      addNotify();
     } catch (error) {
+      errorNotify();
       throw new Error(error);
     }
 
