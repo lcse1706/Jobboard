@@ -2,9 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
-// import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoadScript } from "@react-google-maps/api";
 import type { NextPage } from "next";
@@ -43,7 +42,7 @@ export const AddOfferForm: NextPage = () => {
   const { logoURL } = useDataContext();
 
   const addNotify = () => toast.success("Offer add successful !");
-  // const errorNotify = () => toast.error("En error occurred !");
+  const errorNotify = () => toast.error("En error occurred !");
 
   const [placeInfo, setPlaceInfo] = useState<PlaceInfo>({
     placeName: "",
@@ -137,7 +136,7 @@ export const AddOfferForm: NextPage = () => {
       addOfferToUser(idOfJustAddedOffer);
       addNotify();
     } catch (error) {
-      // errorNotify();
+      errorNotify();
       throw new Error(error);
     }
 
@@ -194,7 +193,6 @@ export const AddOfferForm: NextPage = () => {
 
           <Button label="Add Offer" type="submit" disabled={isSubmitting} />
         </form>
-        <Toaster />
       </div>
     </div>
   );
