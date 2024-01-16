@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 
 // import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -41,7 +42,7 @@ export const AddOfferForm: NextPage = () => {
   const { checkLastFirebaseKey, setCheckLastFirebaseKey } = useHelpersContext();
   const { logoURL } = useDataContext();
 
-  // const addNotify = () => toast.success("Offer add successful !");
+  const addNotify = () => toast.success("Offer add successful !");
   // const errorNotify = () => toast.error("En error occurred !");
 
   const [placeInfo, setPlaceInfo] = useState<PlaceInfo>({
@@ -134,7 +135,7 @@ export const AddOfferForm: NextPage = () => {
       const idOfJustAddedOffer = await sendOffer(data, placeInfo, logoURL);
       console.log("Just added offer id: " + idOfJustAddedOffer);
       addOfferToUser(idOfJustAddedOffer);
-      // addNotify();
+      addNotify();
     } catch (error) {
       // errorNotify();
       throw new Error(error);
@@ -193,6 +194,7 @@ export const AddOfferForm: NextPage = () => {
 
           <Button label="Add Offer" type="submit" disabled={isSubmitting} />
         </form>
+        <Toaster />
       </div>
     </div>
   );
