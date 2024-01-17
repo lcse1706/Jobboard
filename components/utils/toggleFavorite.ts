@@ -1,6 +1,11 @@
+import toast from "react-hot-toast";
+
 import { Session } from "next-auth";
 
 import { getUsers, updateUser } from "@/services";
+
+const addNotify = () => toast.success("Offer added to favorites !");
+const deleteNotify = () => toast.error("Offer removed from favorites !");
 
 export const toggleFavorite = async (
   offerId: string,
@@ -19,6 +24,7 @@ export const toggleFavorite = async (
 
         if (favorite === offerId) {
           console.log("Already exists in favorites. Deleting ...");
+          deleteNotify();
           favoriteExists = true;
 
           // Remove offerId from favorites array
@@ -38,7 +44,7 @@ export const toggleFavorite = async (
 
       if (!favoriteExists) {
         console.log("Not found in favorites. Adding ...");
-
+        addNotify();
         const updatedUser = {
           ...users[user],
           favorites: [...users[user].favorites, offerId],
