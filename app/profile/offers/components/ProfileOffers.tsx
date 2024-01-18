@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -14,14 +15,16 @@ import { deleteDashboardOffer } from "@/services";
 
 export const ProfileOffers = (props: ProfileOfferProps) => {
   const data = props.data;
-
   const { data: session } = useSession();
   const router = useRouter();
+  const deleteNotify = () => toast.error("Offer delete successful !");
+
   const handleDelete = async () => {
     await deleteUserOffer(data.id, session, "offersPublished");
     await deleteDashboardOffer(data.id);
     setTimeout(() => {
       router.refresh();
+      deleteNotify();
     }, 250);
   };
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -17,11 +18,13 @@ export const FavoritesOffers = (props: ProfileOfferProps) => {
   const data = props.data;
   const { data: session } = useSession();
   const router = useRouter();
+  const removeNotify = () => toast.error("Offer removed from favorites !");
 
   const handleDelete = () => {
     deleteUserOffer(data.id, session, "favorites");
     setTimeout(() => {
       router.refresh();
+      removeNotify();
     }, 250);
   };
 
