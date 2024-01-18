@@ -17,7 +17,7 @@ export const ProfileOffers = (props: ProfileOfferProps) => {
   const data = props.data;
   const { data: session } = useSession();
   const router = useRouter();
-  const deleteNotify = () => toast.error("Offer delete successful !");
+  const deleteNotify = () => toast.error("Offer deleted successful !");
 
   const handleDelete = async () => {
     await deleteUserOffer(data.id, session, "offersPublished");
