@@ -2,7 +2,7 @@ import { ComponentProps, ReactNode } from "react";
 
 interface ButtonProps {
   label: ReactNode | string;
-  type: string;
+  type?: string;
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
