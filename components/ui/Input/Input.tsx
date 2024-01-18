@@ -22,6 +22,7 @@ export const Input = forwardRef(
         </label>
         <input
           id={id}
+          type={type}
           ref={ref}
           className={classMerge(className)}
           placeholder={placeholder}
