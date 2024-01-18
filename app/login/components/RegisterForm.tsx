@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { NextPage } from "next";
@@ -19,10 +20,18 @@ export const RegisterForm: NextPage = () => {
     resolver: zodResolver(registerSchema),
   });
 
+  const registerNotify = () =>
+    toast.success("Register complete. Please log in !");
+
+  const registerFailedNotify = () =>
+    toast.error("Something went wrong. Please try again later !");
+
   const submitHandler = async (data: TRegisterSchema) => {
     try {
       await registerUser(data);
+      registerNotify();
     } catch (error) {
+      registerFailedNotify();
       throw new Error(error);
     }
 
