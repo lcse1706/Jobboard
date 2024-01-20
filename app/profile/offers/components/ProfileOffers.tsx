@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 import defaultLogo from "@/app/favicon.ico";
 import { Button } from "@/components/ui";
+import { ConfirmationModal } from "@/components/ui/ConfirmationModal/ConfirmationModal";
 import { deleteUserOffer } from "@/components/utils";
 import { ProfileOfferProps } from "@/lib/types";
 import { deleteDashboardOffer } from "@/services";
@@ -45,31 +46,15 @@ export const ProfileOffers = (props: ProfileOfferProps) => {
     router.refresh();
   }, []);
 
-  const modal = (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-gray-700 bg-opacity-80">
-      <div className="modal-container bg-white p-4 rounded translate-y-[-10vh] ">
-        <p className="text-gray-800 text-lg mb-4">
-          Are you sure you want to delete?
-        </p>
-        <div className="flex justify-end">
-          <Button
-            label="Cancel"
-            onClick={closeConfirmationModal}
-            className="mr-2 bg-gray-500"
-          />
-          <Button
-            label="Delete"
-            onClick={handleDelete}
-            className="bg-red-500 hover:bg-red-700"
-          />
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div>
-      {confirmationModal && modal}
+      {confirmationModal && (
+        <ConfirmationModal
+          text="Are you sure you want to delete this offer ?"
+          cancelButton={closeConfirmationModal}
+          confirmationButton={handleDelete}
+        />
+      )}
       <li className="bg-white p-8 rounded-lg border shadow-lg max-w-6xl mx-auto mt-8">
         <div className="flex items-center justify-center mb-4">
           <Image
