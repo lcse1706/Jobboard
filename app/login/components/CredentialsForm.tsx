@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
@@ -21,6 +22,9 @@ export function CredentialsForm(props: CredentialsFormProps) {
     resolver: zodResolver(loginSchema),
   });
 
+  const loginOkNotify = () => toast.success("Login successful !");
+  const loginFailedNotify = () => toast.error("Login failed !");
+
   const submitHandler = async (data: TLoginSchema) => {
     const signInResponse = await signIn("credentials", {
       email: data.email,
@@ -30,8 +34,10 @@ export function CredentialsForm(props: CredentialsFormProps) {
 
     if (signInResponse && !signInResponse.error) {
       router.push("/");
+      loginOkNotify();
     } else {
       console.log("Error: ", signInResponse);
+      loginFailedNotify();
       setError("Your Email or Password is wrong!");
     }
   };
