@@ -58,7 +58,6 @@ export const fetchOffers = async () => {
   const data = await fetchResponse.json();
   return data;
 };
-//FIXME link doesnt work from env
 
 export const updateOffer = async (
   recordKey: string,
