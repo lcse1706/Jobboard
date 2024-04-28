@@ -41,7 +41,7 @@ export const JobOfferList = () => {
   return (
     <section>
       <SearchBar />
-      <ul className="m-5">
+      <ul className="my-5 mx-7">
         {filteredData.map((offer) => (
           <OfferListForm key={offer.id} data={offer} />
         ))}

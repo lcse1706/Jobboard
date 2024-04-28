@@ -30,7 +30,7 @@ export const SearchBar = () => {
   }, [searchField, records]);
 
   return (
-    <div className="px-5">
+    <div className="mx-7">
       <input
         type="search"
         placeholder="Search Job"
