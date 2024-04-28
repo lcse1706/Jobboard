@@ -54,7 +54,7 @@ export const AddOfferForm: NextPage = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { data: session } = useSession();
 
-  //Update record with logoUrl which is returned from UploadLogo component. Sending data like title, salary, description etc is happening in the same time as logo upload thats why, added data is updated which logo Url.
+  //Update record with logoUrl which is returned from UploadLogo component. Sending data like title, salary, description etc is happening in the same time as logo upload thats why, added data is updated with logo Url.
   const updateLastRecord = async () => {
     try {
       const data = await fetchOffers();
