@@ -32,13 +32,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gray-200`}>
         <Providers>
           <Header title="Jobboard">
-            {isMobile ? (
-              <Navigation nav={nav} />
-            ) : (
-              <Hamburger>
-                <Navigation nav={nav} />
-              </Hamburger>
-            )}
+            <Navigation nav={nav} />
           </Header>
           {children}
         </Providers>
