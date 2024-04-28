@@ -1,7 +1,10 @@
+import { isMobile } from "react-device-detect";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { Header, Navigation } from "@/components/ui/";
+import Hamburger from "@/components/ui/Hamburger/Hamburger";
 
 import { Providers } from "./Providers";
 import "./globals.css";
@@ -29,7 +32,13 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gray-200`}>
         <Providers>
           <Header title="Jobboard">
-            <Navigation nav={nav} />
+            {isMobile ? (
+              <Navigation nav={nav} />
+            ) : (
+              <Hamburger>
+                <Navigation nav={nav} />
+              </Hamburger>
+            )}
           </Header>
           {children}
         </Providers>
