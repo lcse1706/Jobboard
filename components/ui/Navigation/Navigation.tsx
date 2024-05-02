@@ -17,7 +17,6 @@ interface NavProps {
 }
 
 export const Navigation = (props: NavProps) => {
-  console.log(isMobile);
   const router = useRouter();
   const session = useSession();
 
