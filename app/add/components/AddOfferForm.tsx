@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { isMobile } from "react-device-detect";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -146,9 +147,17 @@ export const AddOfferForm: NextPage = () => {
 
   return (
     <div className="container flex justify-around m-auto ">
-      <div className="flex justify-around mt-20 bg-white p-4 border rounded-lg shadow-lg">
+      <div
+        className={
+          "flex justify-around mt-20 bg-white p-4 border rounded-lg shadow-lg mt-5" +
+          (isMobile ? " flex-col items-center" : "")
+        }
+      >
         <UploadLogo submitRef={submitRef} />
-        <form onSubmit={handleSubmit(submitHandler)} className="w-1/2">
+        <form
+          onSubmit={handleSubmit(submitHandler)}
+          className={isMobile ? "flex flex-col items-center " : "w-1/2"}
+        >
           <Input
             label="Title"
             {...register("title")}
