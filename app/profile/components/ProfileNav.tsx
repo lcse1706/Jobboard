@@ -1,5 +1,7 @@
 "use client";
 
+import { isMobile } from "react-device-detect";
+
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 
@@ -11,20 +13,24 @@ export const ProfileNav = () => {
   };
 
   return (
-    <nav className="flex flex-row h-20 bg-gray-200 items-center justify-end p-4 flex w-full ">
-      <ul className="flex flex-row justify-end w-1/2">
-        <li>
-          <Link href="/profile/" className="hover:text-gray-600 mr-5">
+    <nav className="flex bg-gray-200 items-center justify-end pr-4 pt-2 w-full">
+      <ul
+        className={
+          isMobile ? "flex flex-col" : "flex flex-row justify-around w-1/5"
+        }
+      >
+        <li className="text-center mb-1">
+          <Link href="/profile/" className="hover:text-gray-600">
             Profile
           </Link>
         </li>
-        <li>
-          <Link href="/profile/offers" className="hover:text-gray-600 mr-5">
+        <li className="text-center  mb-1">
+          <Link href="/profile/offers" className="hover:text-gray-600">
             My Offers
           </Link>
         </li>
-        <li>
-          <Link href="/profile/favorites" className="hover:text-gray-600 mr-5">
+        <li className="text-center">
+          <Link href="/profile/favorites" className="hover:text-gray-600">
             Favorites Offers
           </Link>
         </li>
