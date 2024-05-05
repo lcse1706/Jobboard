@@ -12,7 +12,7 @@ export default async function Offers() {
     userOffers = await pickOffers("favorites");
   }
   return (
-    <ul className="flex flex-col items-center justify-start dh-screen">
+    <ul className="flex flex-col items-center justify-start dh-screen mx-2">
       {userOffers.length > 0 ? (
         userOffers.map((item) => <FavoritesOffers key={item.id} data={item} />)
       ) : (
