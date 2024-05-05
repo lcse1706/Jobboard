@@ -1,4 +1,3 @@
-// import { isMobile } from "react-device-detect";
 import { isMobileDevice } from "@/lib/isMobileDevice";
 
 import { GoogleMaps } from "./components/GoogleMaps";
