@@ -1,12 +1,9 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-import { GoogleSignInButton } from "@/components/ui/AuthButtons";
 import { isMobileDevice } from "@/lib/isMobileDevice";
 
-import { CredentialsForm } from "./components/CredentialsForm";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import { LoginForm } from "./components/LoginForm";
 import { RegisterForm } from "./components/RegisterForm";
 import { authConfig } from "./lib/auth";
 
@@ -19,11 +16,11 @@ export default async function SignInPage() {
   return (
     <div
       className={
-        isMobile ? "flex flex-col" : "w-full flex flex-row justify-center"
+        isMobile ? "flex flex-col pb-5" : "w-full flex flex-row justify-center"
       }
     >
-      <Login />
-      <Register />
+      <LoginForm />
+      <RegisterForm />
     </div>
   );
 }

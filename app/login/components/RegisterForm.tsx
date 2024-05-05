@@ -39,7 +39,8 @@ export const RegisterForm: NextPage = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center mt-10 p-10 mx-5 shadow-lg border border-gray-200 rounded-md bg-white">
+      <h1 className="mt-10 mb-4 text-4xl font-bold">Register</h1>
       <form
         onSubmit={handleSubmit(submitHandler)}
         className="w-full mt-8 text-xl text-black font-semibold flex flex-col"
