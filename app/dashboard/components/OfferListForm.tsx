@@ -10,10 +10,13 @@ import { useRouter } from "next/navigation";
 import defaultLogo from "@/app/favicon.ico";
 import { checkIfUserInDb, toggleFavorite } from "@/components/utils";
 import { useDataContext, useHelpersContext } from "@/context";
+// import { isMobileDevice } from "@/lib/isMobileDevice";
 import { OfferListFormProps } from "@/lib/types";
 import { getUsers } from "@/services";
 
 export const OfferListForm = (props: OfferListFormProps) => {
+  //FIXME find another way to check isMobile, this one couse problems with favorites add/delete
+  // const isMobile = isMobileDevice();
   const { hoveredMarkerId } = useHelpersContext();
   const { setOfferId } = useDataContext();
   const { data: session } = useSession();
