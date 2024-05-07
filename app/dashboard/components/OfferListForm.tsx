@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,13 +11,11 @@ import { useRouter } from "next/navigation";
 import defaultLogo from "@/app/favicon.ico";
 import { checkIfUserInDb, toggleFavorite } from "@/components/utils";
 import { useDataContext, useHelpersContext } from "@/context";
-// import { isMobileDevice } from "@/lib/isMobileDevice";
 import { OfferListFormProps } from "@/lib/types";
 import { getUsers } from "@/services";
 
 export const OfferListForm = (props: OfferListFormProps) => {
   //FIXME find another way to check isMobile, this one couse problems with favorites add/delete
-  // const isMobile = isMobileDevice();
   const { hoveredMarkerId } = useHelpersContext();
   const { setOfferId } = useDataContext();
   const { data: session } = useSession();
@@ -59,9 +58,14 @@ export const OfferListForm = (props: OfferListFormProps) => {
 
   return (
     <li
-      className={`bg-white p-4 mb-4 border rounded-lg shadow-lg hover:scale-105 hover:ring-1 relative ${
-        hoveredMarkerId === offer.id ? "scale-105 ring-1" : ""
-      }`}
+      className={`bg-white p-4 mb-4 border rounded-lg shadow-lg relative
+      ${
+        !isMobile &&
+        "hover:scale-105 hover:ring-1" &&
+        hoveredMarkerId === offer.id &&
+        "scale-105 ring-1"
+      }
+      `}
     >
       <button
         type="button"
