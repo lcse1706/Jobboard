@@ -15,7 +15,6 @@ import { OfferListFormProps } from "@/lib/types";
 import { getUsers } from "@/services";
 
 export const OfferListForm = (props: OfferListFormProps) => {
-  //FIXME find another way to check isMobile, this one couse problems with favorites add/delete
   const { hoveredMarkerId } = useHelpersContext();
   const { setOfferId } = useDataContext();
   const { data: session } = useSession();
