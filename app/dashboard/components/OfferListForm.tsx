@@ -64,7 +64,7 @@ export const OfferListForm = (props: OfferListFormProps) => {
     >
       <button
         type="button"
-        className={`bg-pink-500 hover:bg-pink-700 disabled:bg-gray-500 font-bold py-2 px-4 rounded-full m-1 absolute top-2 right-5 ${
+        className={`bg-pink-500 hover:bg-pink-700 disabled:bg-gray-500 font-bold py-2 px-4 rounded-full m-1 absolute top-1 right-5 ${
           favorite ? "text-gray-900" : "text-white"
         } `}
         onClick={() => handleFavorite(offer.id)}
@@ -77,7 +77,7 @@ export const OfferListForm = (props: OfferListFormProps) => {
         key={offer.id}
         onClick={() => setOfferId(offer.id)}
       >
-        <div className="flex items-center mb-2">
+        <div className="flex items-center mb-2 mr-16">
           <Image
             src={offer.logoURL === "" ? defaultLogo : offer.logoURL}
             alt="tech img"
@@ -85,8 +85,10 @@ export const OfferListForm = (props: OfferListFormProps) => {
             height={25}
             className="mr-2"
           />
+
           <p className="text-xl font-semibold">{offer.title}</p>
         </div>
+
         <p className="text-gray-600">{offer.salary}</p>
         {/* <p className="text-blue-500">{offer.technologies.join(', ')}</p> */}
         <p className="text-blue-500">{offer.technologies}</p>
