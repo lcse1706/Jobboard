@@ -58,12 +58,8 @@ export const OfferListForm = (props: OfferListFormProps) => {
   return (
     <li
       className={`bg-white p-4 mb-4 border rounded-lg shadow-lg relative
-      ${
-        !isMobile &&
-        "hover:scale-105 hover:ring-1" &&
-        hoveredMarkerId === offer.id &&
-        "scale-105 ring-1"
-      }
+      ${!isMobile && "hover:scale-105 hover:ring-1"}
+      ${hoveredMarkerId === offer.id && "scale-105 ring-1"}
       `}
     >
       <button
