@@ -12,7 +12,11 @@ const DetailsPage = () => {
     return data[0];
   };
 
-  return <Details details={getData()} />;
+  return (
+    <div className="flex justify-center items-center">
+      <Details details={getData()} />;
+    </div>
+  );
 };
 
 export default DetailsPage;
