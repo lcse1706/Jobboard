@@ -26,7 +26,7 @@ export const JobOfferList = () => {
             ...rest,
           });
         }
-        setRecords(jobOffers);
+        setRecords(jobOffers.reverse());
       };
       fetchedData(data);
     } catch (error) {
