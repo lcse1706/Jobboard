@@ -16,7 +16,7 @@ export const JobOfferList = () => {
     try {
       const data = await fetchOffers();
       const jobOffers: OffersType[] = [];
-
+      //TODO uproscic, wyniesc np w services
       const fetchedData = (data: fetchOffersType) => {
         for (const item in data) {
           const { id, coordinates, ...rest } = data[item];
