@@ -1,20 +1,21 @@
-"use client";
-
-import { useDataContext } from "@/context";
+import { fetchDetails } from "@/services";
 
 import { Details } from "./components/Details";
 
-const DetailsPage = () => {
-  const { records, offerId } = useDataContext();
-
-  const getData = () => {
-    const data = records.filter((record) => record.id === offerId);
-    return data[0];
+type Props = {
+  params: {
+    id: string;
   };
+};
+
+const DetailsPage = async ({ params }: Props) => {
+  const offerId = params.id;
+  console.log(params.id);
+  const offer = await fetchDetails(offerId);
 
   return (
     <div className="flex justify-center items-center">
-      <Details details={getData()} />;
+      <Details details={offer} />;
     </div>
   );
 };
