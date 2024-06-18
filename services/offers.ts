@@ -59,13 +59,31 @@ export const fetchOffers = async () => {
   return data;
 };
 
+export const fetchDetails = async (recordKey: string) => {
+  const fetchDetailsResponse: Response = await fetch(
+    `${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_OFFERS_URL}/${recordKey}.json`,
+    {
+      method: "GET",
+      headers: headers,
+      body: null,
+    }
+  );
+  if (fetchDetailsResponse.ok) {
+    console.log("Offer Details load successful !");
+  } else {
+    throw new Error("Loading offer details failed !");
+  }
+
+  const details = await fetchDetailsResponse.json();
+  return details;
+};
+
 export const updateOffer = async (
   recordKey: string,
   newData: OfferFirebaseType
 ) => {
   const updatedResponse: Response = await fetch(
     `${process.env.NEXT_PUBLIC_FIREBASE_UPDATE_OFFERS_URL}/${recordKey}.json`,
-    // `https://jobboard-335d5-default-rtdb.europe-west1.firebasedatabase.app/Offers/${recordKey}.json`,
     {
       method: "PUT",
       headers,
