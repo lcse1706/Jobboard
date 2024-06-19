@@ -10,7 +10,6 @@ type Props = {
 
 const DetailsPage = async ({ params }: Props) => {
   const offerId = params.id;
-  console.log(params.id);
   const offer = await fetchDetails(offerId);
 
   return (
