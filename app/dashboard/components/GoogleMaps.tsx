@@ -4,6 +4,7 @@ import { useMemo } from "react";
 
 import { useLoadScript, GoogleMap, MarkerF } from "@react-google-maps/api";
 import type { NextPage } from "next";
+import { useRouter } from "next/navigation";
 
 import { useDataContext, useHelpersContext } from "@/context";
 
@@ -14,8 +15,13 @@ const mapStyles = {
 
 export const GoogleMaps: NextPage = () => {
   const mapCenter = useMemo(() => ({ lat: 51.8689731, lng: 19.2029511 }), []);
-  const { filteredData } = useDataContext();
+  const { filteredData, setOfferId } = useDataContext();
   const { setHoveredMarkerId } = useHelpersContext();
+  const router = useRouter();
+
+  const moveToOffer = (id: string) => {
+    router.push(`/dashboard/${id}`);
+  };
 
   const mapOptions = useMemo<google.maps.MapOptions>(
     () => ({
@@ -47,7 +53,7 @@ export const GoogleMaps: NextPage = () => {
         <MarkerF
           key={pos.id}
           position={pos.coordinates}
-          onClick={() => console.log("Marker Added")}
+          onClick={() => moveToOffer(pos.id)}
           onMouseOver={() => {
             setHoveredMarkerId(pos.id);
           }}
