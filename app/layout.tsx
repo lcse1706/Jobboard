@@ -3,7 +3,7 @@ import { isMobile } from "react-device-detect";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { Header, Navigation } from "@/components/ui/";
+import { ChatbotUI, Header, Navigation } from "@/components/ui/";
 import Hamburger from "@/components/ui/Hamburger/Hamburger";
 
 import { Providers } from "./Providers";
@@ -35,6 +35,7 @@ export default function RootLayout({
             <Navigation nav={nav} />
           </Header>
           {children}
+          <ChatbotUI />
         </Providers>
       </body>
     </html>
