@@ -16,7 +16,7 @@ export const Chatbot: React.FC = () => {
 
     setChatHistory([...chatHistory, { role: "user", content: message }]);
 
-    const response = await fetch("http://localhost:3001/api/ai/completions", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_CHATBOT_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
