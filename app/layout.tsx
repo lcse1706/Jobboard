@@ -1,15 +1,10 @@
-import { isMobile } from "react-device-detect";
-
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 
 import { ChatbotUI, Header, Navigation } from "@/components/ui/";
-import Hamburger from "@/components/ui/Hamburger/Hamburger";
 
 import { Providers } from "./Providers";
+import { inter } from "./fonts";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Jobboard by LC",
@@ -29,9 +24,11 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gray-200`}>
+      <body
+        className={`${inter.className} bg-gray-200 text-black dark:bg-gray-700 dark:text-white`}
+      >
         <Providers>
-          <Header title="Jobboard">
+          <Header>
             <Navigation nav={nav} />
           </Header>
           {children}

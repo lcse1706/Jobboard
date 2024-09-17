@@ -10,13 +10,13 @@ interface HeaderProps {
 export const Header = (props: HeaderProps) => {
   return (
     <header
-      className="flex flex-row h-20 bg-gray-300 items-center justify-between p-4"
+      className="flex flex-row h-40 bg-gray-300 dark:bg-gray-800 items-center justify-between p-4"
       style={props.style}
     >
       <Image
         alt="Jobboard Logo"
         src={logo}
-        height={70}
+        height={100}
         className="ml-[400px]"
       />
       {props.children}
