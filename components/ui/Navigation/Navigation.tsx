@@ -9,7 +9,8 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { montserrat } from "../../../app/fonts";
+import { montserrat } from "@/app/fonts";
+
 import { Button } from "../Button";
 
 interface NavProps {
