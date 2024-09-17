@@ -4,8 +4,8 @@ import { GoogleMaps } from "./components/GoogleMaps";
 import { JobOfferList } from "./components/JobOfferList";
 
 export default async function Page() {
-  const isMobile = isMobileDevice();
-  console.log(isMobile);
+  const isMobile = await isMobileDevice();
+  // console.log("Is mobile:", isMobile);
   return (
     <section
       className={isMobile ? "flex flex-col-reverse" : "flex flex-row p-5"}

@@ -8,7 +8,7 @@ import { RegisterForm } from "./components/RegisterForm";
 import { authConfig } from "./lib/auth";
 
 export default async function SignInPage() {
-  const isMobile = isMobileDevice();
+  const isMobile = await isMobileDevice();
 
   const session = await getServerSession(authConfig);
   if (session) return redirect("/");
