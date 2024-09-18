@@ -1,19 +1,10 @@
 "use client";
 
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 
 import { OffersType } from "@/lib/types";
 
-interface DataContextType {
-  records: OffersType[];
-  setRecords: React.Dispatch<React.SetStateAction<OffersType[]>>;
-  filteredData: OffersType[];
-  setFilteredData: React.Dispatch<React.SetStateAction<OffersType[]>>;
-  offerId: string;
-  setOfferId: React.Dispatch<React.SetStateAction<string>>;
-  logoURL: string;
-  setLogoURL: React.Dispatch<React.SetStateAction<string>>;
-}
+import { DataContextType } from "./types";
 
 const DataContext = createContext<DataContextType | null>(null);
 
@@ -27,9 +18,13 @@ export const useDataContext = () => {
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [records, setRecords] = useState<OffersType[]>([]);
-  const [filteredData, setFilteredData] = useState<OffersType[]>(records);
+  const [filteredData, setFilteredData] = useState<OffersType[]>();
   const [offerId, setOfferId] = useState<string>("");
   const [logoURL, setLogoURL] = useState<string>("");
+
+  useEffect(() => {
+    setFilteredData(records);
+  }, [records]);
 
   return (
     <DataContext.Provider

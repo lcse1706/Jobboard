@@ -2,9 +2,7 @@
 
 import { Toaster } from "react-hot-toast";
 
-interface ToastProviderProps {
-  children: React.ReactNode;
-}
+import { ToastProviderProps } from "./types";
 
 export function ToastProvider({ children }: ToastProviderProps) {
   return (
