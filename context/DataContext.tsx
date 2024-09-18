@@ -4,16 +4,7 @@ import { useContext, createContext, useState } from "react";
 
 import { OffersType } from "@/lib/types";
 
-interface DataContextType {
-  records: OffersType[];
-  setRecords: React.Dispatch<React.SetStateAction<OffersType[]>>;
-  filteredData: OffersType[];
-  setFilteredData: React.Dispatch<React.SetStateAction<OffersType[]>>;
-  offerId: string;
-  setOfferId: React.Dispatch<React.SetStateAction<string>>;
-  logoURL: string;
-  setLogoURL: React.Dispatch<React.SetStateAction<string>>;
-}
+import { DataContextType } from "./types";
 
 const DataContext = createContext<DataContextType | null>(null);
 

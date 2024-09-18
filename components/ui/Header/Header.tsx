@@ -1,5 +1,8 @@
+import Image from "next/image";
+
+import logo from "./logo.jpg";
+
 interface HeaderProps {
-  title: string;
   style?: React.CSSProperties;
   children: React.ReactNode;
 }
@@ -7,10 +10,15 @@ interface HeaderProps {
 export const Header = (props: HeaderProps) => {
   return (
     <header
-      className="flex flex-row h-20 bg-gray-300 items-center justify-between p-4"
+      className="flex flex-row h-40 bg-gray-300 dark:bg-gray-800 items-center justify-between p-4"
       style={props.style}
     >
-      <h1 className="w-1/4 text-center">{props.title}</h1>
+      <Image
+        alt="Jobboard Logo"
+        src={logo}
+        height={100}
+        className="ml-[400px]"
+      />
       {props.children}
     </header>
   );

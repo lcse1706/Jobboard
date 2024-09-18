@@ -9,6 +9,8 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import { montserrat } from "@/app/fonts";
+
 import { Button } from "../Button";
 
 interface NavProps {
@@ -109,7 +111,7 @@ export const Navigation = (props: NavProps) => {
 
   return (
     // <nav className="flex justify-end items-end" style={props.style}>
-    <nav className="" style={props.style}>
+    <nav className={montserrat.className} style={props.style}>
       {isMobile ? mobileView : desktopView}
     </nav>
   );
