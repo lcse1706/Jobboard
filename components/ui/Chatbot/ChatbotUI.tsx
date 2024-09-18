@@ -16,7 +16,7 @@ export const ChatbotUI = () => {
   };
 
   return (
-    <div className="fixed bottom-20 right-4">
+    <div className="fixed bottom-20 right-4 dark:text-black">
       {show ? (
         <div className="relative">
           <button
