@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, createContext, useState, useEffect } from "react";
+import { useContext, createContext, useState } from "react";
 
 import { OffersType } from "@/lib/types";
 
@@ -18,13 +18,9 @@ export const useDataContext = () => {
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [records, setRecords] = useState<OffersType[]>([]);
-  const [filteredData, setFilteredData] = useState<OffersType[]>();
+  const [filteredData, setFilteredData] = useState<OffersType[]>(records);
   const [offerId, setOfferId] = useState<string>("");
   const [logoURL, setLogoURL] = useState<string>("");
-
-  useEffect(() => {
-    setFilteredData(records);
-  }, [records]);
 
   return (
     <DataContext.Provider
