@@ -13,7 +13,7 @@ export const ProfileNav = () => {
   };
 
   return (
-    <nav className="flex bg-gray-200 items-center justify-end pr-4 pt-2 w-full">
+    <nav className="flex items-center justify-end mt-0.5 pr-4 pt-2 w-full h-20 bg-gray-300 dark:bg-gray-800 ">
       <ul
         className={
           isMobile ? "flex flex-col" : "flex flex-row justify-around w-1/5"

@@ -14,7 +14,7 @@ const DetailsPage = async ({ params }: Props) => {
 
   return (
     <div className="flex justify-center items-center">
-      <Details details={offer} />;
+      <Details details={offer} />
     </div>
   );
 };
