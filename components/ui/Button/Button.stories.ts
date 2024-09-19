@@ -22,6 +22,22 @@ export const Primary: Story = {
   },
 };
 
+export const Blue: Story = {
+  args: {
+    label: "Button",
+    type: "button",
+    bgColor: "midnight",
+  },
+};
+
+export const Green: Story = {
+  args: {
+    label: "Button",
+    type: "button",
+    bgColor: "green-sea",
+  },
+};
+
 export const Delete: Story = {
   args: {
     label: "Delete",
