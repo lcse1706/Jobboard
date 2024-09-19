@@ -57,15 +57,15 @@ export const OfferListForm = (props: OfferListFormProps) => {
 
   return (
     <li
-      className={`bg-white p-4 mb-4 border rounded-lg shadow-lg relative
+      className={`bg-white p-4 m-4 border rounded-lg shadow-lg relative
       ${!isMobile && "hover:scale-105 hover:ring-1"}
       ${hoveredMarkerId === offer.id && "scale-105 ring-1"}
       `}
     >
       <button
         type="button"
-        className={`bg-pink-500 hover:bg-pink-700 disabled:bg-gray-500 font-bold py-2 px-4 rounded-full m-1 absolute top-1 right-5 ${
-          favorite ? "text-gray-900" : "text-white"
+        className={`bg-gray-500 disabled:bg-gray-500  font-bold py-1 px-2 rounded-full m-1 absolute top-1 right-5 ${
+          favorite ? "text-yellow-400" : "text-white"
         } `}
         onClick={() => handleFavorite(offer.id)}
       >

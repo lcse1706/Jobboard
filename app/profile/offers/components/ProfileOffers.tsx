@@ -55,7 +55,7 @@ export const ProfileOffers = (props: ProfileOfferProps) => {
           confirmationButton={handleDelete}
         />
       )}
-      <li className="bg-white p-8 rounded-lg border shadow-lg max-w-6xl mx-auto mt-8">
+      <li className="bg-gray-200 text-black p-8 rounded-lg border shadow-lg max-w-6xl mx-auto mt-8">
         <div className="flex items-center justify-center mb-4">
           <Image
             src={data.logoURL === "" ? defaultLogo : data.logoURL}
@@ -74,7 +74,7 @@ export const ProfileOffers = (props: ProfileOfferProps) => {
           <Button label="Edit (in progress)" type="button" />
           <Button
             label="Delete"
-            className="bg-red-600 hover:bg-red-700"
+            className="bg-turquise hover:bg-red-700"
             type="button"
             onClick={handleDelete}
           />
