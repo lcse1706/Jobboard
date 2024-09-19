@@ -5,6 +5,7 @@ import { isMobile } from "react-device-detect";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 
+import { montserrat } from "@/app/fonts";
 import { Button } from "@/components/ui";
 
 export const ProfileNav = () => {
@@ -13,7 +14,9 @@ export const ProfileNav = () => {
   };
 
   return (
-    <nav className="flex items-center justify-end mt-0.5 pr-4 pt-2 w-full h-20 bg-gray-300 dark:bg-gray-800 ">
+    <nav
+      className={`${montserrat.className} flex items-center justify-end mt-0.5 pr-4 pt-2 w-full h-20 bg-gray-300 dark:bg-gray-800`}
+    >
       <ul
         className={
           isMobile ? "flex flex-col" : "flex flex-row justify-around w-1/5"
