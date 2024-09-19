@@ -9,7 +9,7 @@ describe("Button component", () => {
   test("Button component should have no accessibility violations", async () => {
     const { container } = render(<Button label="Click me" />);
     const result = await axe(container);
-    console.log(result.violations);
+
     expect(result).toHaveNoViolations();
   });
   it("renders the button with label", () => {
