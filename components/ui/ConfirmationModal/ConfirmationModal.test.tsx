@@ -22,10 +22,8 @@ describe("ConfirmationModal component", () => {
       />
     );
 
-    // Check if the modal text is rendered
     expect(screen.getByText(modalText)).toBeInTheDocument();
 
-    // Check if the buttons are rendered
     expect(screen.getByText("Cancel")).toBeInTheDocument();
     expect(screen.getByText("Delete")).toBeInTheDocument();
   });
@@ -39,10 +37,8 @@ describe("ConfirmationModal component", () => {
       />
     );
 
-    // Click the "Cancel" button
     fireEvent.click(screen.getByText("Cancel"));
 
-    // Verify that the cancelButton function has been called
     expect(mockCancel).toHaveBeenCalled();
   });
 
@@ -55,10 +51,8 @@ describe("ConfirmationModal component", () => {
       />
     );
 
-    // Click the "Delete" button
     fireEvent.click(screen.getByText("Delete"));
 
-    // Verify that the confirmationButton function has been called
     expect(mockConfirm).toHaveBeenCalled();
   });
 
@@ -71,7 +65,6 @@ describe("ConfirmationModal component", () => {
       />
     );
 
-    // Check if there are no accessibility violations
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
