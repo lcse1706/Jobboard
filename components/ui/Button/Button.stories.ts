@@ -45,17 +45,3 @@ export const Delete: Story = {
     className: "bg-red-600 hover:bg-red-700",
   },
 };
-
-// export const Large: Story = {
-//   args: {
-//     size: 'large',
-//     label: 'Button',
-//   },
-// };
-
-// export const Small: Story = {
-//   args: {
-//     size: 'small',
-//     label: 'Button',
-//   },
-// };

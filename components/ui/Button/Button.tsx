@@ -50,7 +50,7 @@ export const Button = ({
 
   const classes = clsx(
     "bg-blue-600",
-    "hover:bg-blue-700",
+    "hover:bg-blue-800",
     "disabled:bg-gray-500",
     "text-white",
     "font-bold",
@@ -58,6 +58,7 @@ export const Button = ({
     "py-2",
     "rounded-full",
     "m-1",
+    "tracking-wide",
     className
   );
 

@@ -1,9 +1,17 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { axe, toHaveNoViolations } from "jest-axe";
 
 import { Button } from "./Button";
 
 describe("Button component", () => {
+  expect.extend(toHaveNoViolations);
+  test("Button component should have no accessibility violations", async () => {
+    const { container } = render(<Button label="Click me" />);
+    const result = await axe(container);
+    console.log(result.violations);
+    expect(result).toHaveNoViolations();
+  });
   it("renders the button with label", () => {
     render(<Button label="Click me" />);
 
