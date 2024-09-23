@@ -1,3 +1,5 @@
+"use server";
+
 import { OffersType, fetchOffersType } from "@/lib/types";
 import { fetchOffers } from "@/services";
 
@@ -21,11 +23,11 @@ export const getCachedOffers = async (): Promise<OffersType[]> => {
 
     offerCache = jobOffers;
     isOfferCacheLoaded = true;
-    console.log("Offers loaded!");
+    console.log("Offers loaded to cache !");
     return offerCache;
   }
 
-  console.log("Offers already exist in cache!");
+  console.log("Offers already exist in cache !");
   return offerCache;
 };
 

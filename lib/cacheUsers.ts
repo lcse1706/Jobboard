@@ -1,3 +1,5 @@
+"use server";
+
 import { getUsers } from "../services/users";
 
 //TODO typa dla userCache
@@ -9,7 +11,7 @@ export const getCachedUsers = async () => {
     const users = await getUsers();
     userCache = users;
     isCacheLoaded = true;
-    console.log("Users loaded !");
+    console.log("Users loaded to cache !");
     return users;
   }
   console.log("Users already exist in cache !");
