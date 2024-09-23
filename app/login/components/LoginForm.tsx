@@ -6,7 +6,7 @@ import { CredentialsForm } from "./CredentialsForm";
 
 export const LoginForm = () => {
   return (
-    <div className="flex flex-col items-center mt-10 p-10 mx-5 shadow-lg border border-gray-200 rounded-md bg-white">
+    <div className="flex flex-col items-center mt-10 p-10 mx-5 shadow-lg border border-gray-200 rounded-md bg-white text-black">
       <h1 className="mt-10 mb-4 text-4xl font-bold">Sign In</h1>
       <GoogleSignInButton />
 
