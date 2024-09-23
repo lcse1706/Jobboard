@@ -1,4 +1,4 @@
-export * from "./cacheUsers";
-export * from "./cacheOffers";
+export { getCachedOffers, invalidateOfferCache } from "./cacheOffers";
+export { getCachedUsers, invalidateUserCache } from "./cacheUsers";
 export * from "./isMobileDevice";
 // export * from "./types";
