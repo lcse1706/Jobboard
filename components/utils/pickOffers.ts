@@ -2,12 +2,13 @@ import { getServerSession } from "next-auth";
 import { revalidateTag } from "next/cache";
 
 import { authConfig } from "@/app/login/lib/auth";
+import { getCachedUsers } from "@/lib";
 import { OffersType } from "@/lib/types";
-import { fetchOffers, getUsers } from "@/services";
+import { fetchOffers } from "@/services";
 
 export const pickOffers = async (pickOffers: string) => {
   const offers = await fetchOffers();
-  const users = await getUsers();
+  const users = await getCachedUsers();
   revalidateTag("users");
   revalidateTag("offers");
 

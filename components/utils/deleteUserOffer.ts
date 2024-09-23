@@ -1,13 +1,14 @@
 import { Session } from "next-auth";
 
-import { getUsers, updateUser } from "@/services";
+import { getCachedUsers } from "@/lib";
+import { updateUser } from "@/services";
 
 export const deleteUserOffer = async (
   offerId: string,
   session: Session | null | undefined,
   pickOffers: string
 ) => {
-  const users = await getUsers();
+  const users = await getCachedUsers();
   const sessionUser = session?.user?.email;
 
   for (const user in users) {

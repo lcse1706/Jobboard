@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,6 @@ import defaultLogo from "@/app/favicon.ico";
 import { checkIfUserInDb, toggleFavorite } from "@/components/utils";
 import { useDataContext, useHelpersContext } from "@/context";
 import { OfferListFormProps } from "@/lib/types";
-import { getUsers } from "@/services";
 
 export const OfferListForm = (props: OfferListFormProps) => {
   const { hoveredMarkerId } = useHelpersContext();
@@ -20,23 +19,26 @@ export const OfferListForm = (props: OfferListFormProps) => {
   const { data: session } = useSession();
   const router = useRouter();
   const offer = props.data;
+  const users = props.users;
 
   const [favorite, setFavorite] = useState(false);
 
-  useEffect(() => {
-    // Checking if offer is set as favorite to specific user and show it on the list.
-    const checkFavorite = async () => {
-      const users = await getUsers();
-      const sessionUser = session?.user?.email;
-      for (const user in users) {
-        if (sessionUser === users[user].email) {
-          if (users[user].favorites.some((item) => item === offer.id)) {
-            setFavorite(true);
-          }
+  const checkFavorite = async () => {
+    const sessionUser = session?.user?.email;
+    for (const user in users) {
+      if (sessionUser === users[user].email) {
+        if (users[user].favorites.some((item) => item === offer.id)) {
+          setFavorite(true);
         }
       }
-    };
-    checkFavorite();
+    }
+  };
+
+  useEffect(() => {
+    // Checking if offer is set as favorite to specific user and show it on the list.
+    if (session) {
+      checkFavorite();
+    }
   }, [session, offer.id]);
 
   const handleFavorite = async (offerId: string) => {

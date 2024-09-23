@@ -1,9 +1,10 @@
 import { Session } from "next-auth";
 
-import { getUsers, registerUser } from "@/services";
+import { getCachedUsers } from "@/lib/cacheUsers";
+import { registerUser } from "@/services";
 
 export const checkIfUserInDb = async (session: Session | null | undefined) => {
-  const users = await getUsers();
+  const users = await getCachedUsers();
   const loggedEmail = session?.user?.email;
   let userExist = false;
 

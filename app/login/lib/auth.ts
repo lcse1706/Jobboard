@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { redirect } from "next/navigation";
 
-import { getUsers } from "@/services/users";
+import { getCachedUsers } from "@/lib";
 
 // import GithubProvider from 'next-auth/providers/github';
 
@@ -23,7 +23,7 @@ export const authConfig: NextAuthOptions = {
         if (!credentials || !credentials.email || !credentials.password)
           return null;
 
-        const users = await getUsers();
+        const users = await getCachedUsers();
 
         for (const dbUser in users) {
           if (

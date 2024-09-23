@@ -14,14 +14,9 @@ import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { Button, Input } from "@/components/ui";
 import { checkIfUserInDb } from "@/components/utils/checkIfUserInDb";
 import { useDataContext, useHelpersContext } from "@/context";
+import { getCachedUsers } from "@/lib";
 import { TOfferDTO, offerDTO, PlaceInfo } from "@/lib/types";
-import {
-  fetchOffers,
-  updateOffer,
-  sendOffer,
-  getUsers,
-  updateUser,
-} from "@/services";
+import { fetchOffers, updateOffer, sendOffer, updateUser } from "@/services";
 
 import { PlacesAutocomplete } from "./PlacesAutocomplete";
 import { UploadLogo } from "./UploadLogo";
@@ -111,7 +106,7 @@ export const AddOfferForm: NextPage = () => {
     // Check if user exist in db
     await checkIfUserInDb(session);
 
-    const users = await getUsers();
+    const users = await getCachedUsers();
     const loggedEmail = session?.user?.email;
     for (const user in users) {
       if (users[user].email === loggedEmail) {

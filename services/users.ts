@@ -1,5 +1,7 @@
 import { OffersType, TRegisterSchema } from "@/lib/types";
 
+import { getCachedUsers, invalidateUserCache } from "../lib/cacheUsers";
+
 const headers = {
   "Content-Type": "application/json",
 };
@@ -25,6 +27,9 @@ export const registerUser = async (data: TRegisterSchema) => {
 
   if (sendResponse.ok) {
     console.log("Registration user data send successful !");
+    // Refreshing users in cache
+    invalidateUserCache();
+    await getCachedUsers();
   } else {
     throw new Error("Registration failed.");
   }
@@ -41,11 +46,11 @@ export const getUsers = async () => {
     }
   );
   if (getUsers.ok) {
-    console.log("Users loaded");
   } else {
     throw new Error("Loading users failed");
   }
   const data = await getUsers.json();
+  // console.log("Users loaded");
   return data;
 };
 
