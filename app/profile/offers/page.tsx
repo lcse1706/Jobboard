@@ -14,7 +14,7 @@ export default async function Offers() {
   }
 
   return (
-    <ul className="flex flex-col items-center justify-start dh-screen mx-2">
+    <ul className="flex flex-col items-center justify-start dh-screen mx-2 text-black">
       {userOffers.length > 0 ? (
         userOffers.map((item) => <ProfileOffers key={item.id} data={item} />)
       ) : (

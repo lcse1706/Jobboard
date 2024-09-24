@@ -51,7 +51,7 @@ export const FavoritesOffers = (props: ProfileOfferProps) => {
       <div className="flex justify-center">
         <Button
           label="Delete From Favorites"
-          className="bg-red-600"
+          className="bg-red-500 hover:bg-red-700"
           type="button"
           onClick={handleDelete}
         />

@@ -74,7 +74,7 @@ export const ProfileOffers = (props: ProfileOfferProps) => {
           <Button label="Edit (in progress)" type="button" />
           <Button
             label="Delete"
-            className="bg-turquise hover:bg-red-700"
+            className="bg-red-500 hover:bg-red-700"
             type="button"
             onClick={handleDelete}
           />
