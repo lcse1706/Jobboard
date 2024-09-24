@@ -64,7 +64,7 @@ interface OfferProps {
   key?: string;
 }
 
-export interface ProfileOfferProps extends OfferProps {}
+export type ProfileOfferProps = Omit<OfferProps, "users">;
 
 export interface OfferListFormProps extends OfferProps {}
 
