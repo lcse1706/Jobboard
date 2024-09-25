@@ -57,14 +57,22 @@ export interface OfferFirebaseType extends OffersBase {}
 export type fetchOffersType = Record<string, OffersType>;
 
 export interface ItemProps extends OffersType {}
-//TODO users types
+
+export interface User {
+  email: string;
+  name: string;
+  createdAt: string;
+  favorites: string[];
+  offersPublished: string[];
+}
+
 interface OfferProps {
   data: OffersType;
-  users: any;
+  user: User;
   key?: string;
 }
 
-export type ProfileOfferProps = Omit<OfferProps, "users">;
+export type ProfileOfferProps = Omit<OfferProps, "user">;
 
 export interface OfferListFormProps extends OfferProps {}
 
