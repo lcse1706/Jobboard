@@ -2,15 +2,19 @@
 
 import { useEffect, useState } from "react";
 
+import { useSession } from "next-auth/react";
+
 import { useDataContext } from "@/context";
 import { getCachedOffers, getCachedUsers } from "@/lib";
+import { User } from "@/lib/types";
 
 import { OfferListForm } from "./OfferListForm";
 import { SearchBar } from "./SearchBar";
 
 export const JobOfferList = () => {
   const { setRecords, filteredData } = useDataContext();
-  const [users, setUsers] = useState([]);
+  const [sessionUser, setSessionUser] = useState<User | null>(null);
+  const { data: session } = useSession();
 
   const getDataAndUsers = async () => {
     try {
@@ -20,7 +24,15 @@ export const JobOfferList = () => {
       ]);
 
       setRecords(offers.reverse());
-      setUsers(users);
+
+      const usersArray: User[] = Object.values(users);
+
+      if (session?.user?.email) {
+        const loggedUser = usersArray.find(
+          (user) => user.email === session.user.email
+        );
+        setSessionUser(loggedUser);
+      }
     } catch (error) {
       throw new Error(error);
     }
@@ -28,14 +40,14 @@ export const JobOfferList = () => {
 
   useEffect(() => {
     getDataAndUsers();
-  }, []);
+  }, [session]);
 
   return (
     <section>
       <SearchBar />
       <ul className="my-5 mx-7 bg-gray-200 text-black dark:bg-gray-700 dark:text-black">
         {filteredData.map((offer) => (
-          <OfferListForm key={offer.id} data={offer} users={users} />
+          <OfferListForm key={offer.id} data={offer} user={sessionUser} />
         ))}
       </ul>
     </section>

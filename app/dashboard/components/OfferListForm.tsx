@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
 
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -19,29 +19,25 @@ export const OfferListForm = (props: OfferListFormProps) => {
   const { data: session } = useSession();
   const router = useRouter();
   const offer = props.data;
-  const users = props.users;
+  const user = props.user;
 
   const [favorite, setFavorite] = useState(false);
 
   const checkFavorite = async () => {
-    const sessionUser = session?.user?.email;
-    for (const user in users) {
-      if (sessionUser === users[user].email) {
-        if (users[user].favorites.some((item) => item === offer.id)) {
-          setFavorite(true);
-        }
-      }
+    if (user && user.favorites.includes(offer.id)) {
+      setFavorite(true);
     }
   };
 
   useEffect(() => {
     // Checking if offer is set as favorite to specific user and show it on the list.
-    if (session) {
+    if (user) {
       checkFavorite();
     }
-  }, [session, offer.id]);
+  }, [user, offer.id]);
 
   const handleFavorite = async (offerId: string) => {
+    //TODO think if such validation is needed if session is checked in the parent.
     if (session) {
       //Check if exist in db
       await checkIfUserInDb(session);
@@ -54,8 +50,6 @@ export const OfferListForm = (props: OfferListFormProps) => {
       router.push("/login");
     }
   };
-  //PROBLEM Not always display color in favorite star
-  //SOLUTION Use just button instead of component UI, base class text-white caused conflict, that was a reason why star didn't change color
 
   return (
     <li
