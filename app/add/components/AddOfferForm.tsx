@@ -103,9 +103,6 @@ export const AddOfferForm: NextPage = () => {
 
   // Searching for a user in the database by matching with data from session and add offer to user's published offers.
   const addOfferToUser = async (id: string) => {
-    // Check if user exist in db
-    await checkIfUserInDb(session);
-
     const users = await getCachedUsers();
     const loggedEmail = session?.user?.email;
     for (const user in users) {
