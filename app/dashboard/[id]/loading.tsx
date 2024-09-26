@@ -1,4 +1,4 @@
-import { LoadingIndicator } from "@/components/ui/Loading/loadingIndicator";
+import { LoadingIndicator } from "@/components/ui/LoadingIndicator";
 
 export default function OfferLoading() {
   return (

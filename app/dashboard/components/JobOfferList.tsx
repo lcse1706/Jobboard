@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { useSession } from "next-auth/react";
 
-import { LoadingIndicator } from "@/components/ui/Loading/loadingIndicator";
+import { LoadingIndicator } from "@/components/ui/LoadingIndicator";
 import { useDataContext } from "@/context";
 import { getCachedOffers, getCachedUsers } from "@/lib";
 import { User } from "@/lib/types";
