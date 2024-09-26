@@ -37,9 +37,8 @@ export const OfferListForm = (props: OfferListFormProps) => {
   }, [user, offer.id]);
 
   const handleFavorite = async (offerId: string) => {
-    //TODO think if such validation is needed if session is checked in the parent.
     if (session) {
-      //Check if exist in db
+      // Checking if offer is set as favorite to specific user and show it on the list.
       await checkIfUserInDb(session);
       await toggleFavorite(offerId, session);
       setFavorite(!favorite);

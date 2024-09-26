@@ -14,6 +14,8 @@ export const checkIfUserInDb = async (session: Session | null | undefined) => {
     }
   }
 
+  // If logged with Google, add User instance to db
+
   if (!userExist) {
     const newUser = {
       email: loggedEmail,
