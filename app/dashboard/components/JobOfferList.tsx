@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { useSession } from "next-auth/react";
 
+import { LoadingIndicator } from "@/components/ui/Loading/loadingIndicator";
 import { useDataContext } from "@/context";
 import { getCachedOffers, getCachedUsers } from "@/lib";
 import { User } from "@/lib/types";
@@ -14,6 +15,7 @@ import { SearchBar } from "./SearchBar";
 export const JobOfferList = () => {
   const { setRecords, filteredData } = useDataContext();
   const [sessionUser, setSessionUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const { data: session } = useSession();
 
   const getDataAndUsers = async () => {
@@ -24,7 +26,7 @@ export const JobOfferList = () => {
       ]);
 
       setRecords(offers.reverse());
-
+      setLoading(false);
       const usersArray: User[] = Object.values(users);
 
       if (session?.user?.email) {
@@ -45,11 +47,17 @@ export const JobOfferList = () => {
   return (
     <section>
       <SearchBar />
-      <ul className="my-5 mx-7 bg-gray-200 text-black dark:bg-gray-700 dark:text-black">
-        {filteredData.map((offer) => (
-          <OfferListForm key={offer.id} data={offer} user={sessionUser} />
-        ))}
-      </ul>
+      {loading ? (
+        <div className="flex justify-center items-start mt-20 h-screen ">
+          <LoadingIndicator />
+        </div>
+      ) : (
+        <ul className="my-5 mx-7 bg-gray-200 text-black dark:bg-gray-700 dark:text-black">
+          {filteredData.map((offer) => (
+            <OfferListForm key={offer.id} data={offer} user={sessionUser} />
+          ))}
+        </ul>
+      )}
     </section>
   );
 };
