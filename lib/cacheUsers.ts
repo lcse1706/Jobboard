@@ -1,9 +1,9 @@
 "use server";
 
 import { getUsers } from "../services/users";
+import { User } from "./types";
 
-//TODO typa dla userCache
-let userCache: any[] | null = null;
+let userCache: User[] | null = null;
 let isCacheLoaded = false;
 
 export const getCachedUsers = async () => {
