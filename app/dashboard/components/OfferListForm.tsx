@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import defaultLogo from "@/app/favicon.ico";
+import { classMerge } from "@/components/ui/utils/cn";
 import { checkIfUserInDb, toggleFavorite } from "@/components/utils";
 import { useDataContext, useHelpersContext } from "@/context";
 import { OfferListFormProps } from "@/lib/types";
@@ -52,10 +53,10 @@ export const OfferListForm = (props: OfferListFormProps) => {
 
   return (
     <li
-      className={`bg-white p-4 m-4 border rounded-lg shadow-lg relative
+      className={classMerge(`bg-white p-4 my-4 border rounded-lg shadow-lg relative
       ${!isMobile && "hover:scale-105 hover:ring-1"}
       ${hoveredMarkerId === offer.id && "scale-105 ring-1"}
-      `}
+      `)}
     >
       <button
         type="button"
