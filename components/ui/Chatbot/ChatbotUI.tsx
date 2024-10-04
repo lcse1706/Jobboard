@@ -31,7 +31,7 @@ export const ChatbotUI = () => {
       ) : (
         <FontAwesomeIcon
           icon={faRobot}
-          className="rotate text-5xl cursor-pointer text-gray-700 dark:text-white "
+          className="shake text-5xl cursor-pointer text-gray-700 dark:text-white "
           onClick={showBotHandler}
         />
       )}
