@@ -54,8 +54,8 @@ export const OfferListForm = (props: OfferListFormProps) => {
   return (
     <li
       className={classMerge(`bg-white p-4 my-4 border rounded-lg shadow-lg relative
-      ${!isMobile && "hover:scale-105 hover:ring-1"}
-      ${hoveredMarkerId === offer.id && "scale-105 ring-1"}
+      ${!isMobile && "hover:scale-[103%] hover:ring-1"}
+      ${hoveredMarkerId === offer.id && "scale-[103%] ring-1"}
       `)}
     >
       <button
