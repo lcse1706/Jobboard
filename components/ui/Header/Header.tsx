@@ -5,7 +5,7 @@ import { isMobile as checkMobile } from "react-device-detect";
 
 import Image from "next/image";
 
-import logo from "./logo.jpg";
+import logo from "./suitsilver.png";
 
 interface HeaderProps {
   style?: React.CSSProperties;
@@ -29,7 +29,7 @@ export const Header = (props: HeaderProps) => {
       <Image
         alt="Jobboard Logo"
         src={logo}
-        height={isMobile ? 50 : 100}
+        height={isMobile ? 50 : 110}
         className={`${
           isMobile ? "ml-4 max-w-[150px]" : "ml-[400px] max-w-[200px]"
         }`}
