@@ -33,7 +33,7 @@ export const Header = (props: HeaderProps) => {
         <Image
           alt="Jobboard Logo"
           src={logo}
-          height={isMobile ? 50 : 110}
+          height={isMobile ? 90 : 110}
           className={`${
             isMobile ? "ml-4 max-w-[150px]" : "ml-[400px] max-w-[200px]"
           }`}
