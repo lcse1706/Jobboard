@@ -66,7 +66,7 @@ export const MobileNavigation = ({
       ) : (
         <span
           onClick={handleHamburger}
-          className="text-xl"
+          className="text-4xl"
           aria-label="Toggle navigation menu"
         >
           <FontAwesomeIcon icon={faBars} />
