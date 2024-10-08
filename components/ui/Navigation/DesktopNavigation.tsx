@@ -24,7 +24,7 @@ export const DesktopNavigation = ({ nav }: DesktopNavigationProps) => {
       {nav.map((item, index) => (
         <li
           key={index}
-          className={`grow text-center py-2 px-4 m-1 ${
+          className={`grow text-center py-2 px-4 m-1 font-medium tracking-wider ${
             pathname === item.link
               ? "text-blue-500 border-b-2 border-blue-500"
               : ""
