@@ -144,7 +144,7 @@ export const AddOfferForm: NextPage = () => {
     <div className="container flex justify-around m-auto ">
       <div
         className={
-          "flex justify-around mt-20 bg-white p-4 border rounded-lg shadow-lg" +
+          "flex justify-around mt-20 bg-white p-4 border rounded-lg shadow-lg mb-10" +
           (isMobile ? " flex-col items-center" : "")
         }
       >
