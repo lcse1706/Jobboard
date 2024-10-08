@@ -16,7 +16,7 @@ export const ChatbotUI = () => {
   };
 
   return (
-    <div className="fixed bottom-20 right-4 dark:text-black">
+    <div className="fixed bottom-4 right-4 dark:text-black ">
       {show ? (
         <div className="relative">
           <button
@@ -31,7 +31,8 @@ export const ChatbotUI = () => {
       ) : (
         <FontAwesomeIcon
           icon={faRobot}
-          className="shake text-5xl cursor-pointer text-gray-700 dark:text-white "
+          className="shake text-5xl cursor-pointer text-gray-700 dark:text-white   dark:bg-black  dark:bg-opacity-60 p-2
+     dark:rounded-2xl"
           onClick={showBotHandler}
         />
       )}
