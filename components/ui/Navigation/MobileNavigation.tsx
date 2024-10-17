@@ -49,7 +49,7 @@ export const MobileNavigation = ({
             </li>
           ))}
           {isAuthenticated && (
-            <p className="border-l-2 border-gray-600 py-2 px-4 m-1">
+            <p className="border-t border-gray-600 py-2 px-4 m-1">
               You are logged in as {session.data?.user?.name}!
             </p>
           )}
