@@ -29,7 +29,7 @@ export const ChatbotUI = () => {
           <Chatbot />
         </div>
       ) : (
-        <div className="bg-white border border-gray-300  dark:bg-black dark:bg-opacity-60 p-2 rounded-2xl">
+        <div className="bg-white border border-gray-300 bg-opacity-70  dark:bg-black dark:bg-opacity-60 p-2 rounded-2xl">
           <FontAwesomeIcon
             icon={faRobot}
             className="shake text-5xl cursor-pointer text-gray-700 dark:text-white   "
