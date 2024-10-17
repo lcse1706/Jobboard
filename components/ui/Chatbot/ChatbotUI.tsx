@@ -29,12 +29,13 @@ export const ChatbotUI = () => {
           <Chatbot />
         </div>
       ) : (
-        <FontAwesomeIcon
-          icon={faRobot}
-          className="shake text-5xl cursor-pointer text-gray-700 dark:text-white   dark:bg-black  dark:bg-opacity-60 p-2
-     dark:rounded-2xl"
-          onClick={showBotHandler}
-        />
+        <div className="bg-white border border-gray-300  dark:bg-black dark:bg-opacity-60 p-2 rounded-2xl">
+          <FontAwesomeIcon
+            icon={faRobot}
+            className="shake text-5xl cursor-pointer text-gray-700 dark:text-white   "
+            onClick={showBotHandler}
+          />
+        </div>
       )}
     </div>
   );
