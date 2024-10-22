@@ -11,6 +11,7 @@ import { User } from "@/lib/types";
 
 import { OfferListForm } from "./OfferListForm";
 import { SearchBar } from "./SearchBar";
+import { TechFilter } from "./TechFilter";
 
 export const JobOfferList = () => {
   const { setRecords, filteredData } = useDataContext();
@@ -47,6 +48,7 @@ export const JobOfferList = () => {
   return (
     <section>
       <SearchBar />
+      <TechFilter />
       {loading ? (
         <div className="flex justify-center items-start mt-20 h-screen ">
           <LoadingIndicator />

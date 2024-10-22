@@ -21,7 +21,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const TechFilter = () => {
   return (
-    <div>
+    <div className="text-6xl mx-7  bg-gray-200 text-black dark:bg-inherit dark:text-white [&>*]:p-4">
       <FontAwesomeIcon icon={faReact} />
       <FontAwesomeIcon icon={faPython} />
       <FontAwesomeIcon icon={faWordpress} />
