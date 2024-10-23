@@ -1,0 +1,18 @@
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px; /* wysokość dla przewijania poziomego */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #e0e0e0; /* Kolor tła paska przewijania */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888; /* Kolor suwaka */
+  border-radius: 10px;
+  border: 2px solid #e0e0e0; /* Przestrzeń wokół suwaka */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Kolor suwaka podczas hover */
+}

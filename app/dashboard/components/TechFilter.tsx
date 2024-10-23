@@ -19,9 +19,11 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import "./TechFilter.css";
+
 export const TechFilter = () => {
   return (
-    <div className="text-6xl mx-7  bg-gray-200 text-black dark:bg-inherit dark:text-white [&>*]:p-4">
+    <div className="custom-scrollbar text-6xl mx-7  bg-gray-200 text-black dark:bg-inherit dark:text-white [&>*]:p-4 overflow-x-auto whitespace-nowrap">
       <FontAwesomeIcon icon={faReact} />
       <FontAwesomeIcon icon={faPython} />
       <FontAwesomeIcon icon={faWordpress} />
