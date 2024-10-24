@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import {
   faAws,
   faCss3Alt,
@@ -19,13 +21,35 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { useDataContext } from "@/context";
+
 import "./TechFilter.css";
 
 export const TechFilter = () => {
+  const { records, setFilteredData } = useDataContext();
+  const [searchField, setSearchField] = useState("");
+  useEffect(() => {
+    const filteredTech = records.filter((record) => {
+      return record.technologies.toLowerCase().includes(searchField);
+    });
+    setFilteredData(filteredTech);
+    console.log(searchField);
+  }, [searchField]);
+
   return (
     <div className="custom-scrollbar text-6xl mx-7  bg-gray-200 text-black dark:bg-inherit dark:text-white [&>*]:p-4 overflow-x-auto whitespace-nowrap">
-      <FontAwesomeIcon icon={faReact} />
-      <FontAwesomeIcon icon={faPython} />
+      <FontAwesomeIcon
+        icon={faReact}
+        onClick={() => {
+          setSearchField("react");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faPython}
+        onClick={() => {
+          setSearchField("python");
+        }}
+      />
       <FontAwesomeIcon icon={faWordpress} />
       <FontAwesomeIcon icon={faDocker} />
       <FontAwesomeIcon icon={faHtml5} />
