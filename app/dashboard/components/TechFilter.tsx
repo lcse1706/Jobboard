@@ -50,22 +50,102 @@ export const TechFilter = () => {
           setSearchField("python");
         }}
       />
-      <FontAwesomeIcon icon={faWordpress} />
-      <FontAwesomeIcon icon={faDocker} />
-      <FontAwesomeIcon icon={faHtml5} />
-      <FontAwesomeIcon icon={faLinux} />
-      <FontAwesomeIcon icon={faJava} />
-      <FontAwesomeIcon icon={faNodeJs} />
-      <FontAwesomeIcon icon={faVuejs} />
-      <FontAwesomeIcon icon={faSymfony} />
-      <FontAwesomeIcon icon={faRust} />
-      <FontAwesomeIcon icon={faPhp} />
-      <FontAwesomeIcon icon={faLaravel} />
-      <FontAwesomeIcon icon={faJs} />
-      <FontAwesomeIcon icon={faGolang} />
-      <FontAwesomeIcon icon={faRust} />
-      <FontAwesomeIcon icon={faCss3Alt} />
-      <FontAwesomeIcon icon={faAws} />
+      <FontAwesomeIcon
+        icon={faWordpress}
+        onClick={() => {
+          setSearchField("wordpress");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faDocker}
+        onClick={() => {
+          setSearchField("docker");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faHtml5}
+        onClick={() => {
+          setSearchField("html");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faLinux}
+        onClick={() => {
+          setSearchField("linux");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faJava}
+        onClick={() => {
+          setSearchField("java");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faNodeJs}
+        onClick={() => {
+          setSearchField("node");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faVuejs}
+        onClick={() => {
+          setSearchField("vue");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faSymfony}
+        onClick={() => {
+          setSearchField("symfony");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faRust}
+        onClick={() => {
+          setSearchField("rust");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faPhp}
+        onClick={() => {
+          setSearchField("php");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faLaravel}
+        onClick={() => {
+          setSearchField("laravel");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faJs}
+        onClick={() => {
+          setSearchField("javascript");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faGolang}
+        onClick={() => {
+          setSearchField("golang");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faRust}
+        onClick={() => {
+          setSearchField("rust");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faCss3Alt}
+        onClick={() => {
+          setSearchField("css");
+        }}
+      />
+      <FontAwesomeIcon
+        icon={faAws}
+        onClick={() => {
+          setSearchField("aws");
+        }}
+      />
     </div>
   );
 };
