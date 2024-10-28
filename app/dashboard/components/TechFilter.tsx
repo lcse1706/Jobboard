@@ -28,9 +28,14 @@ import "./TechFilter.css";
 export const TechFilter = () => {
   const { records, setFilteredData } = useDataContext();
   const [searchField, setSearchField] = useState("");
+
   useEffect(() => {
     const filteredTech = records.filter((record) => {
-      return record.technologies.toLowerCase().includes(searchField);
+      return (
+        record.title.toLowerCase().includes(searchField) ||
+        record.technologies.toLowerCase().includes(searchField) ||
+        record.description.toLowerCase().includes(searchField)
+      );
     });
     setFilteredData(filteredTech);
     console.log(searchField);
