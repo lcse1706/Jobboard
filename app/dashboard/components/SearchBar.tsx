@@ -13,17 +13,17 @@ export const SearchBar = () => {
   };
 
   useEffect(() => {
-    const filteredData = records.filter((data) => {
+    const filteredData = records.filter((record) => {
       return (
-        data.title.toLowerCase().includes(searchField.toLowerCase()) ||
-        data.salary.toLowerCase().includes(searchField.toLowerCase()) ||
-        data.technologies
+        record.title.toLowerCase().includes(searchField.toLowerCase()) ||
+        record.salary.toLowerCase().includes(searchField.toLowerCase()) ||
+        record.technologies
           .toLowerCase()
           .includes(searchField.toLocaleLowerCase()) ||
-        // data.technologies.some(tech =>
+        // record.technologies.some(tech =>
         //   tech.toLowerCase().includes(searchField.toLowerCase())
-        data.location.toLowerCase().includes(searchField.toLowerCase()) ||
-        data.description.toLowerCase().includes(searchField.toLowerCase())
+        record.location.toLowerCase().includes(searchField.toLowerCase()) ||
+        record.description.toLowerCase().includes(searchField.toLowerCase())
       );
     });
     setFilteredData(filteredData);
