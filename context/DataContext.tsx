@@ -18,6 +18,8 @@ export const useDataContext = () => {
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [records, setRecords] = useState<OffersType[]>([]);
+  const [techFilteredData, setTechFilteredData] =
+    useState<OffersType[]>(records);
   const [filteredData, setFilteredData] = useState<OffersType[]>(records);
   const [offerId, setOfferId] = useState<string>("");
   const [logoURL, setLogoURL] = useState<string>("");
@@ -29,6 +31,8 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
         setRecords,
         filteredData,
         setFilteredData,
+        techFilteredData,
+        setTechFilteredData,
         offerId,
         setOfferId,
         logoURL,

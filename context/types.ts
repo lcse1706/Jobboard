@@ -20,6 +20,8 @@ export interface DataContextType {
   setRecords: React.Dispatch<React.SetStateAction<OffersType[]>>;
   filteredData: OffersType[];
   setFilteredData: React.Dispatch<React.SetStateAction<OffersType[]>>;
+  techFilteredData: OffersType[];
+  setTechFilteredData: React.Dispatch<React.SetStateAction<OffersType[]>>;
   offerId: string;
   setOfferId: React.Dispatch<React.SetStateAction<string>>;
   logoURL: string;

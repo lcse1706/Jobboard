@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDataContext } from "@/context";
 
 export const SearchBar = () => {
-  const { records, setFilteredData } = useDataContext();
+  const { techFilteredData, setFilteredData } = useDataContext();
   const [searchField, setSearchField] = useState("");
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,7 +13,7 @@ export const SearchBar = () => {
   };
 
   useEffect(() => {
-    const filteredData = records.filter((record) => {
+    const filteredData = techFilteredData.filter((record) => {
       return (
         record.title.toLowerCase().includes(searchField.toLowerCase()) ||
         record.salary.toLowerCase().includes(searchField.toLowerCase()) ||
@@ -27,7 +27,7 @@ export const SearchBar = () => {
       );
     });
     setFilteredData(filteredData);
-  }, [searchField, records]);
+  }, [searchField, techFilteredData]);
 
   return (
     <div className="mx-7  bg-gray-200 text-black">

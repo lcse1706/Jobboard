@@ -26,7 +26,7 @@ import { useDataContext } from "@/context";
 import "./TechFilter.css";
 
 export const TechFilter = () => {
-  const { records, setFilteredData } = useDataContext();
+  const { records, setTechFilteredData } = useDataContext();
   const [searchField, setSearchField] = useState("");
 
   useEffect(() => {
@@ -37,9 +37,9 @@ export const TechFilter = () => {
         record.description.toLowerCase().includes(searchField)
       );
     });
-    setFilteredData(filteredTech);
+    setTechFilteredData(filteredTech);
     console.log(searchField);
-  }, [searchField]);
+  }, [searchField, records]);
 
   return (
     <div className="custom-scrollbar text-6xl mx-7  bg-gray-200 text-black dark:bg-inherit dark:text-white [&>*]:p-4 overflow-x-auto whitespace-nowrap">
