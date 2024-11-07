@@ -7,13 +7,13 @@ import { DetailsProps } from "@/lib/types";
 export const Details = (props: DetailsProps) => {
   const data = props.details;
   return (
-    <div className="bg-gray-200 text-black p-8 rounded-lg shadow-md max-w-6xl mx-3 mt-8">
+    <div className="bg-white text-black p-8 rounded-lg shadow-md max-w-6xl mx-3 mt-8">
       <div className="flex items-center justify-center mb-4">
         <Image
           src={data.logoURL === "" ? defaultLogo : data.logoURL}
           alt="logo"
-          width={50}
-          height={50}
+          width={100}
+          height={100}
           className="rounded-full mr-3"
         />
         <p className="text-2xl font-bold mb-2"> {data.title}</p>

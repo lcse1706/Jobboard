@@ -110,7 +110,7 @@ export const UploadLogo = ({ submitRef }: any) => {
   return (
     <div className=" px-4">
       <div
-        className="border border-dashed border-gray-400 rounded-lg p-8 text-center"
+        className="border border-dashed border-gray-400 rounded-lg p-8 text-center text-gray-500 dark:text-gray-500"
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
