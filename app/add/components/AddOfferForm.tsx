@@ -11,7 +11,7 @@ import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 
-import { Button, Input } from "@/components/ui";
+import { Button, Input, LoadingIndicator } from "@/components/ui";
 import { checkIfUserInDb } from "@/components/utils/checkIfUserInDb";
 import { useDataContext, useHelpersContext } from "@/context";
 import { getCachedUsers, invalidateOfferCache } from "@/lib";
@@ -98,7 +98,11 @@ export const AddOfferForm: NextPage = () => {
   });
 
   if (!isLoaded) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex justify-center">
+        <LoadingIndicator />
+      </div>
+    );
   }
 
   // Searching for a user in the database by matching with data from session and add offer to user's published offers.
