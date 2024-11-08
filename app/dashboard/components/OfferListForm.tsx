@@ -77,16 +77,14 @@ export const OfferListForm = (props: OfferListFormProps) => {
           <Image
             src={offer.logoURL === "" ? defaultLogo : offer.logoURL}
             alt="tech img"
-            width={25}
-            height={25}
-            className="mr-2"
+            width={75}
+            height={75}
+            className="mr-4"
           />
 
           <p className="text-xl font-semibold">{offer.title}</p>
         </div>
-
         <p className="text-gray-600">{offer.salary}</p>
-        {/* <p className="text-blue-500">{offer.technologies.join(', ')}</p> */}
         <p className="text-blue-500">{offer.technologies}</p>
         <p className="text-gray-600">{offer.location}</p>
         <p className="mt-2">{offer.description}</p>
