@@ -46,7 +46,7 @@ export const JobOfferList = () => {
   }, [session]);
 
   return (
-    <section>
+    <section className="mx-1">
       <SearchBar />
       <TechFilter />
       {loading ? (
@@ -54,7 +54,7 @@ export const JobOfferList = () => {
           <LoadingIndicator />
         </div>
       ) : (
-        <ul className="my-5 mx-7 bg-gray-200 text-black dark:bg-gray-700 dark:text-black">
+        <ul className="my-5 bg-gray-200 text-black dark:bg-gray-700 dark:text-black">
           {filteredData.map((offer) => (
             <OfferListForm key={offer.id} data={offer} user={sessionUser} />
           ))}

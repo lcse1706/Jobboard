@@ -30,7 +30,7 @@ export const SearchBar = () => {
   }, [searchField, techFilteredData]);
 
   return (
-    <div className="mx-7  bg-gray-200 text-black">
+    <div className="bg-gray-200 text-black">
       <input
         type="search"
         placeholder="Search Job"

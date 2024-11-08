@@ -45,7 +45,7 @@ export const TechFilter = () => {
   };
 
   return (
-    <div className="custom-scrollbar text-6xl mx-7  bg-gray-200 text-black dark:bg-inherit dark:text-white [&>*]:m-4 [&>*]:cursor-pointer overflow-x-auto whitespace-nowrap">
+    <div className="custom-scrollbar text-6xl bg-gray-200 text-black dark:bg-inherit dark:text-white [&>*]:m-4 [&>*]:cursor-pointer overflow-x-auto whitespace-nowrap">
       <FontAwesomeIcon
         icon={faJs}
         onClick={() => {

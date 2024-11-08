@@ -15,9 +15,9 @@ export default async function SignInPage() {
 
   return (
     <div
-      className={
-        isMobile ? "flex flex-col pb-5" : "w-full flex flex-row justify-center"
-      }
+      className={`flex ${
+        isMobile ? "flex-col pb-5" : "w-full flex-row justify-center"
+      }`}
     >
       <LoginForm />
       <RegisterForm />
