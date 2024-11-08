@@ -14,7 +14,7 @@ import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { Button, Input } from "@/components/ui";
 import { checkIfUserInDb } from "@/components/utils/checkIfUserInDb";
 import { useDataContext, useHelpersContext } from "@/context";
-import { getCachedUsers } from "@/lib";
+import { getCachedUsers, invalidateOfferCache } from "@/lib";
 import { TOfferDTO, offerDTO, PlaceInfo } from "@/lib/types";
 import { fetchOffers, updateOffer, sendOffer, updateUser } from "@/services";
 
@@ -131,6 +131,7 @@ export const AddOfferForm: NextPage = () => {
       console.log("Just added offer id: " + idOfJustAddedOffer);
       addOfferToUser(idOfJustAddedOffer);
       addNotify();
+      invalidateOfferCache();
     } catch (error) {
       errorNotify();
       throw new Error(error);
