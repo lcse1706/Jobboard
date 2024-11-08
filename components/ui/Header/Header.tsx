@@ -28,14 +28,13 @@ export const Header = (props: HeaderProps) => {
       style={props.style}
     >
       <Link href="/dashboard">
-        <Image
-          alt="Jobboard Logo"
-          src={logo}
-          height={isMobile ? 90 : 110}
-          className={`${
-            isMobile ? "ml-4 max-w-[150px]" : "ml-[400px] max-w-[200px]"
+        <span
+          className={`text-2xl font-bold tracking-wide text-gray-800 dark:text-white ${
+            isMobile ? "ml-4" : "ml-[400px]"
           }`}
-        />
+        >
+          jobboard.it
+        </span>
       </Link>
 
       <div className={`${isMobile ? "text-right" : "text-left"} `}>
