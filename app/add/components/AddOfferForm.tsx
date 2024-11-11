@@ -13,10 +13,9 @@ import { getGeocode, getLatLng } from "use-places-autocomplete";
 
 import { Button, Input, LoadingIndicator } from "@/components/ui";
 import { checkIfUserInDb } from "@/components/utils/checkIfUserInDb";
-import { useDataContext, useHelpersContext } from "@/context";
 import { getCachedUsers, invalidateOfferCache } from "@/lib";
 import { TOfferDTO, offerDTO, PlaceInfo } from "@/lib/types";
-import { fetchOffers, updateOffer, sendOffer, updateUser } from "@/services";
+import { sendOffer, updateUser } from "@/services";
 
 import { PlacesAutocomplete } from "./PlacesAutocomplete";
 import { UploadLogo } from "./UploadLogo";
@@ -34,9 +33,6 @@ export const AddOfferForm: NextPage = () => {
   const inputStyles = "w-full mb-2 p-2 border rounded";
   const errorStyles = "text-red-500 mb-3";
 
-  const { checkLastFirebaseKey, setCheckLastFirebaseKey } = useHelpersContext();
-  const { logoURL } = useDataContext();
-
   const addNotify = () => toast.success("Offer add successful !");
   const errorNotify = () => toast.error("En error occurred !");
 
@@ -48,44 +44,17 @@ export const AddOfferForm: NextPage = () => {
 
   const submitRef = useRef<HTMLFormElement | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [logoURL, setLogoURL] = useState<string | null>(null);
+  const logoURLRef = useRef<string | null>(null);
+
   const { data: session } = useSession();
 
-  //Update record with logoUrl which is returned from UploadLogo component. Sending data like title, salary, description etc is happening in the same time as logo upload thats why, added data is updated with logo Url.
-  const updateLastRecord = async () => {
-    try {
-      const data = await fetchOffers();
-      if (data) {
-        const keys = Object.keys(data);
-
-        const lastKey = keys[keys.length - 1];
-        console.log("Check if id are the same");
-        // Prevent rewriting the last record while component rendering.
-        if (checkLastFirebaseKey == lastKey) {
-          console.log("Stop: Same id's");
-          return;
-        } else {
-          console.log("Id's are different. Continuing ....");
-        }
-
-        setCheckLastFirebaseKey(lastKey);
-        const lastObject = data[lastKey];
-        const newRecord = {
-          ...lastObject,
-          logoURL: logoURL,
-        };
-        updateOffer(lastKey, newRecord);
-        console.log("Offer with id:", lastKey, " updated");
-      }
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-
   useEffect(() => {
-    console.log("useEffect render");
-    setTimeout(() => {
-      updateLastRecord();
-    }, 2000);
+    // Trigger this effect when logoURL changes to check if it's set
+    if (logoURL) {
+      console.log("Logo URL updated:", logoURL);
+      logoURLRef.current = logoURL;
+    }
   }, [logoURL]);
 
   // Autocomplete
@@ -123,19 +92,44 @@ export const AddOfferForm: NextPage = () => {
     }
   };
 
+  //Waiting for logo URL
+
+  const onUploadSuccess = async (url: string) => {
+    setLogoURL(url);
+  };
+
+  const waitForLogoURL = () => {
+    return new Promise<void>((resolve) => {
+      const interval = setInterval(() => {
+        if (logoURLRef.current) {
+          clearInterval(interval);
+          resolve();
+        }
+      }, 500);
+    });
+  };
+
   const submitHandler = async (data: TOfferDTO) => {
     setIsSubmitted(false);
+    invalidateOfferCache();
+
     // Sending submit to UploadLogo component
     if (submitRef.current) {
       submitRef.current.click();
     }
 
+    await waitForLogoURL();
+
     try {
-      const idOfJustAddedOffer = await sendOffer(data, placeInfo, logoURL);
+      const idOfJustAddedOffer = await sendOffer(
+        data,
+        placeInfo,
+        logoURLRef.current
+      );
       console.log("Just added offer id: " + idOfJustAddedOffer);
       addOfferToUser(idOfJustAddedOffer);
       addNotify();
-      invalidateOfferCache();
+      setLogoURL(null);
     } catch (error) {
       errorNotify();
       throw new Error(error);
@@ -153,7 +147,7 @@ export const AddOfferForm: NextPage = () => {
           (isMobile ? " flex-col items-center" : "")
         }
       >
-        <UploadLogo submitRef={submitRef} />
+        <UploadLogo submitRef={submitRef} onUploadSuccess={onUploadSuccess} />
         <form
           onSubmit={handleSubmit(submitHandler)}
           className={isMobile ? "flex flex-col items-center " : "w-1/2"}

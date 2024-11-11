@@ -12,16 +12,24 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/Button";
 // Import the Firebase configuration
-import { useDataContext } from "@/context/DataContext";
+// import { useDataContext } from "@/context/DataContext";
 import { firebaseStorage } from "@/services";
 
-export const UploadLogo = ({ submitRef }: any) => {
+interface UploadLogoProps {
+  submitRef: any;
+  onUploadSuccess: (downloadURL: string) => void;
+}
+
+export const UploadLogo: React.FC<UploadLogoProps> = ({
+  submitRef,
+  onUploadSuccess,
+}) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const iconRef = useRef<HTMLInputElement>(null!);
   const [preview, setPreview] = useState("");
-  const { setLogoURL } = useDataContext();
+  // const { setLogoURL } = useDataContext();
 
   const onBtnClick = () => {
     /*Collecting node-element and performing click*/
@@ -73,10 +81,12 @@ export const UploadLogo = ({ submitRef }: any) => {
     //   setError("Please select a file");
     //   return;
     // }
-
+    // if (selectedFile) {
+    // }
     if (selectedFile) {
       const storagePath = `/logos/${getUID()}`;
       const storageRef = ref(firebaseStorage, storagePath);
+      console.log("Adding uploaded logo");
 
       try {
         const snapshot = await uploadBytes(storageRef, selectedFile);
@@ -84,10 +94,17 @@ export const UploadLogo = ({ submitRef }: any) => {
 
         const downloadURL = await getDownloadURL(storageRef);
         console.log("Download URL:", downloadURL);
-        setLogoURL(downloadURL);
+
+        onUploadSuccess(downloadURL);
       } catch (error) {
         console.error("Error uploading file:", error);
       }
+    } else {
+      //default logo
+      console.log("default logo uploaded");
+      onUploadSuccess(
+        "https://firebasestorage.googleapis.com/v0/b/jobboard-335d5.appspot.com/o/logos%2F1697999803403?alt=media&token=c44f6841-44e8-48c3-882c-e20c30f1f72b"
+      );
     }
 
     setSelectedFile(null);
