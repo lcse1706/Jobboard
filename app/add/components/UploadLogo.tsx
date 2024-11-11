@@ -29,7 +29,6 @@ export const UploadLogo: React.FC<UploadLogoProps> = ({
   const [error, setError] = useState<string>("");
   const iconRef = useRef<HTMLInputElement>(null!);
   const [preview, setPreview] = useState("");
-  // const { setLogoURL } = useDataContext();
 
   const onBtnClick = () => {
     /*Collecting node-element and performing click*/

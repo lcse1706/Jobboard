@@ -24,6 +24,4 @@ export interface DataContextType {
   setTechFilteredData: React.Dispatch<React.SetStateAction<OffersType[]>>;
   offerId: string;
   setOfferId: React.Dispatch<React.SetStateAction<string>>;
-  logoURL: string;
-  setLogoURL: React.Dispatch<React.SetStateAction<string>>;
 }

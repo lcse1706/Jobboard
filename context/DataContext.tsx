@@ -22,7 +22,6 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     useState<OffersType[]>(records);
   const [filteredData, setFilteredData] = useState<OffersType[]>(records);
   const [offerId, setOfferId] = useState<string>("");
-  const [logoURL, setLogoURL] = useState<string>("");
 
   return (
     <DataContext.Provider
@@ -35,8 +34,6 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
         setTechFilteredData,
         offerId,
         setOfferId,
-        logoURL,
-        setLogoURL,
       }}
     >
       {children}
