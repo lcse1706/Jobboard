@@ -29,4 +29,6 @@ console.log(
   process.env.NEXT_PUBLIC_GOOGLE_API
 );
 
+console.log("Environment:", process.env.NODE_ENV);
+
 module.exports = nextConfig;

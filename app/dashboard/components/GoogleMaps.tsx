@@ -33,10 +33,8 @@ export const GoogleMaps: NextPage = () => {
   );
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOGGLE_API as string,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API as string,
   });
-
-  console.log("Google API Key:" + process.env.NEXT_PUBLIC_GOGGLE_API);
 
   if (!isLoaded) {
     return <p>Loading...</p>;

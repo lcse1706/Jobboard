@@ -62,11 +62,9 @@ export const AddOfferForm: NextPage = () => {
   const libraries = useMemo(() => ["places"], []);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOGGLE_API as string,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API as string,
     libraries: libraries as any,
   });
-
-  console.log("Google API Key:" + process.env.NEXT_PUBLIC_GOGGLE_API);
 
   if (!isLoaded) {
     return (
