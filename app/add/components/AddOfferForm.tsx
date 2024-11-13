@@ -66,6 +66,8 @@ export const AddOfferForm: NextPage = () => {
     libraries: libraries as any,
   });
 
+  console.log(process.env.NEXT_PUBLIC_GOGGLE_API);
+
   if (!isLoaded) {
     return (
       <div className="flex justify-center">
