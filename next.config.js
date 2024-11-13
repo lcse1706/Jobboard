@@ -24,11 +24,4 @@ const nextConfig = {
   },
 };
 
-console.log(
-  "Google API Key in next.config.js:",
-  process.env.NEXT_PUBLIC_GOOGLE_API
-);
-
-console.log("Environment:", process.env.NODE_ENV);
-
 module.exports = nextConfig;
