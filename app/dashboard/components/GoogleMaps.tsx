@@ -36,6 +36,8 @@ export const GoogleMaps: NextPage = () => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOGGLE_API as string,
   });
 
+  console.log("Google API Key:" + process.env.NEXT_PUBLIC_GOGGLE_API);
+
   if (!isLoaded) {
     return <p>Loading...</p>;
   }
